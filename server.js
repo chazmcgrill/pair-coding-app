@@ -5,11 +5,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const app = express();
+require('dotenv').config();
 
 const subjects = require('./backend/routes/subjects');
-
-// Keys file
-const keys = require('./keys')
 
 // Setup for CORS
 app.use(cors());
@@ -32,7 +30,7 @@ app.get('*', (req, res) => {
 
 
 // Connect to Mongo
-mongoose.connect(keys.mongoURI || process.env.mongoURI)
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 	.then(() => console.log('MongoDB Connected'))
 	.catch(err => console.log(err));
 
