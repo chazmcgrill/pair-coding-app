@@ -4,19 +4,12 @@
     "description": "Pair Coding App",
     "main": "server.js",
     "scripts": {
-        "start": "cd backend && nodemon server.js",
-        "client": "cd frontend && npm start",
-        "gulp": "cd frontend && gulp",
-        "heroku-postbuild": "cd frontend && npm install && npm run build",
-        "dev": "concurrently \"npm run start\" \"npm run client\" \"npm run gulp\""
+        "start": "cd backend && npm run dev"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/chazmcgrill/pair-coding-app.git"
     },
     "author": "Charlie Taylor <mail@charlietaylorcoder.com> (https://charlietaylorcoder.com)",
-    "license": "MIT",
-    "dependencies": {
-        "concurrently": "^4.0.1"
-    }
+    "license": "MIT"
 }
