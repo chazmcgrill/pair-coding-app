@@ -4,11 +4,7 @@
   "description": "Backend Api for Pair Coding App",
   "main": "server.js",
   "scripts": {
-    "backend": "nodemon server.js",
-    "frontend": "cd .. && cd frontend && npm start",
-    "gulp": "cd .. &&  cd frontend && gulp",
-    "heroku-postbuild": "cd .. && cd frontend && npm install && npm run build",
-    "dev": "concurrently \"npm run backend\" \"npm run frontend\" \"npm run gulp\""
+    "backend": "nodemon server.js"
   },
   "author": "Charlie Taylor <mail@charlietaylorcoder.com> (https://charlietaylorcoder.com)",
   "license": "MIT",
