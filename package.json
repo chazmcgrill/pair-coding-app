@@ -4,7 +4,10 @@
     "description": "Pair Coding App",
     "main": "server.js",
     "scripts": {
-        "start": "cd backend && npm run dev"
+        "install-dep": "npm install concurrently nodemon -g",
+        "start": "concurrently \"npm run backend\" \"npm run frontend\" \"npm run gulp\"",
+        "backend": "cd backend && npm run start",
+        "frontend": "cd frontend && npm run start && gulp"
     },
     "repository": {
         "type": "git",
