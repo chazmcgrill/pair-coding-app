@@ -1,0 +1,29 @@
+.row
+  box-sizing: border-box
+  display: flex
+  flex-direction: row
+  margin: 0 10px
+
+  &_center
+    justify-content: center
+  
+  &_spaced
+    justify-content: space-around
+
+.col
+  width: 400px
+
+  &_wide
+    width: 800px
+
+  &_half
+    width: 50%
+
+
+@media (max-width: 640px)
+  .row
+    display: block
+    margin: 0 10px
+
+  .col
+    width: 100%
