@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const SubjectSchema = new Schema({
-    name: {
+    title: {
         type: String,
         required: true
     },
-    date: {
-        type: String,
+    sections: {
+        type: Array,
         required: true
     }
 });

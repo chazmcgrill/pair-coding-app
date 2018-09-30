@@ -14,8 +14,8 @@ router.get('/', (req, res) => {
 // CREATE - Add new subject to database
 router.post('/', (req, res) => {
 	const newSubject = new Subject({
-		name: req.body.name,
-		date: req.body.date
+		title: req.body.title,
+		sections: req.body.sections
     });
     newSubject.save().then(subject => res.json(subject));
 });
