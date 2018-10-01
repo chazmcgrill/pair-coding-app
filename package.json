@@ -4,7 +4,7 @@
     "description": "Pair Coding App",
     "main": "server.js",
     "scripts": {
-        "install-dep": "npm install concurrently nodemon -g",
+        "install-dep": "npm install concurrently nodemon gulp-cli -g",
         "start": "concurrently \"npm run backend\" \"npm run frontend\"",
         "backend": "cd backend && npm run start",
         "frontend": "cd frontend && npm run start"

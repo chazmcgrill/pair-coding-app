@@ -25,12 +25,10 @@ gulp.task('sass', () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch(paths.sass.src, gulp.series('sass'));
+  gulp.watch(paths.sass.src, ['sass']);
 });
 
 
 // -- DEFAULT
 
-const build = gulp.series('sass', 'watch');
-
-gulp.task('default', build);
+gulp.task('default', ['sass', 'watch']);
