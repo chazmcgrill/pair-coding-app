@@ -29,15 +29,19 @@ class App extends Component {
     const {certificates} = this.state;
     return (
       <div className="App">
-        <h1>Frontend</h1>
-
-        {
-          // Display all the names of the subjects 
-          certificates.map((cert, i) => (
-            <h3 key={i}>{cert.title}</h3>
-          ))
-        }
-
+        <div className="row">
+          <h1>Frontend</h1> 
+        </div>
+        <div className="row">
+          <ul>
+            {
+              // Display all the names of the subjects 
+              certificates.map((cert, i) => (
+                <li key={i}><h3>{cert.title}</h3></li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
     );
   }

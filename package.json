@@ -5,9 +5,9 @@
     "main": "server.js",
     "scripts": {
         "install-dep": "npm install concurrently nodemon -g",
-        "start": "concurrently \"npm run backend\" \"npm run frontend\" \"npm run gulp\"",
+        "start": "concurrently \"npm run backend\" \"npm run frontend\"",
         "backend": "cd backend && npm run start",
-        "frontend": "cd frontend && npm run start && gulp"
+        "frontend": "cd frontend && npm run start"
     },
     "repository": {
         "type": "git",

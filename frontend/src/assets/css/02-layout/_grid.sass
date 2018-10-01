@@ -1,29 +1,31 @@
-.row
-  box-sizing: border-box
-  display: flex
-  flex-direction: row
-  margin: 0 10px
+section
+  padding: 50px 10px
 
-  &_center
+.row
+  margin: 0 auto
+  padding: 10px
+  width: 100%
+  max-width: 1000px
+  display: flex
+
+  &_spaced
+    justify-content: space-between
+
+  &_centered
     justify-content: center
   
-  &_spaced
-    justify-content: space-around
+  @media (max-width: 640px)
+    flex-direction: column
+    align-items: center
 
 .col
-  width: 400px
+  width: 32%
 
-  &_wide
-    width: 800px
+  &_full
+    width: 100%
 
-  &_half
-    width: 50%
+  &_center
+    width: 36%
 
-
-@media (max-width: 640px)
-  .row
-    display: block
-    margin: 0 10px
-
-  .col
+  @media (max-width: 640px)
     width: 100%
