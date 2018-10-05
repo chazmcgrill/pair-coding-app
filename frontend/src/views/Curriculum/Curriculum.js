@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './assets/css/main.css';
 
-class App extends Component {
+class Curriculum extends Component {
 
   state = {
     certificates: []
@@ -47,4 +46,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Curriculum;
