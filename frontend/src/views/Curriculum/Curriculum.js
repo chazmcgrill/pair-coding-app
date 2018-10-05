@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Curriculum extends Component {
 
   state = {
