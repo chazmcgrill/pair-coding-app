@@ -29,7 +29,7 @@ class Curriculum extends Component {
     return (
       <div className="App">
         <div className="row">
-          <h1>Frontend</h1> 
+          <h1>Curriculum</h1> 
         </div>
         <div className="row">
           <ul>

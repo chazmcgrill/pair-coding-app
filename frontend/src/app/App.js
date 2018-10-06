@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'; 
-import NavBar from './NavBar';
-import Curriculum from './Curriculum';
-import NoMatch from './NoMatch';
-import Home from './Home';
+import Curriculum from './pages/Curriculum';
+import NavBar from './components/NavBar';
+import NoMatch from './pages/NoMatch';
+import Home from './pages/Home';
 
 export default class App extends Component {
 
