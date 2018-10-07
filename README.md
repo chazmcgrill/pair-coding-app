@@ -1,8 +1,20 @@
-# pair-coding-app
-Pair Coding Application
+# Pair Coding Application
 
-### first run npm run install-dep
-This will install all global dependencies you will need.
+## Dependencies
+our build setup requires the following npm packages to be installed globally:
+- concurrently
+- nodemon
+- gulp-cli
 
-### secondly run npm start
-This will fire up both backend, frontend and gulp
+Use this script to install automatically
+
+`npm run install:global`
+
+Use this to install projects depencies front and back
+
+`npm run install:deps`
+
+## Development Build
+Run start command to fire up both backend and frontend
+
+`npm start`
