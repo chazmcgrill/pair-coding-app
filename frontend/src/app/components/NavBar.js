@@ -14,6 +14,9 @@ class NavBar extends Component {
               <li>
                 <NavLink to="/curriculum">Curriculum</NavLink>
               </li>
+              <li>
+                <NavLink to="/Grid">Grid</NavLink>
+              </li>
             </ul>
           </nav>
       </header>
