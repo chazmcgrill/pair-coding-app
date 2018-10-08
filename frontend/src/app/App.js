@@ -11,14 +11,14 @@ export default class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <div>
+          <React.Fragment>
             <NavBar />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/Curriculum" component={Curriculum} />
               <Route component={NoMatch} />
             </Switch>
-          </div>
+          </React.Fragment>
         </BrowserRouter>
       </div>
     );
