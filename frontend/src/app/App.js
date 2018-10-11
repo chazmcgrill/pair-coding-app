@@ -8,6 +8,26 @@ import Grid from './pages/Grid';
 
 export default class App extends Component {
 
+
+  state = {
+    certificates: [],
+    loaded: false
+  };
+
+  callAPI = () => {
+    fetch("/api/subjects")
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          certificates: res,
+          loaded: true
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   render() {
     return (
       <div>
@@ -16,7 +36,7 @@ export default class App extends Component {
             <NavBar />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/Curriculum" component={Curriculum} />
+              <Route exact path="/Curriculum" render={() => <Curriculum certificates={this.state.certificates} loaded={this.state.loaded} callAPI={this.callAPI} />} />
               <Route exact path="/Grid" component={Grid} />
               <Route component={NoMatch} />
             </Switch>

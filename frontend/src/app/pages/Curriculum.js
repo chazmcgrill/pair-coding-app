@@ -1,44 +1,16 @@
 import React, { Component } from "react";
+import ListView from '../components/ListView';
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemTitle,
-  AccordionItemBody
-} from "react-accessible-accordion";
 
 class Curriculum extends Component {
-  state = {
-    certificates: []
-  };
-
-  callAPI() {
-    fetch("/api/subjects")
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          certificates: res
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
 
   componentDidMount() {
-    this.callAPI();
-  }
-
-  selected(e) {
-    const element = document.getElementById(e.target.id);
-
-    if(element && element.classList.contains('accordion__title')) {
-      document.getElementById(e.target.id).classList.toggle("colored");
+    if(!this.props.loaded) {
+      this.props.callAPI();
     }
   }
 
   render() {
-    const { certificates } = this.state;
     return (
       <div className="App">
         <div className="row">
@@ -47,35 +19,8 @@ class Curriculum extends Component {
 
         <div className="row">
           <div className="col col--main">
-            <Accordion onClick={(e) => this.selected(e)} accordion={false}>
-              {// Display all the names of the Certificates
-              certificates.map((cert, i) => (
-                <AccordionItem sections={cert.sections} key={i}>
-                  <AccordionItemTitle>{cert.title}</AccordionItemTitle>
-                  <AccordionItemBody>
-                    {// Display all the names of the sections
-                    cert.sections.map((section, i) => (
-                      <AccordionItem key={i}>
-                        <AccordionItemTitle>{section.name}</AccordionItemTitle>
-                        <AccordionItemBody>
-                        <div className="accordion__body--container">
-                          <p>This section includes the challenges: </p>
-                          <ul>
-                            {// List out all the challenges
-                            section.list.map((item, i) => (
-                              <li key={i}>{item}</li>
-                            ))}
-                          </ul>
-                          <p>Want to pair-program with someone in this section? click the button to see who's studying.</p>
-                          <button className="btn">Find A Partner</button>
-                          </div>
-                        </AccordionItemBody>
-                      </AccordionItem>
-                    ))}
-                  </AccordionItemBody>
-                </AccordionItem>
-              ))}
-            </Accordion>
+          {this.props.loaded ? <ListView certificates={this.props.certificates} /> : ''}
+            
           </div>
           <div className="col col--side">
             <p>
