@@ -56,7 +56,6 @@
 .accordion__item:last-child:after
     display: none
 
-
 .accordion__body ul
     -webkit-column-count: 3
        -moz-column-count: 3
@@ -81,60 +80,14 @@
     background-color: $brand
 
 
-.accordion__arrow 
-    display: inline-block
-    position: relative
-    width: 24px
-    height: 12px
-    position: absolute
-    top: 50%
-    right: 0
-    margin-top: -6px
-
-
-.accordion__arrow::after,
-.accordion__arrow::before 
-    display: block
-    position: absolute
-    top: 50%
-    width: 10px
-    height: 2px
-    background-color: currentColor
-    content: ''
-
-
-.accordion__arrow::before 
-    left: 4px
-    transform: rotate(45deg)
-
-
-[aria-expanded='true'] .accordion__arrow::before, [aria-selected='true'] .accordion__arrow::before 
-    transform: rotate(-45deg)
-
-
-.accordion__arrow::after 
-    right: 4px
-    transform: rotate(-45deg)
-
-
-[aria-expanded='true'] .accordion__arrow::after, [aria-selected='true'] .accordion__arrow::after 
-    transform: rotate(45deg)
-
-
-.accordion__arrow::before,
-.accordion__arrow::after 
-    transition: transform 0.25s ease, -webkit-transform 0.25s ease
-
-
 /* -------------------------------------------------- */
 /* ---------------- Animation part ------------------ */
 /* -------------------------------------------------- */
 
 @keyframes fadein 
-    0% 
+    0%
         opacity: 0
     
-
     100% 
         opacity: 1
     
@@ -173,15 +126,3 @@
     
     100% 
         transform: translateY(0)
-    
-
-
-.accordion__title--animated:hover .accordion__arrow 
-    animation-name: move-down
-    animation-duration: 1.5s
-
-
-.accordion__title--animated[aria-expanded='true']:hover .accordion__arrow 
-    animation-name: move-up
-    animation-duration: 1.5s
-
