@@ -14,7 +14,7 @@ const Certificate = ({ cert }) => (
         <AccordionItemBody>
             {// Display all the names of the sections
                 cert.sections.map((section, i) => (
-                    <Section section={section} />
+                    <Section key={section.name+i} section={section} />
                 ))}
         </AccordionItemBody>
     </AccordionItem>
