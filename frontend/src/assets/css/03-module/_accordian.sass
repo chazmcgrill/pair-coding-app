@@ -1,0 +1,187 @@
+.accordion 
+    border: 1px solid $border-color
+    border-radius: 2px
+    width: 100%
+    background-color: $bg-white
+
+.accordion__item
+    position: relative
+
+.accordion__item:after
+    content: ''
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    margin: 0 auto
+    height: 1px
+    width: calc(100% - 56px)
+    background-color: lighten($border-color, 30)
+
+.accordion__item + .accordion__item:hover:after
+    display: none
+
+.accordion__title 
+    color: $text-color
+    cursor: pointer
+    width: 100%
+    border: none
+    box-sizing: border-box
+    padding: 20px 28px
+    outline: none
+    transition: background-color ease-in 150ms, color ease-in 100ms
+
+.accordion__title:hover
+    color: white
+    background-color: $brand
+
+.colored
+    background-color: $brand
+    color: white
+
+.accordion__body 
+    padding: 10px 20px
+    display: block
+    animation: fadein 0.35s ease-in
+    box-sizing: border-box
+
+.accordion__body--container
+    padding: 10px 10px 48px
+
+.accordion__body--hidden 
+    display: none
+    opacity: 0
+    animation: fadein 0.35s ease-in
+
+.accordion__item:last-child:after
+    display: none
+
+
+.accordion__body ul
+    -webkit-column-count: 3
+       -moz-column-count: 3
+            column-count: 3
+    padding: 16px 0
+
+.accordion__body li
+    font-weight: 300
+    display: inline-block
+    padding: 4px 8px 4px 12px
+    position: relative
+
+.accordion__body li:before
+    display: inline-block;
+    position: absolute
+    content: '';
+    top: 11px
+    left: 0
+    border-radius: 6px;
+    height: 6px;
+    width: 6px;
+    background-color: $brand
+
+
+.accordion__arrow 
+    display: inline-block
+    position: relative
+    width: 24px
+    height: 12px
+    position: absolute
+    top: 50%
+    right: 0
+    margin-top: -6px
+
+
+.accordion__arrow::after,
+.accordion__arrow::before 
+    display: block
+    position: absolute
+    top: 50%
+    width: 10px
+    height: 2px
+    background-color: currentColor
+    content: ''
+
+
+.accordion__arrow::before 
+    left: 4px
+    transform: rotate(45deg)
+
+
+[aria-expanded='true'] .accordion__arrow::before, [aria-selected='true'] .accordion__arrow::before 
+    transform: rotate(-45deg)
+
+
+.accordion__arrow::after 
+    right: 4px
+    transform: rotate(-45deg)
+
+
+[aria-expanded='true'] .accordion__arrow::after, [aria-selected='true'] .accordion__arrow::after 
+    transform: rotate(45deg)
+
+
+.accordion__arrow::before,
+.accordion__arrow::after 
+    transition: transform 0.25s ease, -webkit-transform 0.25s ease
+
+
+/* -------------------------------------------------- */
+/* ---------------- Animation part ------------------ */
+/* -------------------------------------------------- */
+
+@keyframes fadein 
+    0% 
+        opacity: 0
+    
+
+    100% 
+        opacity: 1
+    
+
+
+@keyframes move-down 
+    0% 
+        transform: translateY(0)
+    
+    10% 
+        transform: translateY(0)
+    
+    20% 
+        transform: translateY(5px)
+    
+    30% 
+        transform: translateY(0)
+    
+    100% 
+        transform: translateY(0)
+    
+
+
+@keyframes move-up 
+    0% 
+        transform: translateY(0)
+    
+    10% 
+        transform: translateY(0)
+    
+    20% 
+        transform: translateY(-5px)
+    
+    30% 
+        transform: translateY(0)
+    
+    100% 
+        transform: translateY(0)
+    
+
+
+.accordion__title--animated:hover .accordion__arrow 
+    animation-name: move-down
+    animation-duration: 1.5s
+
+
+.accordion__title--animated[aria-expanded='true']:hover .accordion__arrow 
+    animation-name: move-up
+    animation-duration: 1.5s
+
