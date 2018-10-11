@@ -12,7 +12,7 @@ class Curriculum extends Component {
 
   render() {
     return (
-      <div className="App">
+      <section className="App">
         <div className="row">
           <h1>Curriculum</h1>
         </div>
@@ -35,7 +35,7 @@ class Curriculum extends Component {
             </p>
           </div>
         </div>
-      </div>
+      </section>
     );
   }
 }
