@@ -3,8 +3,6 @@ import { Accordion } from "react-accessible-accordion";
 import Certificate from './Certificate';
 
 
-
-
 function selected(e) {
     const element = document.getElementById(e.target.id);
 

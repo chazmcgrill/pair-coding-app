@@ -3,81 +3,102 @@
     border-radius: 2px
     width: 100%
     background-color: $bg-white
+    
 
-.accordion__item
-    position: relative
+    // ================
+    // accordion__item
+    // ================
 
-.accordion__item:after
-    content: ''
-    position: absolute
-    bottom: 0
-    left: 0
-    right: 0
-    margin: 0 auto
-    height: 1px
-    width: calc(100% - 56px)
-    background-color: lighten($border-color, 30)
+    &__item
+        position: relative
+    
+        &:after
+            content: ''
+            position: absolute
+            bottom: 0
+            left: 0
+            right: 0
+            margin: 0 auto
+            height: 1px
+            width: calc(100% - 56px)
+            background-color: lighten($border-color, 30)
+        
+        &:last-child:after
+            display: none
 
-.accordion__item + .accordion__item:hover:after
-    display: none
 
-.accordion__title 
-    color: $text-color
-    cursor: pointer
-    width: 100%
-    border: none
-    box-sizing: border-box
-    padding: 20px 28px
-    outline: none
-    transition: background-color ease-in 150ms, color ease-in 100ms
+    &__item + .accordion__item:hover:after
+        display: none
 
-.accordion__title:hover
-    color: white
-    background-color: $brand
 
+    // ================
+    // accordion__title
+    // ================
+
+    &__title 
+        color: $text-color
+        cursor: pointer
+        width: 100%
+        border: none
+        box-sizing: border-box
+        padding: 20px 28px
+        outline: none
+        transition: background-color ease-in 150ms, color ease-in 100ms
+
+        &:hover
+            color: white
+            background-color: $brand
+
+
+    // ================
+    // accordion__body
+    // ================
+
+    &__body 
+        padding: 10px 20px
+        display: block
+        animation: fadein 0.35s ease-in
+        box-sizing: border-box
+
+        &--container
+            padding: 10px 10px 48px
+
+        &--hidden 
+            display: none
+            opacity: 0
+            animation: fadein 0.35s ease-in
+
+    &__body ul
+        -webkit-column-count: 3
+        -moz-column-count: 3
+        column-count: 3
+        padding: 16px 0
+
+    &__body li
+        font-weight: 300
+        display: inline-block
+        padding: 4px 8px 4px 12px
+        position: relative
+
+        &:before
+            display: inline-block;
+            position: absolute
+            content: '';
+            top: 11px
+            left: 0
+            border-radius: 6px;
+            height: 6px;
+            width: 6px;
+            background-color: $brand
+
+
+// =======================
+// accordion clicked color
+// =======================
+    
 .colored
     background-color: $brand
     color: white
-
-.accordion__body 
-    padding: 10px 20px
-    display: block
-    animation: fadein 0.35s ease-in
-    box-sizing: border-box
-
-.accordion__body--container
-    padding: 10px 10px 48px
-
-.accordion__body--hidden 
-    display: none
-    opacity: 0
-    animation: fadein 0.35s ease-in
-
-.accordion__item:last-child:after
-    display: none
-
-.accordion__body ul
-    -webkit-column-count: 3
-       -moz-column-count: 3
-            column-count: 3
-    padding: 16px 0
-
-.accordion__body li
-    font-weight: 300
-    display: inline-block
-    padding: 4px 8px 4px 12px
-    position: relative
-
-.accordion__body li:before
-    display: inline-block;
-    position: absolute
-    content: '';
-    top: 11px
-    left: 0
-    border-radius: 6px;
-    height: 6px;
-    width: 6px;
-    background-color: $brand
 
 
 /* -------------------------------------------------- */
