@@ -11,9 +11,11 @@ const Section = ({ section }) => (
                 <p>This section includes the challenges: </p>
                 <ul>
                     {// List out all the challenges
-                        section.list.map((item, i) => (
-                            <li key={i}>{item}</li>
-                        ))}
+                        section.list
+                            .filter((item, i) => (i < 15))
+                            .map((item, i) => (
+                                <li key={item+i}>{item}</li>
+                            ))}
                 </ul>
                 <p>Want to pair-program with someone in this section? click the button to see who's studying.</p>
                 <button className="btn">Find A Partner</button>

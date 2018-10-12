@@ -3,8 +3,6 @@ import { Accordion } from "react-accessible-accordion";
 import Certificate from './Certificate';
 
 
-
-
 function selected(e) {
     const element = document.getElementById(e.target.id);
 
@@ -17,7 +15,7 @@ function selected(e) {
         <Accordion onClick={(e) => selected(e)} accordion={false}>
             {// Display all the names of the Certificates
                 certificates.map((cert, i) => (
-                    <Certificate cert={cert} />
+                    <Certificate key={cert.title+i} cert={cert} />
             ))}
         </Accordion>
     );
