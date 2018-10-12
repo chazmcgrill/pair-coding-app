@@ -7,8 +7,6 @@ import Home from './pages/Home';
 import Grid from './pages/Grid';
 
 export default class App extends Component {
-
-
   state = {
     certificates: [],
     loaded: false
@@ -18,14 +16,23 @@ export default class App extends Component {
     fetch("/api/subjects")
       .then(res => res.json())
       .then(res => {
+        const certificates = res.map(c => ({ ...c, open: false }));
         this.setState({
-          certificates: res,
+          certificates,
           loaded: true
         });
       })
       .catch(err => {
         console.log(err);
       });
+  }
+
+  handleCertClick(id) {
+    console.log(id);
+    const certificates = this.state.certificates.map(c => (
+      c._id === id ? {...c, open: !c.open} : c
+    ))
+    this.setState({certificates});
   }
 
   render() {
@@ -36,7 +43,7 @@ export default class App extends Component {
             <NavBar />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/Curriculum" render={() => <Curriculum certificates={this.state.certificates} loaded={this.state.loaded} callAPI={this.callAPI} />} />
+              <Route exact path="/Curriculum" render={() => <Curriculum certificates={this.state.certificates} loaded={this.state.loaded} callAPI={this.callAPI} handleCertClick={this.handleCertClick.bind(this)}/>} />
               <Route exact path="/Grid" component={Grid} />
               <Route component={NoMatch} />
             </Switch>

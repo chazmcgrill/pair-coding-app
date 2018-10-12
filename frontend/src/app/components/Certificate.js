@@ -1,23 +1,15 @@
 import React from "react";
+import CertSection from "./CertSection";
 
-import {
-    AccordionItem,
-    AccordionItemTitle,
-    AccordionItemBody
-} from "react-accessible-accordion";
+const Certificate = ({ cert, handleCertClick }) => (
+    <div className="accordion-cert">
+        <h4 className="accordion-cert__title" onClick={handleCertClick} >{cert.title}</h4>
+        
+        {cert.open ? cert.sections.map((s, i) => (
+            <CertSection key={s + i} section={s} />
+        )) : null}
 
-import Section from "./Section";
-
-const Certificate = ({ cert }) => (
-    <AccordionItem sections={cert.sections} key={cert.title}>
-        <AccordionItemTitle>{cert.title}</AccordionItemTitle>
-        <AccordionItemBody>
-            {// Display all the names of the sections
-                cert.sections.map((section, i) => (
-                    <Section key={section.name+i} section={section} />
-                ))}
-        </AccordionItemBody>
-    </AccordionItem>
+    </div>
 );
 
 export default Certificate;

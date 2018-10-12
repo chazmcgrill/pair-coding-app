@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import ListView from '../components/ListView';
+import Certificates from '../components/Certificates';
 
 
 class Curriculum extends Component {
 
   componentDidMount() {
-    if(!this.props.loaded) {
+    if (!this.props.loaded) {
       this.props.callAPI();
     }
   }
@@ -19,7 +19,7 @@ class Curriculum extends Component {
 
         <div className="row">
           <div className="col col--main">
-          {this.props.loaded ? <ListView certificates={this.props.certificates} /> : ''}
+            {this.props.loaded ? <Certificates certificates={this.props.certificates} handleCertClick={this.props.handleCertClick}/> : <h2>Loading...</h2>}
             
           </div>
           <div className="col col--side">
