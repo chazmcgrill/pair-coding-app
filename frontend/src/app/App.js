@@ -6,6 +6,8 @@ import NoMatch from './pages/NoMatch';
 import Home from './pages/Home';
 import Grid from './pages/Grid';
 
+let nextId = 0;
+
 export default class App extends Component {
   state = {
     certificates: [],
@@ -16,23 +18,36 @@ export default class App extends Component {
     fetch("/api/subjects")
       .then(res => res.json())
       .then(res => {
-        const certificates = res.map(c => ({ ...c, open: false }));
+        const certificates = res.map(c => {
+          const sections = c.sections.map(s => {
+            nextId++;
+            return { ...s, id: nextId, open: false }
+          });
+          return { ...c, sections, open: false }
+        });
         this.setState({
           certificates,
           loaded: true
         });
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
       });
   }
 
   handleCertClick(id) {
-    console.log(id);
     const certificates = this.state.certificates.map(c => (
       c._id === id ? {...c, open: !c.open} : c
     ))
-    this.setState({certificates});
+    this.setState({certificates})
+  }
+
+  handleSectionClick(id) {
+    const certificates = this.state.certificates.map(c => {
+      const sections = c.sections.map(s => (s.id === id ? {...s, open: !s.open} : s))
+      return {...c, sections}
+    })
+    this.setState({certificates})
   }
 
   render() {
@@ -43,7 +58,16 @@ export default class App extends Component {
             <NavBar />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/Curriculum" render={() => <Curriculum certificates={this.state.certificates} loaded={this.state.loaded} callAPI={this.callAPI} handleCertClick={this.handleCertClick.bind(this)}/>} />
+              <Route 
+                exact path="/Curriculum" 
+                render={() => <Curriculum 
+                  certificates={this.state.certificates} 
+                  loaded={this.state.loaded} 
+                  callAPI={this.callAPI} 
+                  handleCertClick={this.handleCertClick.bind(this)}
+                  handleSectionClick={this.handleSectionClick.bind(this)}
+                />} 
+              />
               <Route exact path="/Grid" component={Grid} />
               <Route component={NoMatch} />
             </Switch>

@@ -19,7 +19,7 @@ class Curriculum extends Component {
 
         <div className="row">
           <div className="col col--main">
-            {this.props.loaded ? <Certificates certificates={this.props.certificates} handleCertClick={this.props.handleCertClick}/> : <h2>Loading...</h2>}
+            {this.props.loaded ? <Certificates certificates={this.props.certificates} handleCertClick={this.props.handleCertClick} handleSectionClick={this.props.handleSectionClick} /> : <h2>Loading...</h2>}
             
           </div>
           <div className="col col--side">
