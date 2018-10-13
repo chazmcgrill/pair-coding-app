@@ -7,7 +7,6 @@ const Subject = require('../models/subject');
 // Get request
 router.get('/', (req, res) => {
     Subject.find()
-        .sort({ date: -1 })
         .then(subject => res.json(subject))
 });
 
