@@ -3,12 +3,11 @@ import Certificate from './Certificate';
 
 const Certificates = ({ certificates, handleCertClick, handleSectionClick }) => (
     <div className="accordion">
-        {console.log(certificates)}
-        {certificates.map(c => (
+        {certificates.map(cert => (
             <Certificate 
-                key={c._id} 
-                cert={c} 
-                handleCertClick={() => handleCertClick(c._id)} 
+                key={cert._id} 
+                cert={cert} 
+                handleCertClick={() => handleCertClick(cert._id)} 
                 handleSectionClick={handleSectionClick} 
             />
         ))}

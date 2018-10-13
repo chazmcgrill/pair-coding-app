@@ -27,16 +27,16 @@ export default class App extends Component {
   }
 
   handleCertClick = (id) => {
-    const certificates = this.state.certificates.map(c => (
-      c._id === id ? {...c, open: !c.open} : c
+    const certificates = this.state.certificates.map(cert => (
+      cert._id === id ? {...cert, open: !cert.open} : cert
     ))
     this.setState({certificates})
   }
 
   handleSectionClick = (id) => {
-    const certificates = this.state.certificates.map(c => {
-      const sections = c.sections.map(s => (s._id === id ? {...s, open: !s.open} : s))
-      return {...c, sections}
+    const certificates = this.state.certificates.map(cert => {
+      const sections = cert.sections.map(section => (section._id === id ? {...section, open: !section.open} : section))
+      return {...cert, sections}
     })
     this.setState({certificates})
   }
