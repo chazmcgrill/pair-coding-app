@@ -3,7 +3,7 @@ import CertChallenge from './CertChallenge';
 
 const CertSection = ({ section, handleSectionClick }) => (
     <div className="accordion-section" key={section.name}>
-        <h4 className="accordion-section__title" onClick={handleSectionClick}>{section.name}</h4>
+        <p className="accordion-cert__title" onClick={handleSectionClick}>{section.name}</p>
         <CertChallenge section={section}/>
     </div>
 )
