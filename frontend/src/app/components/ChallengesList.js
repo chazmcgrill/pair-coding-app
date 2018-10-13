@@ -5,8 +5,8 @@ const CertSection = ({ section, handleSectionClick }) => (
         <h4 className="accordion-section__title" onClick={handleSectionClick}>{section.name}</h4>
         { section.open ? 
             <ul className="accordion-list">
-                {section.list.map((l, i) => (
-                    <li className="accordion-list__item" key={i}>{l}</li>
+                {section.list.map((item, i) => (
+                    <li className="accordion-list__item" key={i}>{item}</li>
                 ))}
             </ul> : null }
     </div>
