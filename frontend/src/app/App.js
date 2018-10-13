@@ -6,8 +6,6 @@ import NoMatch from './pages/NoMatch';
 import Home from './pages/Home';
 import Grid from './pages/Grid';
 
-let nextId = 0;
-
 export default class App extends Component {
   state = {
     certificates: [],
@@ -17,9 +15,9 @@ export default class App extends Component {
   callAPI = () => {
     fetch("/api/subjects")
       .then(res => res.json())
-      .then(res => {
+      .then(certificates => {
         this.setState({
-          certificates: res,
+          certificates,
           loaded: true
         });
       })
@@ -28,16 +26,16 @@ export default class App extends Component {
       });
   }
 
-  handleCertClick(id) {
+  handleCertClick = (id) => {
     const certificates = this.state.certificates.map(c => (
       c._id === id ? {...c, open: !c.open} : c
     ))
     this.setState({certificates})
   }
 
-  handleSectionClick(id) {
+  handleSectionClick = (id) => {
     const certificates = this.state.certificates.map(c => {
-      const sections = c.sections.map(s => (s.id === id ? {...s, open: !s.open} : s))
+      const sections = c.sections.map(s => (s._id === id ? {...s, open: !s.open} : s))
       return {...c, sections}
     })
     this.setState({certificates})
@@ -57,8 +55,8 @@ export default class App extends Component {
                   certificates={this.state.certificates} 
                   loaded={this.state.loaded} 
                   callAPI={this.callAPI} 
-                  handleCertClick={this.handleCertClick.bind(this)}
-                  handleSectionClick={this.handleSectionClick.bind(this)}
+                  handleCertClick={this.handleCertClick}
+                  handleSectionClick={this.handleSectionClick}
                 />} 
               />
               <Route exact path="/Grid" component={Grid} />
