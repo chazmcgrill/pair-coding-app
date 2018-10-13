@@ -18,15 +18,8 @@ export default class App extends Component {
     fetch("/api/subjects")
       .then(res => res.json())
       .then(res => {
-        const certificates = res.map(c => {
-          const sections = c.sections.map(s => {
-            nextId++;
-            return { ...s, id: nextId, open: false }
-          });
-          return { ...c, sections, open: false }
-        });
         this.setState({
-          certificates,
+          certificates: res,
           loaded: true
         });
       })
