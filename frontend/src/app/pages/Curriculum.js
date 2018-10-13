@@ -1,17 +1,7 @@
-import React, { Component } from "react";
-import Certificates from '../components/Certificates';
+import React from "react";
+import Accordion from '../components/Accordion';
 
-
-class Curriculum extends Component {
-
-  componentDidMount() {
-    if (!this.props.loaded) {
-      this.props.callAPI();
-    }
-  }
-
-  render() {
-    return (
+const Curriculum = ({ loaded, handleCertClick, certificates, callAPI, handleSectionClick }) => (
       <section className="App">
         <div className="row">
           <h1>Curriculum</h1>
@@ -19,7 +9,8 @@ class Curriculum extends Component {
 
         <div className="row">
           <div className="col col--main">
-            {this.props.loaded ? <Certificates certificates={this.props.certificates} handleCertClick={this.props.handleCertClick} handleSectionClick={this.props.handleSectionClick} /> : <h2>Loading...</h2>}
+            {loaded ? <Accordion certificates={certificates} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} /> : <h2>Loading...</h2> && 
+            callAPI()}
             
           </div>
           <div className="col col--side">
@@ -37,7 +28,5 @@ class Curriculum extends Component {
         </div>
       </section>
     );
-  }
-}
 
 export default Curriculum;
