@@ -1,12 +1,12 @@
 import React from "react";
-import Challenges from "./ChallengesList";
+import CertSection from "./CertSection";
 
 const Certificate = ({ cert, handleCertClick, handleSectionClick }) => (
     <div className="accordion-cert">
-        <h4 className="accordion-cert__title" onClick={handleCertClick} >{cert.title}</h4>
+        <p className="accordion-cert__title" onClick={handleCertClick} >{cert.title}</p>
         
         {cert.open ? cert.sections.map(section => (
-            <Challenges key={section._id} section={section} handleSectionClick={() => handleSectionClick(section._id)} />
+            <CertSection key={section._id} section={section} handleSectionClick={() => handleSectionClick(section._id)} />
         )) : null}
 
     </div>

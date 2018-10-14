@@ -3,201 +3,93 @@
     border-radius: 2px
     width: 100%
     background-color: $bg-white
-    padding: 10px
-    box-sizing: border-box
 
-    &-cert
-        
+    // ================
+    // accordion__item
+    // ================
 
-        &__title
-            margin: 25px 10px 50px   
-            position: relative
-            cursor: pointer
-            color: $text-color
-            cursor: pointer
-            width: 100%
-            border: none
-            box-sizing: border-box
-            padding: 20px 28px
-            outline: none
-            transition: background-color ease-in 150ms, color ease-in 100ms
+    &-cert__title 
+        color: $text-color
+        cursor: pointer
+        position: relative
+        width: 100%
+        border: none
+        margin: 0
+        padding: 22px 28px 16px
+        outline: none
+        box-sizing: border-box
+        transition: background-color ease-in 150ms, color ease-in 100ms
+            
+        &:after
+            content: ''
+            position: absolute
+            bottom: 0
+            left: 0
+            right: 0
+            margin: 0 auto
+            height: 1px
+            width: calc(100% - 56px)
+            background-color: lighten($border-color, 30)
 
-            &:hover
-                color: white
-                background-color: $brand
-    
-            &:after
-                content: ''
-                position: absolute
-                bottom: -25px
-                left: 0
-                right: 0
-                margin: 0 auto
-                height: 1px
-                width: calc(100% - 56px)
-                background-color: lighten($border-color, 30)
-        
-    &-section
-        padding: 10px 20px
-        display: block
+        &:hover
+            color: white
+            background-color: $brand
+
+
+
+    // ================
+    // accordion__body
+    // ================
+
+    &-section 
+        padding: 0 20px
         animation: fadein 0.35s ease-in
         box-sizing: border-box
 
-        &__title
-            cursor: pointer
+.cert-challenge
+    padding: 10px 10px 48px 32px
+    animation: fadein 0.35s ease-in
 
-    &-list
+    & ul
+        -webkit-column-count: 3
+        -moz-column-count: 3
         column-count: 3
         padding: 16px 0
 
-        &__item
-            display: inline-block
-            font-weight: 300
-            padding: 4px 8px 4px 12px
-            position: relative
+    & li
+        font-weight: 300
+        display: inline-block
+        padding: 4px 8px 4px 12px
+        position: relative
 
-        
+        &:before
+            display: inline-block;
+            position: absolute
+            content: '';
+            top: 11px
+            left: 0
+            border-radius: 6px;
+            height: 6px;
+            width: 6px;
+            background-color: $brand
+
+
+// =======================
+// accordion clicked color
+// =======================
     
+.colored
+    background-color: $brand
+    color: white
 
-//     // ================
-//     // accordion__item
-//     // ================
 
-//     &__item
-//         position: relative
+/* -------------------------------------------------- */
+/* ---------------- Animation part ------------------ */
+/* -------------------------------------------------- */
+
+@keyframes fadein 
+    0%
+        opacity: 0
     
-//         &:after
-//             content: ''
-//             position: absolute
-//             bottom: 0
-//             left: 0
-//             right: 0
-//             margin: 0 auto
-//             height: 1px
-//             width: calc(100% - 56px)
-//             background-color: lighten($border-color, 30)
-        
-//         &:last-child:after
-//             display: none
-
-
-//     &__item + .accordion__item:hover:after
-//         display: none
-
-
-//     // ================
-//     // accordion__title
-//     // ================
-
-//     &__title 
-//         color: $text-color
-//         cursor: pointer
-//         width: 100%
-//         border: none
-//         box-sizing: border-box
-//         padding: 20px 28px
-//         outline: none
-//         transition: background-color ease-in 150ms, color ease-in 100ms
-
-//         &:hover
-//             color: white
-//             background-color: $brand
-
-
-//     // ================
-//     // accordion__body
-//     // ================
-
-//     &__body 
-//         padding: 10px 20px
-//         display: block
-//         animation: fadein 0.35s ease-in
-//         box-sizing: border-box
-
-//         &--container
-//             padding: 10px 10px 48px
-
-//         &--hidden 
-//             display: none
-//             opacity: 0
-//             animation: fadein 0.35s ease-in
-
-//     &__body ul
-//         -webkit-column-count: 3
-//         -moz-column-count: 3
-//         column-count: 3
-//         padding: 16px 0
-
-//     &__body li
-//         font-weight: 300
-//         display: inline-block
-//         padding: 4px 8px 4px 12px
-//         position: relative
-
-//         &:before
-//             display: inline-block;
-//             position: absolute
-//             content: '';
-//             top: 11px
-//             left: 0
-//             border-radius: 6px;
-//             height: 6px;
-//             width: 6px;
-//             background-color: $brand
-
-
-// // =======================
-// // accordion clicked color
-// // =======================
-    
-// .colored
-//     background-color: $brand
-//     color: white
-
-
-// /* -------------------------------------------------- */
-// /* ---------------- Animation part ------------------ */
-// /* -------------------------------------------------- */
-
-// @keyframes fadein 
-//     0%
-//         opacity: 0
-    
-//     100% 
-//         opacity: 1
-    
-
-
-// @keyframes move-down 
-//     0% 
-//         transform: translateY(0)
-    
-//     10% 
-//         transform: translateY(0)
-    
-//     20% 
-//         transform: translateY(5px)
-    
-//     30% 
-//         transform: translateY(0)
-    
-//     100% 
-//         transform: translateY(0)
-    
-
-
-// @keyframes move-up 
-//     0% 
-//         transform: translateY(0)
-    
-//     10% 
-//         transform: translateY(0)
-    
-//     20% 
-//         transform: translateY(-5px)
-    
-//     30% 
-//         transform: translateY(0)
-    
-//     100% 
-//         transform: translateY(0)
+    100% 
+        opacity: 1

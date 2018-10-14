@@ -1,5 +1,5 @@
 import React from "react";
-import Accordion from '../components/Accordion';
+import CertAccordion from '../components/CertAccordion';
 
 const Curriculum = ({ loaded, handleCertClick, certificates, callAPI, handleSectionClick }) => (
       <section className="App">
@@ -9,7 +9,7 @@ const Curriculum = ({ loaded, handleCertClick, certificates, callAPI, handleSect
 
         <div className="row">
           <div className="col col--main">
-            {loaded ? <Accordion certificates={certificates} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} /> : <h2>Loading...</h2> && 
+            {loaded ? <CertAccordion certificates={certificates} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} /> : <h2>Loading...</h2> && 
             callAPI()}
             
           </div>

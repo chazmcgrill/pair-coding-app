@@ -1,7 +1,7 @@
 import React from "react";
 import Certificate from './Certificate';
 
-const Certificates = ({ certificates, handleCertClick, handleSectionClick }) => (
+const CertAccordion = ({ certificates, handleCertClick, handleSectionClick }) => (
     <div className="accordion">
         {certificates.map(cert => (
             <Certificate 
@@ -14,4 +14,4 @@ const Certificates = ({ certificates, handleCertClick, handleSectionClick }) => 
     </div>
 );
 
-export default Certificates;
+export default CertAccordion;
