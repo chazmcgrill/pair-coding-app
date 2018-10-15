@@ -2,7 +2,7 @@ import React from "react";
 
 const CertChallenge = ({ section }) => (
     section.open ? 
-        <div className="cert-challenge">
+        <div className="accordion-cert__challenge">
             <p>This section includes the challenges: </p>
             <ul className="accordion-list">
                 {section.list.map((item, i) => (
