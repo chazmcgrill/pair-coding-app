@@ -10,7 +10,7 @@ const CertChallenge = ({ section }) => (
                 ))}
             </ul>
             <p>Want to pair-program with someone in this section? click the button to see who's studying.</p>
-            <button className="btn">Find a Partiner</button>
+            <button className="btn">Find a Partner</button>
         </div>
     : null
 )
