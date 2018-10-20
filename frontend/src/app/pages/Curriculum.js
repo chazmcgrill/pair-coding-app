@@ -1,5 +1,5 @@
 import React from "react";
-import CertAccordion from '../components/CertAccordion';
+// import CertAccordion from '../components/CertAccordion';
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const Curriculum = ({ loaded, handleCertClick, certificates, callAPI, handleSectionClick }) => {
@@ -12,8 +12,8 @@ const Curriculum = ({ loaded, handleCertClick, certificates, callAPI, handleSect
 
       <div className="row">
         <div className="col col--main">
-          {loaded ? <CertAccordion certificates={certificates} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} /> : <LoadingSpinner />}
-          
+          {/* {loaded ? <CertAccordion certificates={certificates} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} /> : <LoadingSpinner />} */}
+          <LoadingSpinner />
         </div>
         <div className="col col--side">
           <p>
