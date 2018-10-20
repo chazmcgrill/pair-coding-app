@@ -4,7 +4,7 @@
   "description": "Backend Api for Pair Coding App",
   "main": "server.js",
   "scripts": {
-    "backend": "nodemon server.js"
+    "backend": "nodemon"
   },
   "author": "Charlie Taylor <mail@charlietaylorcoder.com> (https://charlietaylorcoder.com)",
   "license": "MIT",

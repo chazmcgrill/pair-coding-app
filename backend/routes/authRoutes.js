@@ -13,18 +13,13 @@ function checkAuthentication(req, res, next) {
   }
 }
 
-router.get("/", passport.authenticate("github"));
+router.get('/', passport.authenticate('github'));
 
-router.get("/test", (req, res) => {
-  res.send('test route')
-})
-
-router.get("/callback", passport.authenticate("github"),
-  (req, res) => {
-    res.redirect("http://localhost:3000");
+router.get('/callback',
+  passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
+    // Successful authentication, redirect home.
+    res.redirect('http://localhost:5000/');
   }
-)
-
+);
 
 module.exports = router;
-
