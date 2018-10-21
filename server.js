@@ -9,7 +9,7 @@ const app = express();
 require('dotenv').config();
 require('./services/passport');
 require('./models/user');
-console.log('hello')
+
 const subjects = require('./routes/subjects');
 const authRoutes = require('./routes/authRoutes');
 
@@ -26,15 +26,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Use Routes
-app.use('/subjects', subjects);
-app.use('/auth', authRoutes);
+app.use('/api/subjects', subjects);
+app.use('/api/auth', authRoutes);
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname + '../frontend/build/index.html'));
-});
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, 'client', 'build')));
+	
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+	});
+}
 
 // Connect to Mongo
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })

@@ -13,7 +13,7 @@ export default class App extends Component {
   };
 
   callAPI = () => {
-    fetch("subjects")
+    fetch("api/subjects")
       .then(res => res.json())
       .then(certificates => {
         this.setState({
