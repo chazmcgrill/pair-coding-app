@@ -1,20 +1,31 @@
 {
-    "name": "pair-coding",
-    "version": "1.0.0",
-    "description": "Pair Coding App",
-    "main": "server.js",
-    "scripts": {
-        "install:global": "npm install concurrently nodemon gulp-cli -g",
-        "install:deps": "concurrently \"cd backend && npm install\" \"cd frontend && npm install\"",
-        "start": "concurrently \"npm run backend\" \"npm run frontend\" \"npm run gulp\"",
-        "backend": "cd backend && npm run start",
-        "frontend": "cd frontend && npm run start",
-        "gulp": "cd frontend && gulp"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/chazmcgrill/pair-coding-app.git"
-    },
-    "author": "Charlie Taylor <mail@charlietaylorcoder.com> (https://charlietaylorcoder.com)",
-    "license": "MIT"
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend Api for Pair Coding App",
+  "main": "server.js",
+  "scripts": {
+    "install:global": "npm install concurrently nodemon gulp-cli -g",
+    "install:deps": "concurrently \"npm install\" \"cd client && npm install\"",
+    "start": "concurrently \"npm run backend\" \"npm run client\" \"npm run gulp\"",
+    "backend": "nodemon server.js",
+    "client": "cd client && npm run start",
+    "gulp": "cd client && gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chazmcgrill/pair-coding-app.git"
+  },
+  "author": "Charlie Taylor <mail@charlietaylorcoder.com> (https://charlietaylorcoder.com)",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^4.0.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.0",
+    "nodemon": "^1.18.4",
+    "passport": "^0.4.0",
+    "passport-github": "^1.1.0"
+  }
 }
