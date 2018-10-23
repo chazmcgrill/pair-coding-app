@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Curriculum from './pages/Curriculum';
 import NavBar from './components/NavBar';
 import NoMatch from './pages/NoMatch';
+import Login from './pages/Login';
 import Home from './pages/Home';
 import Grid from './pages/Grid';
 
@@ -60,6 +61,7 @@ export default class App extends Component {
                 />} 
               />
               <Route exact path="/Grid" component={Grid} />
+              <Route exact path="/login" component={Login} />
               <Route component={NoMatch} />
             </Switch>
           </React.Fragment>
