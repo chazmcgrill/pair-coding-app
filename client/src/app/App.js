@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'; 
 import Curriculum from './pages/Curriculum';
 import NavBar from './components/NavBar';
+import Modal from './components/Modal';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Home from './pages/Home';
@@ -10,7 +11,8 @@ import Grid from './pages/Grid';
 export default class App extends Component {
   state = {
     certificates: [],
-    loaded: false
+    loaded: false,
+    isModalOpen: false
   };
 
   callAPI = () => {
@@ -42,12 +44,15 @@ export default class App extends Component {
     this.setState({certificates})
   }
 
+  handleModalClick = () => {
+    this.setState({isModalOpen: !this.state.isModalOpen})
+  }
+
   render() {
     return (
-      <div>
-        <BrowserRouter>
-          <React.Fragment>
-            <NavBar />
+      <BrowserRouter>
+        <React.Fragment>
+            <NavBar openModal={this.handleModalClick}/>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route 
@@ -64,9 +69,9 @@ export default class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route component={NoMatch} />
             </Switch>
-          </React.Fragment>
+            {this.state.isModalOpen && <Modal closeModal={this.handleModalClick} open={this.state.isModalOpen}/>}
+            </React.Fragment>
         </BrowserRouter>
-      </div>
     );
   };
 }

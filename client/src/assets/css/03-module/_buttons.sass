@@ -6,8 +6,23 @@
     border: 0
     border-radius: 4px
     cursor: pointer
+    line-height: 1
     transition: background-color ease-in 150ms
 
+    &--lg
+        padding: 14px 20px
+
+    &--github
+        background-color: $text-color
+        display: flex
+        align-items: center
+        justify-content: center
+        margin: 30px auto
+        
+        img
+            padding-right: 8px
+            height: 22px
 
 .btn:hover
     background-color: lighten($brand, 3)
+

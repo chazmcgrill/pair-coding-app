@@ -1,10 +1,11 @@
 import React from 'react';
+import LoginBox from '../components/LoginBox';
 
 const Login = () => {
   return (
-    <section>
-      <h1>Login</h1>
-    </section>
+    <main>
+        <LoginBox />
+    </main>
   );
 }
 

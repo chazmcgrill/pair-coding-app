@@ -42,11 +42,12 @@ strong
   font-weight: bold
 
 hr
-  border: solid #ddd
-  border-width: 1px 0 0
+  border: none
   clear: both
-  margin: 10px 0 30px
-  height: 0
+  background-color: lighten($border-color, 40%)
+  height: 1px
+  width: 80%
+  margin: 10px auto 30px
 
 // Links
 
@@ -85,5 +86,5 @@ img::-moz-selection
 body
   -webkit-tap-highlight-color: $selection-color
 
-
-
+main
+  padding: 100px 0
