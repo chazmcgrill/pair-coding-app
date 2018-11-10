@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Grid from './pages/Grid';
 
-const API_URL = 'http://127.0.0.1:8080';
+const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
 
 export default class App extends Component {
@@ -110,7 +110,7 @@ export default class App extends Component {
             <Switch>
               <button
                 onClick={this.startAuth.bind(this)}
-                className={`twitter ${disabled}`}
+                className={`login ${disabled}`}
               >Login</button>
               <Route exact path="/" component={Home} />
               <Route 

@@ -11,7 +11,7 @@ require('./services/passport');
 require('./models/user');
 
 const subjects = require('./routes/subjects');
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/auth');
 
 // Setup for CORS
 app.use(cors());
