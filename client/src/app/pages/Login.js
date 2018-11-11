@@ -4,7 +4,7 @@ import LoginBox from '../components/LoginBox';
 const Login = () => {
   return (
     <main>
-        <LoginBox />
+        <LoginBox auth={this.props.auth}/>
     </main>
   );
 }
