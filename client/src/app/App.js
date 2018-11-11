@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Grid from './pages/Grid';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
 
 export default class App extends Component {

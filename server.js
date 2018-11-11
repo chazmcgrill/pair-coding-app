@@ -16,7 +16,7 @@ const { Strategy: GithubStrategy } = require('passport-github');
 const GITHUB_CONFIG = {
 	clientID: process.env.GITHUB_CLIENT_ID,
 	clientSecret: process.env.GITHUB_CLIENT_SECRET,
-	callbackUrl: 'http://localhost:5000/api/auth/callback',
+	callbackUrl: 'http://127.0.0.1:5000/api/auth/callback',
 }
 
 // Allowing passport to serialize and deserialize users into sessions
