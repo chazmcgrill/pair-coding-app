@@ -28,7 +28,10 @@ export default class App extends Component {
   componentDidMount() {
     socket.on('github', user => {
       this.popup.close();
-      this.setState({user})
+      this.setState({
+        user,
+        isModalOpen: false
+      })
       console.log(user);
     })
   }
@@ -56,7 +59,7 @@ export default class App extends Component {
     )
   }
 
-  startAuth() {
+  startAuth = () => {
     if (!this.state.disabled) {
       this.popup = this.openPopup()
       this.checkPopup()
@@ -107,28 +110,35 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <React.Fragment>
-            <NavBar openModal={this.handleModalClick}/>
+            <NavBar user={this.state.user} openModal={this.handleModalClick}/>
             <button
-              onClick={this.startAuth.bind(this)}
+              onClick={this.startAuth}
               className={`login ${disabled}`}
             >Login</button>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route 
                 exact path="/Curriculum" 
-                render={() => <Curriculum 
-                  certificates={this.state.certificates} 
-                  loaded={this.state.loaded} 
-                  callAPI={this.callAPI} 
-                  handleCertClick={this.handleCertClick}
-                  handleSectionClick={this.handleSectionClick}
-                />} 
+                render={() =>
+                  <Curriculum 
+                    certificates={this.state.certificates} 
+                    loaded={this.state.loaded} 
+                    callAPI={this.callAPI} 
+                    handleCertClick={this.handleCertClick}
+                    handleSectionClick={this.handleSectionClick}
+                  />} 
               />
               <Route exact path="/Grid" component={Grid} />
-              <Route exact path="/login" component={Login} />
+              <Route exact path="/login"
+                render={() =>
+                  <Login
+                    auth={this.startAuth}
+                    component={Login}
+                  />}
+              />
               <Route component={NoMatch} />
             </Switch>
-            {this.state.isModalOpen && <Modal closeModal={this.handleModalClick} open={this.state.isModalOpen}/>}
+            {this.state.isModalOpen && <Modal auth={this.startAuth} closeModal={this.handleModalClick} open={this.state.isModalOpen}/>}
             </React.Fragment>
         </BrowserRouter>
     );
