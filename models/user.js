@@ -2,8 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  githubId: String,
-  displayName: String
+  githubId: {
+    type: String,
+    required: true
+  },
+  displayName: {
+    type: String,
+    required: true
+  },
+  avatar: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = User = mongoose.model('user', userSchema);

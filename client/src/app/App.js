@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import Grid from './pages/Grid';
 
-const API_URL = 'http://127.0.0.1:5000';
+const API_URL = 'http://localhost:5000';
 const socket = io(API_URL);
 
 export default class App extends Component {
@@ -108,11 +108,11 @@ export default class App extends Component {
       <BrowserRouter>
         <React.Fragment>
             <NavBar openModal={this.handleModalClick}/>
+            <button
+              onClick={this.startAuth.bind(this)}
+              className={`login ${disabled}`}
+            >Login</button>
             <Switch>
-              <button
-                onClick={this.startAuth.bind(this)}
-                className={`login ${disabled}`}
-              >Login</button>
               <Route exact path="/" component={Home} />
               <Route 
                 exact path="/Curriculum" 
