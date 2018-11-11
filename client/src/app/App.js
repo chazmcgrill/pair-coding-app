@@ -111,10 +111,6 @@ export default class App extends Component {
       <BrowserRouter>
         <React.Fragment>
             <NavBar user={this.state.user} openModal={this.handleModalClick}/>
-            <button
-              onClick={this.startAuth}
-              className={`login ${disabled}`}
-            >Login</button>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route 
@@ -134,11 +130,13 @@ export default class App extends Component {
                   <Login
                     auth={this.startAuth}
                     component={Login}
+                    disabled={disabled}
                   />}
               />
               <Route component={NoMatch} />
             </Switch>
-            {this.state.isModalOpen && <Modal auth={this.startAuth} closeModal={this.handleModalClick} open={this.state.isModalOpen}/>}
+            {this.state.isModalOpen && <Modal auth={this.startAuth} 
+            disabled={disabled} closeModal={this.handleModalClick} open={this.state.isModalOpen}/>}
             </React.Fragment>
         </BrowserRouter>
     );

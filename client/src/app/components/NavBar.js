@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 
@@ -20,7 +20,7 @@ const NavBar = ({user, openModal}) => (
                         <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
                     </li>
                     <li>{
-                        user.photo ? <img className="nav-user-image" src={user.photo} /> : <a onClick={openModal}>Login</a>}
+                        user.photo ? <img className="nav-user-image" src={user.photo} alt="user avatar" /> : <a onClick={openModal}>Login</a>}
                         
                     </li>
                 </ul>

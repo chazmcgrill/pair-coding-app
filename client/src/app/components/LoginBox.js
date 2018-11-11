@@ -1,7 +1,7 @@
 import React from "react";
 import GitHubLogo from '../../assets/images/github.svg';
 
-const LoginBox = ({open, closeModal, auth}) => (
+const LoginBox = ({open, closeModal, auth, disabled}) => (
     <div className="row row--centered">
         <div className="col col--center col--center__boxed text-center">
 
@@ -14,7 +14,7 @@ const LoginBox = ({open, closeModal, auth}) => (
                     <p>Log in using your GitHub Account.</p>
                     <button
                         onClick={auth}
-                        className="btn btn--github btn--lg">
+                        className={`btn btn--github btn--lg ${disabled}`}>
                             <img src={GitHubLogo} alt=""/>Login With Github
                     </button>
                 </div>
