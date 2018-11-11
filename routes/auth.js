@@ -13,9 +13,7 @@ router.get('/callback', githubAuth, (req, res) => {
     name: req.user.username,
     photo: req.user.photos[0].value
   }
-  // this should be 
-  // io.in(req.session.socketId).emit('github', user)
-  io.emit('github', user)
+  io.to(`${req.session.socketId}`).emit('github', user);
   res.end()
 })
 
