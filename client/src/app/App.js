@@ -13,21 +13,18 @@ const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
 
 export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
+    state = {
       certificates: [],
       loaded: false,
       isModalOpen: false,
       user: {},
       disabled: '',
-    }
-    this.popup = null
+      popup: null
   }
 
   componentDidMount() {
     socket.on('github', user => {
-      this.popup.close();
+      this.state.popup.close();
       this.setState({
         user,
         isModalOpen: false
@@ -38,7 +35,7 @@ export default class App extends Component {
 
   checkPopup() {
     const check = setInterval(() => {
-      const { popup } = this
+      const { popup } = this.state
       if (!popup || popup.closed || popup.closed === undefined) {
         clearInterval(check)
         this.setState({ disabled: '' })
@@ -61,9 +58,11 @@ export default class App extends Component {
 
   startAuth = () => {
     if (!this.state.disabled) {
-      this.popup = this.openPopup()
       this.checkPopup()
-      this.setState({ disabled: 'disabled' })
+      this.setState({
+        disabled: 'disabled',
+        popup: this.openPopup()
+      })
     }
   }
 
@@ -135,8 +134,14 @@ export default class App extends Component {
               />
               <Route component={NoMatch} />
             </Switch>
-            {this.state.isModalOpen && <Modal auth={this.startAuth} 
-            disabled={disabled} closeModal={this.handleModalClick} open={this.state.isModalOpen}/>}
+            {this.state.isModalOpen &&
+                <Modal
+                  auth={this.startAuth} 
+                  disabled={disabled}
+                  closeModal={this.handleModalClick}
+                  open={this.state.isModalOpen}
+                />
+            }
             </React.Fragment>
         </BrowserRouter>
     );
