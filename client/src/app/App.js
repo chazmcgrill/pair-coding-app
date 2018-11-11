@@ -26,9 +26,10 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    socket.on('user', user => {
-      this.popup.close()
+    socket.on('github', user => {
+      this.popup.close();
       this.setState({user})
+      console.log(user);
     })
   }
 

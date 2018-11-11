@@ -8,12 +8,13 @@ const githubAuth = passport.authenticate('github')
 // Routes that are triggered by the callbacks from each OAuth provider once 
 // the user has authenticated successfully
 router.get('/callback', githubAuth, (req, res) => {
-  const io = req.app.get('io')
+  const io = req.app.get('socketio');
   const user = {
     name: req.user.username,
     photo: req.user.photos[0].value
   }
-  io.in(req.session.socketId).emit('github', user)
+  // this should be io.in(req.session.socketId).emit('github', user)
+  io.emit('github', user)
   res.end()
 })
 
@@ -21,7 +22,7 @@ router.get('/callback', githubAuth, (req, res) => {
 // With that socket id we can send back the right user info to the right 
 // socket
 router.use((req, res, next) => {
-  req.session.socketId = req.query.socketId
+  req.session.socketId = req.query['socket-id'];
   next()
 })
 
