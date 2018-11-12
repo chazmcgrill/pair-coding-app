@@ -19,10 +19,7 @@ const NavBar = ({user, openModal}) => (
                     <li>
                         <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
                     </li>
-                    <li>{
-                        user.photo ? <img className="nav-user-image" src={user.photo} alt="user avatar" /> : <a onClick={openModal}>Login</a>}
-                        
-                    </li>
+                    <li>{user.photo ? <img className="nav-user-image" src={user.photo} alt="user avatar" /> : <div onClick={openModal}>Login</div>}</li>
                 </ul>
             </nav>
         </div>
