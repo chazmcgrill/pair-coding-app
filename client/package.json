@@ -4,6 +4,7 @@
   "private": true,
   "description": "Backend Api for Pair Coding App",
   "dependencies": {
+    "node-sass": "^4.10.0",
     "react": "^16.6.1",
     "react-accessible-accordion": "^2.4.5",
     "react-dom": "^16.6.1",
