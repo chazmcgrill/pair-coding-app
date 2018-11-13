@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import './Navbar.sass';
 
 const NavBar = ({user, openModal}) => (
     <header className="header">
@@ -19,10 +19,7 @@ const NavBar = ({user, openModal}) => (
                     <li>
                         <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
                     </li>
-                    <li>{
-                        user.photo ? <img className="nav-user-image" src={user.photo} alt="user avatar" /> : <a onClick={openModal}>Login</a>}
-                        
-                    </li>
+                    <li>{user.photo ? <img className="nav-user-image" src={user.photo} alt="user avatar" /> : <div onClick={openModal}>Login</div>}</li>
                 </ul>
             </nav>
         </div>

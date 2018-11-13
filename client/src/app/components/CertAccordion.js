@@ -1,5 +1,6 @@
 import React from "react";
 import Certificate from './Certificate';
+import './CertAccordion.sass';
 
 const CertAccordion = ({ certificates, handleCertClick, handleSectionClick }) => (
     <div className="accordion">

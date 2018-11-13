@@ -19,7 +19,7 @@ const LoginBox = ({open, closeModal, auth, disabled}) => (
                     </button>
                 </div>
                 <div className="modal-bottom">
-                    <a>Not got an account? Sign up here.</a>
+                    <div>Not got an account? Sign up here.</div>
                 </div>
             </div>
         </div>
