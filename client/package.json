@@ -17,12 +17,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^6.0.0",
-    "gulp-clean-css": "^3.10.0",
-    "gulp-sass": "^4.0.1"
-  },
+  "devDependencies": {},
   "proxy": "http://localhost:5000",
   "browserslist": [
     ">0.2%",

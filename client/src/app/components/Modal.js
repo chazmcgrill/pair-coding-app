@@ -1,5 +1,6 @@
 import React from "react";
-import LoginBox from './LoginBox'
+import LoginBox from './LoginBox';
+import './Modal.sass';
 
 const Modal = ({open, closeModal, auth, disabled}) => (
     <div className="modal-bg">

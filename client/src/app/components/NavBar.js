@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import './Navbar.sass';
 
 const NavBar = ({user, openModal}) => (
     <header className="header">

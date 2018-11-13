@@ -1,4 +1,5 @@
 import React from 'react';
+import './LoadingSpinner.sass';
 
 export default () => (
   <div className="spinner">

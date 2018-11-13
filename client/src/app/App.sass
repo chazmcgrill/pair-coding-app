@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400');
+
+.text-center
+    text-align: center
+    
+$primary-color: rgba(255, 102, 204, 1)
+$text-color: rgba(0, 0, 0, 0.84)
+$accent-color: rgba(115, 169, 79, 1.0)
+$bg-color: rgba(242, 242, 242, 1.0)
+$bg-white: rgba(254, 254, 254, 1.0)
+$link-color: $accent-color
+$muted-link: rgba(129, 129, 129, 1.0)
+$brand: $accent-color
+$selection-color: rgba(255, 244, 152, 1)
+$border-color: rgba(0,0,0, 0.4)
+
+$main-font: 'Fira Sans', sans-serif
+
+// Core Styles
+
+body
+  background: $bg-color
+  font-size: 14px
+  line-height: 1.45
+  font-family: $main-font
+  color: $text-color
+  -webkit-font-smoothing: antialiased
+  -webkit-text-size-adjust: 100%
+
+// Typography
+
+p 
+  margin-bottom: 1.3em
+
+h1, h2, h3, h4 
+  margin: 1.414em 0 0.5em
+  font-weight: inherit
+  line-height: 1.2
+
+h1 
+  margin-top: 0
+  font-size: 3.998em
+
+h2
+  font-size: 2.827em
+
+h3
+  font-size: 1.999em
+
+h4
+  font-size: 1.414em
+
+small, .font_small 
+  font-size: 0.707em
+
+em
+  font-style: italic
+
+strong
+  font-weight: bold
+
+hr
+  border: none
+  clear: both
+  background-color: lighten($border-color, 40%)
+  height: 1px
+  width: 80%
+  margin: 10px auto 30px
+
+// Links
+
+a
+  color: $link-color
+  text-decoration: none
+  outline: 0
+
+  &:hover, 
+  &:focus
+    color: lighten($link-color, 20%)
+
+// Lists
+
+ul
+  padding-left: 0
+
+li
+  // list-style: none
+
+
+// Selection Colors
+
+::selection
+  background: $selection-color
+
+::-moz-selection
+  background: $selection-color
+
+img::selection
+  background: transparent
+
+img::-moz-selection
+  background: transparent
+
+body
+  -webkit-tap-highlight-color: $selection-color
+
+main
+  padding: 100px 0
+
+// Grid
+
+section
+  padding: 0 10px
+
+.row
+  margin: 0 auto
+  width: 100%
+  max-width: 1200px
+  display: flex
+  box-sizing: border-box
+
+  &--spaced
+    justify-content: space-between
+
+  &--centered
+    justify-content: center
+  
+  @media (max-width: 640px)
+    flex-direction: column
+    align-items: center
+
+.col
+  width: 100%
+
+  &--main
+    width: 70%
+
+  &--side
+    padding: 0 20px
+    width: 30%
+
+  &--center
+    width: 430px
+
+    &__boxed
+      background-color: $bg-white
+      border: 1px solid $border-color
+      border-radius: 4px
+      padding: 25px 15px
+      position: relative
+
+  @media (max-width: 640px)
+    width: 100%
+
+// buttons
+
+.btn
+    outline: none
+    padding: 10px 16px
+    background-color: $brand
+    color: white
+    border: 0
+    border-radius: 4px
+    cursor: pointer
+    line-height: 1
+    transition: background-color ease-in 150ms
+
+    &--lg
+        padding: 14px 20px
+
+    &--github
+        background-color: $text-color
+        display: flex
+        align-items: center
+        justify-content: center
+        margin: 30px auto
+        
+        img
+            padding-right: 8px
+            height: 22px
+
+.btn:hover
+    background-color: lighten($brand, 3)
+
+.nav
+  text-align: right
+
+ul 
+  list-style-type: none
+  padding: 0.5rem
+
+li 
+  display: inline-block
+
+li a 
+  padding: 0 1.25rem
+  font-size: 1rem
+  text-decoration: none
+  color: $muted-link
+  cursor: pointer
+
+li:hover a
+    color: $brand
+
+.active
+    color: $text-color
+
+.nav-user-image
+  padding: 0 1.25rem
+  height: 26px

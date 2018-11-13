@@ -8,6 +8,7 @@ import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Grid from './pages/Grid';
+import './App.sass';
 
 const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
