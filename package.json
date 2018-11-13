@@ -4,12 +4,11 @@
   "description": "Backend Api for Pair Coding App",
   "main": "server.js",
   "scripts": {
-    "install:global": "npm install concurrently nodemon gulp-cli -g",
+    "install:global": "npm install concurrently nodemon -g",
     "install:deps": "concurrently \"npm install\" \"cd client && npm install\"",
-    "start": "concurrently \"npm run backend\" \"npm run client\" \"npm run gulp\"",
+    "start": "concurrently \"npm run backend\" \"npm run client\"",
     "backend": "nodemon server.js",
-    "client": "cd client && npm run start",
-    "gulp": "cd client && gulp"
+    "client": "cd client && npm run start"
   },
   "repository": {
     "type": "git",
