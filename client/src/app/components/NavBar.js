@@ -9,18 +9,10 @@ const NavBar = ({user, openModal}) => (
                 <h1 className="logo__nav">PEAR</h1>
             </div>
             <nav className="nav">
-                <ul>
-                    <li>
-                        <NavLink exact activeClassName="active" to="/">Home</NavLink>
-                    </li>
-                    <li>
-                        <NavLink activeClassName="active" to="/curriculum">Curriculum</NavLink>
-                    </li>
-                    <li>
-                        <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
-                    </li>
-                    <li>{user.photo ? <img className="nav-user-image" src={user.photo} alt="user avatar" /> : <div onClick={openModal}>Login</div>}</li>
-                </ul>
+                <NavLink exact activeClassName="active" to="/">Home</NavLink>
+                <NavLink activeClassName="active" to="/curriculum">Curriculum</NavLink>
+                <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
+                {user.photo ? <img className="nav-user-image" src={user.photo} alt="user avatar" /> : <div href="#" className="nav-link" onClick={openModal}>Login</div>}
             </nav>
         </div>
     </header>
