@@ -1,0 +1,28 @@
+@import '../../vars.sass'
+
+.cert-challenge
+    padding: 10px 10px 48px 32px
+    animation: fadein 0.35s ease-in
+
+    &__list
+        -webkit-column-count: 3
+        -moz-column-count: 3
+        column-count: 3
+        padding: 16px 0
+
+    &__list-item
+        font-weight: 300
+        display: inline-block
+        padding: 4px 8px 4px 12px
+        position: relative
+
+        &:before
+            display: inline-block
+            position: absolute
+            content: ''
+            top: 11px
+            left: 0
+            border-radius: 6px
+            height: 6px
+            width: 6px
+            background-color: $brand

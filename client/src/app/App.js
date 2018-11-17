@@ -140,7 +140,6 @@ export default class App extends Component {
                   auth={this.startAuth} 
                   disabled={disabled}
                   closeModal={this.handleModalClick}
-                  open={this.state.isModalOpen}
                 />
             }
             </React.Fragment>

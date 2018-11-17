@@ -1,0 +1,18 @@
+@import '../../vars.sass'
+    
+.accordian-section 
+    position: relative
+    padding: 0 20px
+    animation: fadein 0.35s ease-in
+    box-sizing: border-box
+
+    &:after
+        content: ''
+        position: absolute
+        bottom: 0
+        left: 0
+        right: 0
+        margin: 0 auto
+        height: 1px
+        width: calc(100% - 56px)
+        background-color: lighten($border-color, 30)
