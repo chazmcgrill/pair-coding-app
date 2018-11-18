@@ -1,12 +1,13 @@
 import React from "react";
+import './CertChallenge.sass';
 
 const CertChallenge = ({ section }) => (
     section.open ? 
-        <div className="accordion-cert__challenge">
+        <div className="cert-challenge">
             <p>This section includes the challenges: </p>
-            <ul className="accordion-list">
+            <ul className="cert-challenge__list">
                 {section.list.map((item, i) => (
-                    <li className="accordion-list__item" key={i}>{item}</li>
+                    <li className="cert-challenge__list-item" key={i}>{item}</li>
                 ))}
             </ul>
             <p>Want to pair-program with someone in this section? click the button to see who's studying.</p>

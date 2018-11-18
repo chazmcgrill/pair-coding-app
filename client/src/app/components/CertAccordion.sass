@@ -1,103 +1,15 @@
-$border-color: rgba(0,0,0, 0.4)
-$bg-white: rgba(254, 254, 254, 1.0)
-$text-color: rgba(0, 0, 0, 0.84)
-$accent-color: rgba(115, 169, 79, 1.0)
-$brand: $accent-color
+@import '../../vars.sass'
 
 .accordion 
     border: 1px solid $border-color
     border-radius: 2px
     width: 100%
     background-color: $bg-white
-
-    &-cert
-        position: relative
-
-    &-cert:after, &-section:after
-        content: ''
-        position: absolute
-        bottom: 0
-        left: 0
-        right: 0
-        margin: 0 auto
-        height: 1px
-        width: calc(100% - 56px)
-        background-color: lighten($border-color, 30)
     
-    &-cert:last-child:after
-        display: none
-
-    &-cert__title 
-        color: $text-color
-        cursor: pointer
-        width: 100%
-        border: none
-        margin: 0
-        padding: 24px 28px 20px
-        outline: none
-        box-sizing: border-box
-        transition: background-color ease-in 150ms, color ease-in 100ms
-        
-        &:hover
-            color: white
-            background-color: $brand
-
-    // =======================
-    // Sub Section
-    // =======================
-
-    &-section 
-        position: relative
-        padding: 0 20px
-        animation: fadein 0.35s ease-in
-        box-sizing: border-box
-
-
-    // =======================
-    // Challenge Section
-    // =======================
-
-    &-cert__challenge
-        padding: 10px 10px 48px 32px
-        animation: fadein 0.35s ease-in
-
-        & ul
-            -webkit-column-count: 3
-            -moz-column-count: 3
-            column-count: 3
-            padding: 16px 0
-
-        & li
-            font-weight: 300
-            display: inline-block
-            padding: 4px 8px 4px 12px
-            position: relative
-
-            &:before
-                display: inline-block
-                position: absolute
-                content: ''
-                top: 11px
-                left: 0
-                border-radius: 6px
-                height: 6px
-                width: 6px
-                background-color: $brand
-
-
-// =======================
-// accordion clicked color
-// =======================
-    
-.colored
+.is-colored
     background-color: $brand
     color: white
     margin-bottom: 10px
-
-
-/* -------------------------------------------------- */
-/* ---------------- Animation part ------------------ */
-/* -------------------------------------------------- */
 
 @keyframes fadein 
     0%

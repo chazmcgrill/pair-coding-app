@@ -1,13 +1,12 @@
 import React from "react";
+import './LoginBox.sass';
 import GitHubLogo from '../../assets/images/github.svg';
 
-const LoginBox = ({open, closeModal, auth, disabled}) => (
+const LoginBox = ({closeModal, auth, disabled}) => (
     <div className="row row--centered">
         <div className="col col--center col--center__boxed text-center">
-
-            {open && <span onClick={closeModal} className="modal-close">+</span>}
-
-            <div className="internal-flex-modal">
+            <div className="modal">
+                <span onClick={closeModal} className="modal__close">+</span>
                 <div className="modal-top">
                     <h4>Log in</h4>
                     <hr />

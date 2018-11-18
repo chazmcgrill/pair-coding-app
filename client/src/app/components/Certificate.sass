@@ -1,0 +1,33 @@
+@import '../../vars.sass'
+
+.accordion-cert
+    position: relative
+
+    &:after
+        content: ''
+        position: absolute
+        bottom: 0
+        left: 0
+        right: 0
+        margin: 0 auto
+        height: 1px
+        width: calc(100% - 56px)
+        background-color: lighten($border-color, 30)
+    
+    &:last-child:after
+        display: none
+
+    &__title 
+        color: $text-color
+        cursor: pointer
+        width: 100%
+        border: none
+        margin: 0
+        padding: 24px 28px 20px
+        outline: none
+        box-sizing: border-box
+        transition: background-color ease-in 150ms, color ease-in 100ms
+        
+        &:hover
+            color: white
+            background-color: $brand
