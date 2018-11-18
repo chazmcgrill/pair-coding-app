@@ -12,7 +12,7 @@ const NavBar = ({user, openModal}) => (
                 <NavLink exact activeClassName="active" to="/">Home</NavLink>
                 <NavLink activeClassName="active" to="/curriculum">Curriculum</NavLink>
                 <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
-                {user.photo ? <img className="nav-user-image" src={user.photo} alt="user avatar" /> : <div href="#" className="nav-link" onClick={openModal}>Login</div>}
+                {user.photo ? <img className="nav-user-image" src={user.photo} alt="user avatar" /> : <div className="nav-link" onClick={openModal}>Login</div>}
             </nav>
         </div>
     </header>
