@@ -8,7 +8,6 @@ import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Grid from './pages/Grid';
-import './App.sass';
 
 const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
@@ -30,7 +29,6 @@ export default class App extends Component {
         user,
         isModalOpen: false
       })
-      console.log(user);
     })
   }
 
@@ -88,14 +86,14 @@ export default class App extends Component {
 
   handleCertClick = (id) => {
     const certificates = this.state.certificates.map(cert => (
-      cert._id === id ? {...cert, open: !cert.open} : cert
-    ))
+      { ...cert, open: !cert.open && cert._id === id }
+    ));
     this.setState({certificates})
   }
 
   handleSectionClick = (id) => {
     const certificates = this.state.certificates.map(cert => {
-      const sections = cert.sections.map(section => (section._id === id ? {...section, open: !section.open} : section))
+      const sections = cert.sections.map(section => ({ ...section, open: !section.open && section._id === id}))
       return {...cert, sections}
     })
     this.setState({certificates})
