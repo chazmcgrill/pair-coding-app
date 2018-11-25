@@ -13,13 +13,13 @@ const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
 
 export default class App extends Component {
-    state = {
-      certificates: [],
-      loaded: false,
-      isModalOpen: false,
-      user: {},
-      disabled: '',
-      popup: null
+  state = {
+    certificates: [],
+    loaded: false,
+    isModalOpen: false,
+    user: {},
+    disabled: false,
+    popup: null
   }
 
   componentDidMount() {
@@ -37,7 +37,7 @@ export default class App extends Component {
       const { popup } = this.state
       if (!popup || popup.closed || popup.closed === undefined) {
         clearInterval(check)
-        this.setState({ disabled: '' })
+        this.setState({ disabled: false })
       }
     }, 1000)
   }
@@ -59,7 +59,7 @@ export default class App extends Component {
     if (!this.state.disabled) {
       this.checkPopup()
       this.setState({
-        disabled: 'disabled',
+        disabled: true,
         popup: this.openPopup()
       })
     }
