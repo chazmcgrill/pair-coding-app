@@ -28,4 +28,11 @@ router.use((req, res, next) => {
 // Routes that are triggered on the client
 router.get('/', githubAuth)
 
+// Route for logging out user
+router.get('/logout', (req, res) => {
+  req.logout();
+  io.to(`${req.session.socketId}`).emit('githubLogout', user);
+  res.end()
+})
+
 module.exports = router
