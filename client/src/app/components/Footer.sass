@@ -1,0 +1,35 @@
+@import '../../vars.sass'
+    
+.footer
+    box-sizing: border-box
+    width: 100%
+    padding: 18px 20px
+    background-color: $brand
+
+    &-container
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        align-items: center
+        max-width: 1200px
+        margin: 0 auto
+
+    &-logo 
+        margin: 0
+        color: white
+
+
+.footer-nav
+    display: flex
+
+    a, .nav-link
+        font-size: 1rem
+        margin-right: 1rem
+        padding: 0
+        color: white
+
+        &:hover
+            color: black
+
+    .active
+        color: white

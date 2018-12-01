@@ -2,9 +2,11 @@ import React from 'react';
 
 const Home = () => {
   return (
-    <section>
-      <h1>Home Page</h1>
-    </section>
+    <main>
+      <div className="row">
+        <h1>Home Page</h1>
+      </div>
+    </main>
   );
 }
 

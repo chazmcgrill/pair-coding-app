@@ -15,6 +15,8 @@ body
   -webkit-font-smoothing: antialiased
   -webkit-text-size-adjust: 100%
   margin: 0
+  -webkit-tap-highlight-color: $selection-color
+  min-height: 100%
 
 // Typography
 
@@ -90,11 +92,8 @@ img::selection
 img::-moz-selection
   background: transparent
 
-body
-  -webkit-tap-highlight-color: $selection-color
-
 main
-  padding: 100px 0
+  min-height: calc(100vh - 80px - 53px)
 
 // Grid
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Grid = () => {
   return (
-    <section>
+    <main>
       <h1>GRID</h1>
       <div className="row">
         <h2>.row .col</h2>
@@ -41,7 +41,7 @@ const Grid = () => {
         <h3>item1</h3>
         <h3>item2</h3>
       </div>
-    </section>
+    </main>
   );
 }
 
