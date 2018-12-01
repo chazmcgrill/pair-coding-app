@@ -6,7 +6,7 @@ const Footer = () => (
     <div className="footer">
         <div className="footer-container">
             <div id="logo" className="logo">
-                <h1 className="logo__nav">PEAR</h1>
+                <h3 className="footer-logo">PEAR</h3>
             </div>
             <nav className="footer-nav">
                 <NavLink exact activeClassName="active" to="/">Home</NavLink>
