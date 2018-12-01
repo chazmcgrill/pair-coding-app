@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import io from 'socket.io-client';
 import Curriculum from './pages/Curriculum';
+<<<<<<< HEAD
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+=======
+import Header from './components/Header';
+>>>>>>> master
 import Modal from './components/Modal';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
@@ -109,7 +113,7 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <React.Fragment>
-            <NavBar user={this.state.user} openModal={this.handleModalClick}/>
+            <Header user={this.state.user} openModal={this.handleModalClick}/>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route 
