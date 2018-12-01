@@ -1,0 +1,33 @@
+@import '../../vars.sass'
+    
+.header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 18px 20px
+    
+    &_logo
+        font-size: 1.5rem
+        color: #6FAB43
+        margin: 0
+        font-weight: bold
+
+.nav
+    display: flex
+
+    a, .nav-link
+        font-size: 1rem
+        margin-left: 1rem
+        color: #333
+        cursor: pointer
+
+        &:hover
+            color: lighten(#333, 50%)
+
+    .active
+        color: $brand
+
+    .nav-user-image
+        padding: 0 1.25rem
+        height: 26px
+        border-radius: 100%
