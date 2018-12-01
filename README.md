@@ -1,20 +1,13 @@
 # Pair Coding Application
 
-## Dependencies
-our build setup requires the following npm packages to be installed globally:
-- concurrently
-- nodemon
-- gulp-cli
+## Development Backend
+Open a terminal window and cd into server then run:
 
-Use this script to install automatically
+`npm install`
+`npm start`
 
-`npm run install:global`
+## Development Frontend
+Open a terminal window and cd into client then run:
 
-Use this to install projects depencies front and back
-
-`npm run install:deps`
-
-## Development Build
-Run start command to fire up both backend and frontend
-
+`npm install`
 `npm start`
