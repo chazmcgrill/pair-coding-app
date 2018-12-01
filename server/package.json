@@ -4,11 +4,7 @@
   "description": "Backend Api for Pair Coding App",
   "main": "server.js",
   "scripts": {
-    "install:global": "npm install concurrently nodemon -g",
-    "install:deps": "concurrently \"npm install\" \"cd client && npm install\"",
-    "start": "concurrently \"npm run backend\" \"npm run client\"",
-    "backend": "nodemon server.js",
-    "client": "cd client && npm start"
+    "start": "nodemon server.js",
   },
   "repository": {
     "type": "git",
