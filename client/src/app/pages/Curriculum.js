@@ -5,7 +5,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 const Curriculum = ({ loaded, handleCertClick, certificates, callAPI, handleSectionClick }) => {
   if (!loaded) callAPI()
   return (
-    <main className="App">
+    <main>
       <div className="row">
         <div className="col col--main">
           {loaded ? <CertAccordion certificates={certificates} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} /> : <LoadingSpinner />}

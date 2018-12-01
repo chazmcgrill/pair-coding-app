@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import io from 'socket.io-client';
 import Curriculum from './pages/Curriculum';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import Modal from './components/Modal';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
@@ -133,6 +134,8 @@ export default class App extends Component {
               />
               <Route component={NoMatch} />
             </Switch>
+
+            <Footer />
             {this.state.isModalOpen &&
                 <Modal
                   auth={this.startAuth} 
