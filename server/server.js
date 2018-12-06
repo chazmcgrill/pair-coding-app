@@ -7,7 +7,6 @@ const socketio = require('socket.io');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const app = express();
-const User = require('./models/user');
 require('dotenv').config();
 
 const subjects = require('./routes/subjects');
@@ -34,56 +33,19 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-// Connecting sockets to the server and adding them to the request 
-// so that we can access them later in the controller
+// sockets setup
 let server = http.createServer(app);
 const io = socketio(server)
 app.set('socketio', io);
+
+// routes
+app.use('/api/subjects', subjects);
+app.use('/api/auth', authRoutes);
 
 // server setup
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
 	console.log(`Server started on port ${port}`);
-})
+});
 
-// MOVE OUT TO OWN FILE
-const { Strategy: GithubStrategy } = require('passport-github');
 
-const GITHUB_CONFIG = {
-	clientID: process.env.GITHUB_CLIENT_ID,
-	clientSecret: process.env.GITHUB_CLIENT_SECRET,
-	callbackUrl: 'http://127.0.0.1:5000/api/auth/callback',
-}
-
-// Allowing passport to serialize and deserialize users into sessions
-passport.serializeUser((user, cb) => cb(null, user))
-passport.deserializeUser((obj, cb) => cb(null, obj))
-
-// Adding each OAuth provider's strategy to passport
-passport.use(new GithubStrategy(GITHUB_CONFIG, (accessToken, refreshToken, profile, cb) => {
-
-	// save the user to the database
-	const user = {
-		githubId: profile.id,
-		displayName: profile.username,
-		avatar: profile.photos[0].value
-	}
-
-	User.findOne({ githubId: user.githubId })
-		.then(res => {
-			if (res) {
-				console.log('user is already signed up');
-			}
-			else {
-				new User(user)
-					.save()
-					.catch(err => console.log(err));
-			}
-		});
-
-	cb(null, profile)
-}))
-
-// Use Routes
-app.use('/api/subjects', subjects);
-app.use('/api/auth', authRoutes);

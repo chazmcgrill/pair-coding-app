@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+require('../services/passport');
 
 // Setting up the passport middleware for each of the OAuth providers
 const githubAuth = passport.authenticate('github')
@@ -35,4 +36,4 @@ router.get('/logout', (req, res) => {
   res.end()
 })
 
-module.exports = router
+module.exports = router;
