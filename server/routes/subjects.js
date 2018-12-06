@@ -1,17 +1,15 @@
 const express = require('express');
 const router = express.Router();
-
-// Item Model
 const Subject = require('../models/subject');
 
-// Get request
+// get subjects from db
 router.get('/', (req, res) => {
     Subject.find()
         .sort({ createdAt: 1 })
         .then(subject => res.json(subject))
 });
 
-// CREATE - Add new subject to database
+// add a new subject to database
 router.post('/', (req, res) => {
 	const newSubject = new Subject({
 		title: req.body.title,
@@ -20,7 +18,7 @@ router.post('/', (req, res) => {
     newSubject.save().then(subject => res.json(subject));
 });
 
-// Delete request
+// delete subject route
 router.delete('/:id', (req, res) => {
     Subject.findOneAndRemove({ id: req.params.id },  function(err) {
         if (err)
