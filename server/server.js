@@ -5,28 +5,20 @@ const session = require('express-session');
 const cors = require('cors');
 const socketio = require('socket.io');
 const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
 const app = express();
 require('dotenv').config();
-
 const subjects = require('./routes/subjects');
 const authRoutes = require('./routes/auth');
 
-// connect to database
+// database setup
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 	.then(() => console.log('MongoDB Connected'))
 	.catch(err => console.log(err));
 
 // app setup
 app.use(express.json({type: '*/*'}));
-app.use(cookieParser());
 app.use(passport.initialize());
-
-// Setup for CORS / Accept requests from our client
 app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
-
-// saveUninitialized: true allows us to attach the socket id to the session
-// before we have athenticated the user
 app.use(session({
 	secret: process.env.SESSION_SECRET,
 	resave: true,
@@ -38,7 +30,7 @@ let server = http.createServer(app);
 const io = socketio(server)
 app.set('socketio', io);
 
-// routes
+// routes setup
 app.use('/api/subjects', subjects);
 app.use('/api/auth', authRoutes);
 
