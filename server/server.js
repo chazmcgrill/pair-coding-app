@@ -7,6 +7,7 @@ const socketio = require('socket.io');
 const mongoose = require('mongoose');
 const app = express();
 require('dotenv').config();
+const morgan = require('morgan');
 const subjects = require('./routes/subjects');
 const authRoutes = require('./routes/auth');
 
@@ -16,6 +17,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 	.catch(err => console.log(err));
 
 // app setup
+app.use(morgan('tiny'));
 app.use(express.json({type: '*/*'}));
 app.use(passport.initialize());
 app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
