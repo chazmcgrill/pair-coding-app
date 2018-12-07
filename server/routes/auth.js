@@ -1,12 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+require('../services/passport');
 
 // Setting up the passport middleware for each of the OAuth providers
-const githubAuth = passport.authenticate('github')
+const githubAuth = passport.authenticate('github');
 
-// Routes that are triggered by the callbacks from each OAuth provider once 
-// the user has authenticated successfully
+// attach the socket id to the session
+const socketIdMiddleware = (req, res, next) => {
+  req.session.socketId = req.query['socket-id'];
+  next()
+}
+
+// auth request route
+router.get('/', socketIdMiddleware, githubAuth)
+
+// successfull auth call back route
 router.get('/callback', githubAuth, (req, res) => {
   const io = req.app.get('socketio');
   const user = {
@@ -17,22 +26,11 @@ router.get('/callback', githubAuth, (req, res) => {
   res.end()
 })
 
-// This custom middleware allows us to attach the socket id to the session
-// With that socket id we can send back the right user info to the right 
-// socket
-router.use((req, res, next) => {
-  req.session.socketId = req.query['socket-id'];
-  next()
-})
-
-// Routes that are triggered on the client
-router.get('/', githubAuth)
-
-// Route for logging out user
-router.get('/logout', (req, res) => {
+// auth logout route
+router.get('/logout', socketIdMiddleware, (req, res) => {
   req.logout();
   io.to(`${req.session.socketId}`).emit('githubLogout', user);
   res.end()
 })
 
-module.exports = router
+module.exports = router;
