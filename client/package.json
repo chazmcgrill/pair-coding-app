@@ -4,12 +4,16 @@
   "private": true,
   "description": "Backend Api for Pair Coding App",
   "dependencies": {
+    "axios": "^0.18.0",
     "node-sass": "^4.10.0",
     "react": "^16.6.1",
     "react-accessible-accordion": "^2.4.5",
     "react-dom": "^16.6.1",
+    "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "socket.io-client": "^2.1.1"
   },
   "scripts": {

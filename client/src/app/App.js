@@ -1,5 +1,4 @@
 import React from 'react';
-// import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import io from 'socket.io-client';
 // import Curriculum from './pages/Curriculum';
 import Footer from './components/Footer';
@@ -11,8 +10,7 @@ import Header from './components/Header';
 // import Grid from './pages/Grid';
 
 
-// const API_URL = 'http://127.0.0.1:5000';
-// const socket = io(API_URL);
+
 
 
 export default (props) => (
