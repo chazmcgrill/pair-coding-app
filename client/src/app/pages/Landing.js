@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import io from 'socket.io-client';
 import Modal from '../components/Modal';
 import { connect } from 'react-redux';
-import { toggleLoginModal } from '../actions';
+import { toggleLoginModal, addUser } from '../actions';
 
 const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
@@ -18,10 +18,7 @@ class Landing extends Component {
     componentDidMount() {
         socket.on('github', user => {
             this.state.popup.close();
-            this.setState({
-                user,
-                isModalOpen: false
-            })
+            this.props.addUser(user);
         })
     }
 
@@ -90,6 +87,9 @@ function mapDispatchToProps(dispatch) {
     return {
         clickModalClose: () => {
             dispatch(toggleLoginModal(false));
+        },
+        addUser: (user) => {
+            dispatch(addUser(user));
         }
     }
 }
