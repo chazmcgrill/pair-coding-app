@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import io from 'socket.io-client';
 import Modal from '../components/Modal';
 import { connect } from 'react-redux';
@@ -20,11 +20,15 @@ class Landing extends Component {
         })
     }
 
-    checkPopup() {
-        const check = setInterval(() => {
+    componentWillUnmount() {
+        clearInterval(this.check);
+    }
+
+    checkPopup = () => {
+        this.check = setInterval(() => {
             const { popup } = this.state
             if (!popup || popup.closed || popup.closed === undefined) {
-                clearInterval(check)
+                clearInterval(this.check);
                 this.setState({ disabled: false })
             }
         }, 1000)
@@ -57,7 +61,7 @@ class Landing extends Component {
     render() {
         const { disabled } = this.state;
         return (
-            <main>
+            <Fragment>
                 <h1>Landing Page</h1>
                 {this.props.isModalOpen &&
                     <Modal
@@ -66,7 +70,7 @@ class Landing extends Component {
                         closeModal={this.handleModalClick}
                     />
                 }
-            </main>
+            </Fragment>
         )
     }
 }

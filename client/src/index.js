@@ -7,7 +7,7 @@ import reduxThunk from 'redux-thunk';
 
 import App from './app/App';
 import Grid from './app/pages/Grid';
-import Landing from './app/pages/Landing';
+import Main from './app/pages/Main';
 import Curriculum from './app/pages/Curriculum';
 import './index.sass';
 import registerServiceWorker from './registerServiceWorker';
@@ -18,7 +18,7 @@ ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
 			<App>
-				<Route path="/" exact component={Landing} />
+				<Route path="/" exact component={Main} />
 				<Route path="/grid" exact component={Grid} />
 				<Route path="/curriculum" exact component={Curriculum} />
 			</App>
