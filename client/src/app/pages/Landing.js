@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import Modal from '../components/Modal';
+import { connect } from 'react-redux';
+import { toggleLoginModal } from '../actions';
 
 const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
@@ -58,7 +60,7 @@ class Landing extends Component {
     }
 
     handleModalClick = () => {
-        this.setState({isModalOpen: !this.state.isModalOpen})
+        this.props.clickModalClose();
     }
 
     render() {
@@ -66,7 +68,7 @@ class Landing extends Component {
         return (
             <div>
                 <h1>Landing Page</h1>
-                {this.state.isModalOpen &&
+                {this.props.isModalOpen &&
                     <Modal
                         auth={this.startAuth} 
                         disabled={disabled}
@@ -78,4 +80,18 @@ class Landing extends Component {
     }
 }
 
-export default Landing;
+function matchStateToProps(state) {
+    return {
+        isModalOpen: state.userProfile.isModalOpen
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        clickModalClose: () => {
+            dispatch(toggleLoginModal(false));
+        }
+    }
+}
+
+export default connect(matchStateToProps, mapDispatchToProps)(Landing);

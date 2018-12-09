@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_CERTS, GET_CERTS_ERROR, OPEN_CERT, OPEN_SECTION } from './types';
+import { GET_CERTS, GET_CERTS_ERROR, OPEN_CERT, OPEN_SECTION, ADD_USER, TOGGLE_LOGIN_MODAL } from './types';
 
 export const getCurriculum = (callback) => async dispatch => {
     try {
@@ -17,4 +17,12 @@ export const openCert = (id) => dispatch => {
 
 export const openSection = (id) => dispatch => {
     dispatch({ type: OPEN_SECTION, payload: id });
+}
+
+export const addUser = (user) => dispatch => {
+    dispatch({ type: ADD_USER, payload: user });
+}
+
+export const toggleLoginModal = (isOpen) => dispatch => {
+    dispatch({ type: TOGGLE_LOGIN_MODAL, payload: isOpen });
 }

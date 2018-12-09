@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from 'react-redux';
+import { toggleLoginModal } from '../actions';
 import './Header.sass';
 
 class NavBar extends Component {
     openModal = () => {
-        console.log('open modal clicked');
+        this.props.loginClick();
     }
 
     render() {
-        const user = { photo: false };
+        const {user} = this.props;
         return (
             <header className="header" style={{ backgroundColor: '#fff' }}>
                 <h3 className="header_logo">PEAR</h3>
@@ -23,4 +25,19 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar;
+function mapStateToProps(state) {
+    return {
+        user: state.userProfile.user,
+        modal: state.userProfile.isModalOpen
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        loginClick: () => {
+            dispatch(toggleLoginModal(true));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
