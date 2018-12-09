@@ -57,7 +57,7 @@ class Landing extends Component {
     render() {
         const { disabled } = this.state;
         return (
-            <div>
+            <main>
                 <h1>Landing Page</h1>
                 {this.props.isModalOpen &&
                     <Modal
@@ -66,7 +66,7 @@ class Landing extends Component {
                         closeModal={this.handleModalClick}
                     />
                 }
-            </div>
+            </main>
         )
     }
 }
