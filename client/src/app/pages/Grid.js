@@ -1,4 +1,5 @@
 import React from 'react';
+import requireAuth from './requireAuth';
 
 const Grid = () => {
   return (
@@ -45,4 +46,4 @@ const Grid = () => {
   );
 }
 
-export default Grid;
+export default requireAuth(Grid);
