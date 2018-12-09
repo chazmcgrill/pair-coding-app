@@ -9,8 +9,6 @@ const socket = io(API_URL);
 
 class Landing extends Component {
     state = {
-        isModalOpen: false,
-        user: {},
         disabled: false,
         popup: null
     }
@@ -50,10 +48,6 @@ class Landing extends Component {
                 popup: this.openPopup()
             })
         }
-    }
-
-    closeCard() {
-        this.setState({ user: {} })
     }
 
     handleModalClick = () => {
