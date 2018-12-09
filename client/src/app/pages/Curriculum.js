@@ -3,6 +3,7 @@ import CertAccordion from '../components/CertAccordion';
 import LoadingSpinner from "../components/LoadingSpinner";
 import { connect } from 'react-redux';
 import { getCurriculum, openCert, openSection } from '../actions';
+import requireAuth from './requireAuth';
 
 class Curriculum extends Component {
   componentDidMount() {
@@ -57,4 +58,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Curriculum);
+export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Curriculum));
