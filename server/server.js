@@ -8,8 +8,11 @@ const mongoose = require('mongoose');
 const app = express();
 require('dotenv').config();
 const morgan = require('morgan');
+
+// Routes
 const subjects = require('./routes/subjects');
 const authRoutes = require('./routes/auth');
+const conversations = require('./routes/conversations');
 
 // database setup
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
@@ -35,6 +38,7 @@ app.set('socketio', io);
 // routes setup
 app.use('/api/subjects', subjects);
 app.use('/api/auth', authRoutes);
+app.use('/api/conversations', conversations);
 
 // server setup
 const port = process.env.PORT || 5000;

@@ -9,6 +9,8 @@ import App from './app/App';
 import Grid from './app/pages/Grid';
 import Main from './app/pages/Main';
 import Curriculum from './app/pages/Curriculum';
+import Messages from './app/pages/Messages';
+
 import './index.sass';
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './app/reducers';
@@ -21,6 +23,7 @@ ReactDOM.render(
 				<Route path="/" exact component={Main} />
 				<Route path="/grid" exact component={Grid} />
 				<Route path="/curriculum" exact component={Curriculum} />
+				<Route path="/messages" exact component={Messages} />
 			</App>
 		</BrowserRouter>
 	</Provider>, 

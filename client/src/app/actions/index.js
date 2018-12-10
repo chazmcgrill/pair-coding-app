@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { GET_CERTS, GET_CERTS_ERROR, OPEN_CERT, OPEN_SECTION, ADD_USER, TOGGLE_LOGIN_MODAL } from './types';
+import { GET_CERTS, GET_CERTS_ERROR, OPEN_CERT, OPEN_SECTION, ADD_USER, TOGGLE_LOGIN_MODAL, GET_CONVERSATIONS, GET_CONVERSATIONS_ERROR } from './types';
 
+// Curriculum Actions
 export const getCurriculum = (callback) => async dispatch => {
     try {
         const response = await axios.get('http://localhost:5000/api/subjects');
@@ -8,6 +9,17 @@ export const getCurriculum = (callback) => async dispatch => {
         callback();
     } catch (e) {
         dispatch({ type: GET_CERTS_ERROR, payload: 'Error Fetching Data' })
+    }
+};
+
+// Messages Actions
+export const getConversations = (callback) => async dispatch => {
+    try {
+        const response = await axios.get('http://localhost:5000/api/conversations');
+        dispatch({ type: GET_CONVERSATIONS, payload: response.data });
+        callback();
+    } catch (e) {
+        dispatch({ type: GET_CONVERSATIONS_ERROR, payload: 'Error Fetching Data' })
     }
 };
 
