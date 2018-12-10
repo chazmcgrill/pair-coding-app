@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import { connect } from 'react-redux';
 import { getConversations } from '../actions';
 import requireAuth from './requireAuth';
@@ -17,10 +17,13 @@ class Conversations extends Component {
         <h1>Messages</h1>
 
          {conversations.map(convo => (
+             <Fragment>
             <h3
                 key={convo._id}>
                 Room ID : {convo.roomId}
             </h3>
+            <p>Users: {convo.users.join(', ')}</p>
+            </Fragment>
         ))}
       </main>
     )
