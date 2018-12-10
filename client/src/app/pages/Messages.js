@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import LoadingSpinner from "../components/LoadingSpinner";
 import { connect } from 'react-redux';
 import { getConversations } from '../actions';
 import requireAuth from './requireAuth';

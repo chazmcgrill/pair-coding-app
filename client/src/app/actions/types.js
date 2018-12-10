@@ -9,5 +9,5 @@ export const ADD_USER = 'add_user';
 export const TOGGLE_LOGIN_MODAL = 'toggle_login_modal';
 
 // Messages
-export const GET_CONVOS = 'get_convos';
-export const GET_CONVOS_ERROR = 'get_convos_error';
+export const GET_CONVERSATIONS = 'get_conversations';
+export const GET_CONVERSATIONS_ERROR = 'get_conversations_error';
