@@ -25,6 +25,7 @@ class NavBar extends Component {
                         <Fragment>
                             <NavLink exact activeClassName="active" to="/">Home</NavLink>
                             <NavLink activeClassName="active" to="/curriculum">Curriculum</NavLink>
+                            <NavLink activeClassName="active" to="/conversations">Messages</NavLink>
                             <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
                             <img className="nav-user-image" src={user.photo} alt="user avatar"/>
                         </Fragment>
