@@ -5,7 +5,7 @@ import requireAuth from './requireAuth';
 
 class Conversations extends Component {
   componentDidMount() {
-    this.props.fetchConversations();
+    this.props.fetchConversations(this.props.user);
   }
 
   render() {
@@ -39,8 +39,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchConversations: () => {
-      dispatch(getConversations())
+    fetchConversations: (user) => {
+      dispatch(getConversations(user))
     }
   }
 }

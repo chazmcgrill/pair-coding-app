@@ -12,9 +12,16 @@ export const getCurriculum = () => async dispatch => {
 };
 
 // Messages Actions
-export const getConversations = () => async dispatch => {
+export const getConversations = (id) => async dispatch => {
     try {
-        const response = await axios.get('http://localhost:5000/api/conversations');
+        const userId = id.githubId;
+        const response = await axios({
+            method: 'get',
+            url: 'http://localhost:5000/api/conversations',
+            params: {
+                ID: userId
+            }
+        })
         dispatch({ type: GET_CONVERSATIONS, payload: response.data });
     } catch (e) {
         dispatch({ type: GET_CONVERSATIONS_ERROR, payload: 'Error Fetching Data' })
