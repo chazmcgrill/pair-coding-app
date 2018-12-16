@@ -8,6 +8,12 @@ class Conversations extends Component {
     this.props.fetchConversations(this.props.user);
   }
 
+  roomClick = (e) => {
+    console.log(e);
+  }
+
+  
+
   render() {
     const { conversations } = this.props.conversations;
 
@@ -17,9 +23,9 @@ class Conversations extends Component {
         <h1>Messages</h1>
 
          {conversations.map(convo => (
-             <Fragment>
-            <h3
-                key={convo._id}>
+             <Fragment
+             key={convo._id}>
+            <h3 onClick={e => this.roomClick(convo.roomId)}>
                 Room ID : {convo.roomId}
             </h3>
             <p>Users: {convo.users.join(', ')}</p>

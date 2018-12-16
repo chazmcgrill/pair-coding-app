@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Conversation = require('../models/conversations');
 const User = require('../models/user');
+const Message = require('../models/messages');
 
 // get conversations from db
 router.get('/', (req, res) => {
@@ -23,11 +24,28 @@ router.get('/', (req, res) => {
 
 // add a new conversation to database
 router.post('/', (req, res) => {
-    const newConversation = new Conversation({
+
+    // create message in message collection
+    const newMessage = new Message({
         roomId: req.body.roomId,
-        users: req.body.users
+        message: {
+            user: req.body.message[0].user,
+            message: req.body.message[0].message
+        }
     });
-    newConversation.save().then(subject => res.json(subject));
+    newMessage.save()
+        .then(message => res.json(message))
+        // create conversation collection 
+        .then(() => {
+            const users = [req.body.message[0].user]
+            const newConversation = new Conversation({
+            roomId: req.body.roomId,
+            users: users
+        });
+        newConversation.save()
+            .then(conversation => res.json(conversation));
+    })
+    
 });
 
 // delete conversation route
