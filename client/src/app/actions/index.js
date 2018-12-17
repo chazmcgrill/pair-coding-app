@@ -12,9 +12,9 @@ export const getCurriculum = () => async dispatch => {
 };
 
 // Inbox Actions
-export const getConversations = (id) => async dispatch => {
+export const getConversations = (user) => async dispatch => {
     try {
-        const userId = id.githubId;
+        const userId = user.githubId;
         const response = await axios({
             method: 'get',
             url: 'http://localhost:5000/api/conversations',
