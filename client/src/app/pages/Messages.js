@@ -1,37 +1,46 @@
 import React, {Component, Fragment} from "react";
 import { connect } from 'react-redux';
-import { getConversations } from '../actions';
+import { getMessages } from '../actions';
 import requireAuth from './requireAuth';
 
 class Messages extends Component {
-  componentDidMount() {
-    this.props.fetchConversations(this.props.user);
+
+  state= {
+    isLoaded: false
   }
 
-  // roomClick = (e) => {
-  //   this.props.history.push(`/inbox/messages/${e}`)
-  // }
+  componentDidMount() {
+    const roomId = this.props.match.params.roomId;
+    
+    this.props.fetchMessages((roomId), this.updateLoaded());
+    
+    
+  }
+
+  updateLoaded = () => this.setState({ isLoaded: true })
 
   
-
   render() {
-    // const { conversations } = this.props.conversations;
-
+    const { messages } = this.props.messages;
+    
     return (
       <main>
-        
+   
         <h1>Messages</h1>
 
-         {/* {conversations.map(convo => (
-             <Fragment
-             key={convo._id}>
-            <h3 onClick={e => this.roomClick(convo.roomId)}>
-                Room ID : {convo.roomId}
-            </h3>
-            <p>Users: {convo.users.join(', ')}</p>
+      
+         { this.state.isLoaded ? (
+           messages[0].message.map(item => (
 
+             <Fragment>
+              <h3>
+                  User : {item.user}
+              </h3>
+              <p>message: {item.message}</p>
             </Fragment>
-        ))} */}
+        ))
+         ): 'Loading'}
+         
       </main>
     )
   }
@@ -39,15 +48,15 @@ class Messages extends Component {
 
 function mapStateToProps(state) {
   return {
-    conversations: state.conversations,
+    messages: state.messages,
     errorMessage: state.errorMessage
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchConversations: (user) => {
-      dispatch(getConversations(user))
+    fetchMessages: (roomId) => {
+      dispatch(getMessages(roomId))
     }
   }
 }

@@ -23,11 +23,6 @@ router.get('/', (req, res) => {
 
 });
 
-router.get('/inbox/messages/:roomId', function (req, res) {
-    console.log(req.params)
-    console.log('========')
-    console.log('========')
-  })
 
 
 // add a new conversation to database
@@ -45,13 +40,13 @@ router.post('/', (req, res) => {
         .then(message => res.json(message))
         // create conversation collection 
         .then(() => {
-            const users = [req.body.message[0].user]
+            const users = [req.body.message[0].user];
+            const roomId = req.body.roomId;
+            
             const newConversation = new Conversation({
-            roomId: req.body.roomId,
+            roomId: roomId,
             users: users
         })
-        .catch(console.log('error posting message'))
-
         newConversation.save()
             .then(conversation => res.json(conversation))
             .catch(console.log('error posting conversation'))
