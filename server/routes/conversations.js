@@ -6,7 +6,7 @@ const Message = require('../models/messages');
 
 // get conversations from db
 router.get('/', (req, res) => {
-    // Use user Id to find that users conversations
+    // Use user Id to find that user and then their conversations array is used to pull the conversations
     const searchUser = req.query.ID;
     User.find({ githubId: searchUser })
         .then(res => {
@@ -16,11 +16,25 @@ router.get('/', (req, res) => {
             Conversation.find({ "roomId": convo })
                 .sort({ createdAt: 1 })
                 .then(conversation => res.json(conversation))
+                .catch(console.log('error fetching conversations'))
         })
-        .catch(console.log('error fetching users conversations'))
+        .catch(console.log('error fetching user'))
 
 
 });
+
+
+// get message from db
+router.get('/:id', (req, res) => {
+    Message.find({ "roomId": convo })
+        .sort({ createdAt: 1 })
+        .then(message => res.json(message))
+        .catch(console.log('error fetching message'))
+    })
+
+
+
+
 
 // add a new conversation to database
 router.post('/', (req, res) => {
@@ -41,9 +55,12 @@ router.post('/', (req, res) => {
             const newConversation = new Conversation({
             roomId: req.body.roomId,
             users: users
-        });
+        })
+        .catch(console.log('error posting message'))
+
         newConversation.save()
-            .then(conversation => res.json(conversation));
+            .then(conversation => res.json(conversation))
+            .catch(console.log('error posting conversation'))
     })
     
 });

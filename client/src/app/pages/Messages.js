@@ -9,7 +9,7 @@ class Conversations extends Component {
   }
 
   roomClick = (e) => {
-    console.log(e);
+    this.props.history.push(`?id=${e}`)
   }
 
   

@@ -29,7 +29,7 @@ ReactDOM.render(
 				<Route path="/" exact component={Main} />
 				<Route path="/grid" exact component={Grid} />
 				<Route path="/curriculum" exact component={Curriculum} />
-				<Route path="/messages" exact component={Messages} />
+				<Route path="/messages" component={Messages} />
 			</App>
 		</BrowserRouter>
 	</Provider>, 
