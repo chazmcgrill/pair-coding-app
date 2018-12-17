@@ -29,10 +29,8 @@ export const getConversations = (id) => async dispatch => {
 };
 
 // Messages Actions
-export const getMessages = (id) => async dispatch => {
+export const getMessages = (roomId) => async dispatch => {
     try {
-        const roomId = id;
-        
         const response = await axios({
             method: 'get',
             url: 'http://localhost:5000/api/messages',

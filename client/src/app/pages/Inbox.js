@@ -25,7 +25,7 @@ class Conversations extends Component {
          {conversations.map(convo => (
              <Fragment
              key={convo._id}>
-            <h3 onClick={e => this.roomClick(convo.roomId)}>
+            <h3 onClick={() => this.roomClick(convo.roomId)}>
                 Room ID : {convo.roomId}
             </h3>
             <p>Users: {convo.users.join(', ')}</p>
