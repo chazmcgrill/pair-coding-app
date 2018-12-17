@@ -23,17 +23,11 @@ router.get('/', (req, res) => {
 
 });
 
-
-// get message from db
-router.get('/:id', (req, res) => {
-    Message.find({ "roomId": convo })
-        .sort({ createdAt: 1 })
-        .then(message => res.json(message))
-        .catch(console.log('error fetching message'))
-    })
-
-
-
+router.get('/inbox/messages/:roomId', function (req, res) {
+    console.log(req.params)
+    console.log('========')
+    console.log('========')
+  })
 
 
 // add a new conversation to database

@@ -9,6 +9,7 @@ import App from './app/App';
 import Grid from './app/pages/Grid';
 import Main from './app/pages/Main';
 import Curriculum from './app/pages/Curriculum';
+import Inbox from './app/pages/Inbox';
 import Messages from './app/pages/Messages';
 
 import './index.sass';
@@ -29,7 +30,8 @@ ReactDOM.render(
 				<Route path="/" exact component={Main} />
 				<Route path="/grid" exact component={Grid} />
 				<Route path="/curriculum" exact component={Curriculum} />
-				<Route path="/messages" component={Messages} />
+				<Route path="/inbox" exact component={Inbox} />
+				<Route path={`/inbox/messages/:roomId`}  component={Messages} />
 			</App>
 		</BrowserRouter>
 	</Provider>, 

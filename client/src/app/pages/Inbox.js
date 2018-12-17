@@ -3,26 +3,26 @@ import { connect } from 'react-redux';
 import { getConversations } from '../actions';
 import requireAuth from './requireAuth';
 
-class Messages extends Component {
+class Conversations extends Component {
   componentDidMount() {
     this.props.fetchConversations(this.props.user);
   }
 
-  // roomClick = (e) => {
-  //   this.props.history.push(`/inbox/messages/${e}`)
-  // }
+  roomClick = (e) => {
+    this.props.history.push(`/inbox/messages/${e}`)
+  }
 
   
 
   render() {
-    // const { conversations } = this.props.conversations;
+    const { conversations } = this.props.conversations;
 
     return (
       <main>
         
-        <h1>Messages</h1>
+        <h1>Inbox</h1>
 
-         {/* {conversations.map(convo => (
+         {conversations.map(convo => (
              <Fragment
              key={convo._id}>
             <h3 onClick={e => this.roomClick(convo.roomId)}>
@@ -31,7 +31,7 @@ class Messages extends Component {
             <p>Users: {convo.users.join(', ')}</p>
 
             </Fragment>
-        ))} */}
+        ))}
       </main>
     )
   }
@@ -52,4 +52,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Messages));
+export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Conversations));
