@@ -2,6 +2,8 @@ import React, {Component, Fragment} from "react";
 import { connect } from 'react-redux';
 import { getConversations } from '../actions';
 import requireAuth from './requireAuth';
+import Conversation from '../components/Conversation';
+import LoadingSpinner from "../components/LoadingSpinner";
 
 class Conversations extends Component {
   componentDidMount() {
@@ -12,26 +14,40 @@ class Conversations extends Component {
     this.props.history.push(`/inbox/messages/${e}`)
   }
 
-  
 
   render() {
     const { conversations } = this.props.conversations;
 
     return (
       <main>
-        
-        <h1>Inbox</h1>
+        <div className="row">
+          <div className="col col--main">
+          
+          <div className="conversations-container">
+            {conversations ? 
+              <Conversation openMessage={this.roomClick}
+                            user={this.props.user}
+                            conversations={conversations}
+                            />
+              :
+              <LoadingSpinner/>
+            }
+          </div>
 
-         {conversations.map(convo => (
-             <Fragment
-             key={convo._id}>
-            <h3 onClick={() => this.roomClick(convo.roomId)}>
-                Room ID : {convo.roomId}
-            </h3>
-            <p>Users: {convo.users.map(user => user.username).join(", ")}</p>
-
-            </Fragment>
-        ))}
+          </div>
+          <div className="col col--side">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Donec elementum ligula eu sapien
+            </p>
+          </div>
+        </div>
       </main>
     )
   }

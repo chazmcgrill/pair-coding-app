@@ -8,7 +8,7 @@ router.get('*', (req, res) => {
     const roomId = req.query.ID;
 
     Message.find({ "roomId": roomId })
-        .then(data => res.json(data))
+        .then(messages => res.json(messages))
 });
 
 

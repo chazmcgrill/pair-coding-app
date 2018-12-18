@@ -26,7 +26,7 @@ class Messages extends Component {
       <main>
    
       
-         { this.state.isLoaded ? (
+         { this.state.isLoaded && messages[0] ? (
            messages[0].message.map(item => (
 
              <Fragment key={item.userId + item.message}>
