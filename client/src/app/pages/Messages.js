@@ -14,9 +14,8 @@ class Messages extends Component {
     
     this.props.fetchMessages((roomId), this.updateLoaded());
     
-    
   }
-
+  
   updateLoaded = () => this.setState({ isLoaded: true })
 
   
@@ -26,21 +25,19 @@ class Messages extends Component {
     return (
       <main>
    
-        <h1>Messages</h1>
-
       
          { this.state.isLoaded ? (
            messages[0].message.map(item => (
 
-             <Fragment>
+             <Fragment key={item.userId + item.message}>
               <h3>
-                  User : {item.user}
+                  User : {item.username}
               </h3>
               <p>message: {item.message}</p>
             </Fragment>
         ))
          ): 'Loading'}
-         
+
       </main>
     )
   }

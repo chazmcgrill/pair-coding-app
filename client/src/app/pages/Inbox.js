@@ -28,7 +28,7 @@ class Conversations extends Component {
             <h3 onClick={() => this.roomClick(convo.roomId)}>
                 Room ID : {convo.roomId}
             </h3>
-            <p>Users: {convo.users.join(', ')}</p>
+            <p>Users: {convo.users.map(user => user.username).join(", ")}</p>
 
             </Fragment>
         ))}
