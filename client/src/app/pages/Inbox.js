@@ -22,18 +22,21 @@ class Conversations extends Component {
       <main>
         <div className="row">
           <div className="col col--main">
-          
-          <div className="conversations-container">
-            {conversations ? 
+            <div className="conversations-container">
+
+              {
+              /* If conversations have loaded create conversation
+              components, else display loading spinner */
+              conversations ?
               <Conversation openMessage={this.roomClick}
                             user={this.props.user}
                             conversations={conversations}
-                            />
-              :
-              <LoadingSpinner/>
-            }
-          </div>
+               />
+                :
+                <LoadingSpinner/>
+              }
 
+            </div>
           </div>
           <div className="col col--side">
             <p>

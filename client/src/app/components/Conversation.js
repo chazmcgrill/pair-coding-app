@@ -12,6 +12,7 @@ const Conversation = ({ conversations, user, openMessage }) => (
                         <img className="inbox-avatar" src={author.avatar} alt="user image" />
                         <div className="inbox-details">
                             <h3>{author.username}</h3>
+                            <p>{convo.lastMessage}</p>
                         </div>
                     </div>
                 ))

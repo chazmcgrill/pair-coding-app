@@ -24,9 +24,8 @@ class Messages extends Component {
     
     return (
       <main>
-   
-      
-         { this.state.isLoaded && messages[0] ? (
+        <div className="chat-window">
+        { this.state.isLoaded && messages[0] ? (
            messages[0].message.map(item => (
 
              <Fragment key={item.userId + item.message}>
@@ -37,6 +36,13 @@ class Messages extends Component {
             </Fragment>
         ))
          ): 'Loading'}
+        </div>
+        <div className="chat-input-field">
+        
+        </div>
+   
+      
+         
 
       </main>
     )
