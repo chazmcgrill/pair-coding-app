@@ -3,10 +3,12 @@
     max-width: 1000px
     padding: 0 20px
     margin: 0 auto
+    flex-wrap: wrap
 
 .feature
     margin: 0 30px
     text-align: center
+    width: calc(30% - 60px)
 
     &_icon
         height: 100px
@@ -14,3 +16,6 @@
         background-color: grey
         margin: 0 auto -20px
         border-radius: 100%
+
+    @media (max-width: 760px)
+        width: 100%
