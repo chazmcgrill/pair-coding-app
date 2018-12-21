@@ -5,7 +5,7 @@ const Section = (props) => {
     const { title, children, backgroundColor } = props;
     return (
         <section className="section" style={{ backgroundColor }}>
-            {title && <h2>{title}</h2>}
+            {title && <h2 className="section_title">{title}</h2>}
             {children}
         </section>
     );

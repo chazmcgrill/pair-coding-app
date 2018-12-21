@@ -6,19 +6,19 @@ export default () => (
     <Section title="What it does">
         <div className="features">
             <div className="feature">
-                <div>Icon</div>
+                <div className="feature_icon" />
                 <h3>Title</h3>
-                <p className="feature__text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur reiciendis officiis modi aspernatur consequuntur dolor.</p>
+                <p className="feature_text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur reiciendis officiis modi aspernatur consequuntur dolor.</p>
             </div>
             <div className="feature">
-                <div>Icon</div>
+                <div className="feature_icon" />
                 <h3>Title</h3>
-                <p className="feature__text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur reiciendis officiis modi aspernatur consequuntur dolor.</p>
+                <p className="feature_text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur reiciendis officiis modi aspernatur consequuntur dolor.</p>
             </div>
             <div className="feature">
-                <div>Icon</div>
+                <div className="feature_icon" />
                 <h3>Title</h3>
-                <p className="feature__text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur reiciendis officiis modi aspernatur consequuntur dolor.</p>
+                <p className="feature_text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur reiciendis officiis modi aspernatur consequuntur dolor.</p>
             </div>
         </div>
     </Section>
