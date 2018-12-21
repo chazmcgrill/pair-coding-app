@@ -2,7 +2,10 @@ import React, { Component, Fragment } from 'react';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
 import Modal from '../components/Modal';
+import Header from '../components/landingpage/Header';
 import { toggleLoginModal, addUser } from '../actions';
+import Features from '../components/landingpage/Features';
+import Reviews from '../components/landingpage/Reviews';
 
 const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
@@ -68,56 +71,9 @@ class Landing extends Component {
         const { isModalOpen } = this.props;
         return (
             <Fragment>
-                <section>
-                    <div>
-                        <h1>Find people to pair code with right now</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, exercitationem. Modi, dolores tempora. Numquam officia debitis consequuntur tempore aut? Minima debitis qui vel excepturi, provident perferendis quibusdam expedita tempora quo?</p>
-                        <div>Learn More</div>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>What it does</h2>
-                    <div>
-                        <div>Icon</div>
-                        <h3>Title</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur reiciendis officiis modi aspernatur consequuntur dolor.</p>
-                        <div>Icon</div>
-                        <h3>Title</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur reiciendis officiis modi aspernatur consequuntur dolor.</p>
-                        <div>Icon</div>
-                        <h3>Title</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur reiciendis officiis modi aspernatur consequuntur dolor.</p>
-                    </div>
-                </section>
-
-                <section>
-                    <h2>What people are saying about pear</h2>
-                    <div>
-                        <div>Avatar</div>
-                        <p>Similique maiores, totam dicta nobis quaerat, optio soluta? Voluptatibus, distinctio!</p>
-                        <h4>Jane Something</h4>
-                        <p>CEO pf Something</p>
-                    </div>
-                    <div>
-                        <div>Avatar</div>
-                        <p>Similique maiores, totam dicta nobis quaerat, optio soluta? Voluptatibus, distinctio!</p>
-                        <h4>Jane Something</h4>
-                        <p>CEO pf Something</p>
-                    </div>
-                    <div>
-                        <div>Avatar</div>
-                        <p>Similique maiores, totam dicta nobis quaerat, optio soluta? Voluptatibus, distinctio!</p>
-                        <h4>Jane Something</h4>
-                        <p>CEO pf Something</p>
-                    </div>
-                    <div>
-                        <div>Avatar</div>
-                        <p>Similique maiores, totam dicta nobis quaerat, optio soluta? Voluptatibus, distinctio!</p>
-                        <h4>Jane Something</h4>
-                        <p>CEO pf Something</p>
-                    </div>
-                </section>
+                <Header />
+                <Features />
+                <Reviews />
 
                 {isModalOpen && (
                     <Modal
