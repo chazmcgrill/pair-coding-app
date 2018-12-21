@@ -11,23 +11,37 @@
         color: #6FAB43
         margin: 0
         font-weight: bold
+        margin-right: 2rem
+
+.header-left-side
+    display: flex
+    align-items: center
 
 .nav
     display: flex
 
-    a, .nav-link
-        font-size: 1rem
-        margin-left: 1rem
-        color: #333
-        cursor: pointer
+.nav-link-left, .nav-link
+    font-size: 1rem
+    margin-left: 1rem
+    cursor: pointer
 
-        &:hover
-            color: lighten(#333, 50%)
+.nav-link
+    color: #fff
 
-    .active
-        color: $brand
+    &:hover
+        color: darken(#fff, 50%)
 
-    .nav-user-image
-        padding: 0 1.25rem
-        height: 26px
-        border-radius: 100%
+.nav-link-left
+    color: #333
+    margin-left: 1rem
+
+    &:hover
+        color: lighten(#333, 50%)
+
+.active
+    color: $brand
+
+.nav-user-image
+    padding: 0 1.25rem
+    height: 26px
+    border-radius: 100%
