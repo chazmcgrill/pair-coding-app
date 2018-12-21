@@ -14,31 +14,33 @@ class NavBar extends Component {
         const { user } = this.props;
         return (
             <header className="header" style={{ backgroundColor: 'none' }}>
-                <div className="header-left-side">
-                    <h3 className="header_logo">PEAR</h3>
-                    {!user.photo && (
-                        <Fragment>
-                            <a className="nav-link-left" href="#features">Features</a>
-                            <a className="nav-link-left" href="#reviews">Reviews</a>
-                        </Fragment>
-                    )}
+                <div className="header-wrapper">
+                    <div className="header-left-side">
+                        <h3 className="header_logo">PEAR</h3>
+                        {!user.photo && (
+                            <Fragment>
+                                <a className="nav-link-left" href="#features">Features</a>
+                                <a className="nav-link-left" href="#reviews">Reviews</a>
+                            </Fragment>
+                        )}
+                    </div>
+                    <nav className="nav">
+                        {!user.photo ? (
+                            <Fragment>
+                                <div role="button" tabIndex={0} className="nav-link" onClick={this.openModal}>Signup</div>
+                                <div role="button" tabIndex={0} className="nav-link" onClick={this.openModal}>Login</div>
+                            </Fragment>
+                        ) : (
+                            <Fragment>
+                                <NavLink exact activeClassName="active" to="/">Home</NavLink>
+                                <NavLink activeClassName="active" to="/curriculum">Curriculum</NavLink>
+                                <NavLink activeClassName="active" to="/messages">Messages</NavLink>
+                                <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
+                                <img className="nav-user-image" src={user.photo} alt="user avatar" />
+                            </Fragment>
+                        )}
+                    </nav>
                 </div>
-                <nav className="nav">
-                    {!user.photo ? (
-                        <Fragment>
-                            <div role="button" tabIndex={0} className="nav-link" onClick={this.openModal}>Signup</div>
-                            <div role="button" tabIndex={0} className="nav-link" onClick={this.openModal}>Login</div>
-                        </Fragment>
-                    ) : (
-                        <Fragment>
-                            <NavLink exact activeClassName="active" to="/">Home</NavLink>
-                            <NavLink activeClassName="active" to="/curriculum">Curriculum</NavLink>
-                            <NavLink activeClassName="active" to="/messages">Messages</NavLink>
-                            <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
-                            <img className="nav-user-image" src={user.photo} alt="user avatar" />
-                        </Fragment>
-                    )}
-                </nav>
             </header>
         );
     }
