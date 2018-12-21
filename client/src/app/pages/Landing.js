@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
 import Modal from '../components/Modal';
-import Header from '../components/landingpage/Header';
+import Header from '../components/landingpage/Hero';
 import { toggleLoginModal, addUser } from '../actions';
 import Features from '../components/landingpage/Features';
 import Reviews from '../components/landingpage/Reviews';
