@@ -12,8 +12,9 @@ class Footer extends Component {
 
     render() {
         const { user } = this.props;
+
         return (
-            <div className="footer">
+            <div className="footer" style={{ padding: user.photo ? '18px 20px' : '50px 20px' }}>
                 <div className="footer-container">
                     <div id="logo" className="logo">
                         <h3 className="footer-logo">PEAR</h3>

@@ -7,7 +7,7 @@ import Avatar3 from '../../graphics/reviews/avatar-3.png';
 import Avatar4 from '../../graphics/reviews/avatar-4.png';
 
 export default () => (
-    <Section title="What people are saying about pear" backgroundColor="#F1F2F1">
+    <Section title="What people are saying about pear" backgroundColor="#F1F2F1" sectionId="reviews">
         <div className="reviews">
             <div className="review">
                 <div className="review_avatar">

@@ -3,7 +3,7 @@ import './Features.sass';
 import Section from './Section';
 
 export default () => (
-    <Section title="What it does">
+    <Section title="What it does" sectionId="features">
         <div className="features">
             <div className="feature">
                 <div className="feature_icon" />
