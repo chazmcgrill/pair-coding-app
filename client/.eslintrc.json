@@ -69,11 +69,7 @@
         "import/resolver": {
             "node": {
                 "extensions": [
-                    ".js",
-                    ".web.js",
-                    ".ios.js",
-                    ".android.js",
-                    ".native.js"
+                    ".js"
                 ]
             }
         }
