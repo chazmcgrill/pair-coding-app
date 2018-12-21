@@ -17,10 +17,10 @@ class Landing extends Component {
     }
 
     componentDidMount() {
-        const { popup } = this.state;
         const { addsUser } = this.props;
         socket.on('github', (user) => {
-            popup.close();
+            // eslint-disable-next-line
+            this.state.popup.close();
             addsUser(user);
         });
     }
