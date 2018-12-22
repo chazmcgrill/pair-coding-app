@@ -1,0 +1,34 @@
+.reviews
+    max-width: 1000px
+    margin: 0 auto
+    display: flex
+    flex-wrap: wrap
+
+.review
+    box-sizing: border-box
+    border-radius: 5px
+    width: calc(50% - 20px)
+    background: #fff
+    margin: 0 10px 20px
+    display: flex
+    padding: 10px 20px
+    box-shadow: 0.5px 0.5px 2px rgba(#333, 0.2)
+
+    &_avatar
+        padding-top: 20px
+
+        &_img
+            border-radius: 100%
+            height: 50px
+    &_text
+        text-align: left
+        margin-left: 20px
+
+    &_quote
+        color: #808180
+
+    @media (max-width: 760px)
+        width: 100%
+        margin: 0 30px 20px
+
+    

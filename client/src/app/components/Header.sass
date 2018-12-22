@@ -11,23 +11,56 @@
         color: #6FAB43
         margin: 0
         font-weight: bold
+        margin-right: 2rem
+
+.header-wrapper
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    max-width: 1000px
+    margin: 0 auto
+
+.header-left-side
+    display: flex
+    align-items: center
 
 .nav
     display: flex
 
-    a, .nav-link
+    a
         font-size: 1rem
-        margin-left: 1rem
+        margin-right: 1rem
         color: #333
-        cursor: pointer
+
+.nav-link-left, .nav-link
+    font-size: 1rem
+    margin-left: 1rem
+    cursor: pointer
+
+.nav-link
+    color: #fff
+
+    &:hover
+        color: darken(#fff, 50%)
+
+    @media (max-width: 760px)
+        color: #333
 
         &:hover
             color: lighten(#333, 50%)
 
-    .active
-        color: $brand
+.nav-link-left
+    color: #333
+    margin-left: 1rem
 
-    .nav-user-image
-        padding: 0 1.25rem
-        height: 26px
-        border-radius: 100%
+    &:hover
+        color: lighten(#333, 50%)
+
+.active
+    color: $brand
+
+.nav-user-image
+    padding: 0 1.25rem
+    height: 26px
+    border-radius: 100%

@@ -3,7 +3,6 @@
 .footer
     box-sizing: border-box
     width: 100%
-    padding: 18px 20px
     background-color: $brand
 
     &-container
@@ -11,12 +10,18 @@
         flex-direction: row
         justify-content: space-between
         align-items: center
-        max-width: 1200px
+        max-width: 1000px
         margin: 0 auto
+
+        @media (max-width: 500px)
+            flex-direction: column
 
     &-logo 
         margin: 0
         color: white
+
+        @media (max-width: 500px)
+            margin-bottom: 1rem
 
 
 .footer-nav

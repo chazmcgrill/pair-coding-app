@@ -38,6 +38,7 @@
         "react/prop-types": "off",
         "import/extensions": "off",
         "jsx-a11y/anchor-is-valid": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
         "class-methods-use-this": "off",
         "no-underscore-dangle": "off",
         "linebreak-style": "off",
@@ -69,11 +70,7 @@
         "import/resolver": {
             "node": {
                 "extensions": [
-                    ".js",
-                    ".web.js",
-                    ".ios.js",
-                    ".android.js",
-                    ".native.js"
+                    ".js"
                 ]
             }
         }

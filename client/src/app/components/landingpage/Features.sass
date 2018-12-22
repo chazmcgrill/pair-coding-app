@@ -1,0 +1,26 @@
+.features
+    display: flex
+    max-width: 1000px
+    padding: 0 20px
+    margin: 0 auto
+    justify-content: space-between
+    flex-wrap: wrap
+
+    @media (max-width: 760px)
+        justify-content: center
+
+.feature
+    margin: 0 30px
+    text-align: center
+    width: calc(30% - 60px)
+
+    &_icon
+        height: 100px
+        width: 100px
+        background-color: grey
+        margin: 0 auto -20px
+        border-radius: 100%
+
+    @media (max-width: 760px)
+        max-width: 300px
+        width: 100%
