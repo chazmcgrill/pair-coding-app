@@ -5,7 +5,7 @@ import requireAuth from './requireAuth';
 
 class Messages extends Component {
 
-  state= {
+  state = {
     isLoaded: false
   }
 
