@@ -24,9 +24,15 @@ class Conversations extends Component {
             <main>
                 <div className="row">
                     <div className="col col--main">
+                        <select>
+                            <option value="all">All Messages</option>
+                            <option value="unread">Unread</option>
+                        </select>
                         <div className="conversations-container">
 
-                            {/* If conversations have loaded create conversation components, else display loading spinner */}
+                            {/* If conversations have loaded create conversation
+                                components, else display loading spinner */}
+
                             {conversations
                                 ? (
                                     <Conversation
