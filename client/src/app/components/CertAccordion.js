@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import Certificate from './Certificate';
 import './CertAccordion.sass';
 
 const CertAccordion = ({ certificates, handleCertClick, handleSectionClick }) => (
     <div className="accordion">
         {certificates.map(cert => (
-            <Certificate 
-                key={cert._id} 
-                cert={cert} 
-                handleCertClick={() => handleCertClick(cert._id)} 
-                handleSectionClick={handleSectionClick} 
+            <Certificate
+                key={cert._id}
+                cert={cert}
+                handleCertClick={() => handleCertClick(cert._id)}
+                handleSectionClick={handleSectionClick}
             />
         ))}
     </div>

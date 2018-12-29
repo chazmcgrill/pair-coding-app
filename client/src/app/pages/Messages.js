@@ -1,67 +1,59 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getMessages } from '../actions';
 import requireAuth from './requireAuth';
 
 class Messages extends Component {
+    state = {
+        isLoaded: false,
+    }
 
-  state = {
-    isLoaded: false
-  }
+    componentDidMount() {
+        const { fetchMessages, match } = this.props;
+        const { roomId } = match.params;
 
-  componentDidMount() {
-    const roomId = this.props.match.params.roomId;
-    
-    this.props.fetchMessages((roomId), this.updateLoaded());
-    
-  }
-  
-  updateLoaded = () => this.setState({ isLoaded: true })
+        fetchMessages((roomId), this.updateLoaded());
+    }
 
-  
-  render() {
-    const { messages } = this.props.messages;
-    
-    return (
-      <main>
-        <div className="chat-window">
-        { this.state.isLoaded && messages[0] ? (
-           messages[0].message.map(item => (
+    updateLoaded = () => this.setState({ isLoaded: true })
 
-             <Fragment key={item.userId + item.message}>
-              <h3>
-                  User : {item.username}
-              </h3>
-              <p>message: {item.message}</p>
-            </Fragment>
-        ))
-         ): 'Loading'}
-        </div>
-        <div className="chat-input-field">
-        
-        </div>
-   
-      
-         
 
-      </main>
-    )
-  }
+    render() {
+        const { messages } = this.props;
+        const { isLoaded } = this.state;
+
+        return (
+            <main>
+                <div className="chat-window">
+                    {isLoaded && messages[0] ? (
+                        messages[0].message.map(item => (
+
+                            <Fragment key={item.userId + item.message}>
+                                <h3>{`User : ${item.username}`}</h3>
+                                <p>{`Message : ${item.message}`}</p>
+                            </Fragment>
+                        ))
+                    ) : 'Loading'}
+                </div>
+                <div className="chat-input-field" />
+            </main>
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  return {
-    messages: state.messages,
-    errorMessage: state.errorMessage
-  }
+    return {
+        messages: state.messages.messages,
+        errorMessage: state.errorMessage,
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    fetchMessages: (roomId) => {
-      dispatch(getMessages(roomId))
-    }
-  }
+    return {
+        fetchMessages: (roomId) => {
+            dispatch(getMessages(roomId));
+        },
+    };
 }
 
 export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Messages));

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import './Conversation.sass';
 
 const Conversation = ({ conversations, user, openMessage }) => (
@@ -9,7 +9,7 @@ const Conversation = ({ conversations, user, openMessage }) => (
                 .filter(author => author.username !== user.name)
                 .map(author => (
                     <div className="inner-article">
-                        <img className="inbox-avatar" src={author.avatar} alt="user image" />
+                        <img className="inbox-avatar" src={author.avatar} alt="user avatar" />
                         <div className="inbox-details">
                             <h3>{author.username}</h3>
                             <p>{convo.lastMessage}</p>
@@ -19,6 +19,6 @@ const Conversation = ({ conversations, user, openMessage }) => (
             }
         </article>
     ))
-)
+);
 
 export default Conversation;
