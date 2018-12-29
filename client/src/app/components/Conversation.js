@@ -3,16 +3,24 @@ import './Conversation.sass';
 
 const Conversation = ({ conversations, user, openMessage }) => (
     conversations.map(convo => (
-        <article className="inbox-article" onClick={() => openMessage(convo.roomId)}>
+        <article role="presentation" key={convo._id} className="inbox-article" onClick={() => openMessage(convo.roomId)}>
             {/* Filter out logged in user and map over the other. */}
             {convo.users
                 .filter(author => author.username !== user.name)
                 .map(author => (
-                    <div className="inner-article">
+                    <div key={author.userId} className="inner-article">
                         <img className="inbox-avatar" src={author.avatar} alt="user avatar" />
                         <div className="inbox-details">
-                            <h3>{author.username}</h3>
-                            <p>{convo.lastMessage}</p>
+                            <div className="inbox-date-user">
+                                <p className="inbox-text">{author.username}</p>
+                                <p className="inbox-text">29/03/2018</p>
+                            </div>
+                            <div className="last-message">
+                                <p className="inbox-text">{convo.lastMessage}</p>
+                            </div>
+                            <div className="user-status">
+                                <p className="inbox-text">Online</p>
+                            </div>
                         </div>
                     </div>
                 ))

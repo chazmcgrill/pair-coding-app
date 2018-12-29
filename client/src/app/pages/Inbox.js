@@ -26,9 +26,7 @@ class Conversations extends Component {
                     <div className="col col--main">
                         <div className="conversations-container">
 
-                            {/* If conversations have loaded create conversation
-                                components, else display loading spinner */}
-                                
+                            {/* If conversations have loaded create conversation components, else display loading spinner */}
                             {conversations
                                 ? (
                                     <Conversation

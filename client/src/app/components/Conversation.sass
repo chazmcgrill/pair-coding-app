@@ -13,14 +13,42 @@
 
 .inbox-article
     cursor: pointer
+    padding: 0 22px
 
 .inner-article
+    border-bottom: 1px solid $border-color
     display: flex
-    border-bottom: 2px solid $border-color
+    padding: 14px 0
 
 .inbox-avatar
     height: 60px
     border-radius: 50%
+
+.inbox-details
+    box-sizing: border-box
+    display: flex
+    justify-content: space-between
+    width: 100%
+    height: 60px
+    padding: 10px 6px
+
+.inbox-date-user
+    padding: 0 16px
+    color: grey
+
+.last-message
+    padding: 0 20px
+    flex-grow: 1
+    font-weight: 600
+
+.user-status
+    align-self: center
+    color: green
+    font-weight: 600
+
+.inbox-text
+    padding: 0
+    margin: 0
 
 @keyframes fadein 
     0%
