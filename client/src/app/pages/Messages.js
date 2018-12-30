@@ -49,7 +49,7 @@ class Messages extends Component {
 
 function mapStateToProps(state) {
     return {
-        messages: state.messages.messages,
+        messages: state.messages.messages[0],
         errorMessage: state.errorMessage,
     };
 }

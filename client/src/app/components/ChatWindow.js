@@ -6,8 +6,8 @@ import LoadingSpinner from './LoadingSpinner';
 const ChatWindow = ({ messages, isLoaded }) => (
     <div className="chat-window">
         <div className="chat-window-messages">
-            {(isLoaded && messages[0])
-                ? (messages[0].message.map(item => (
+            {(isLoaded && messages)
+                ? (messages.message.map(item => (
                     <Message item={item} />
                 ))
                 ) : <LoadingSpinner />
