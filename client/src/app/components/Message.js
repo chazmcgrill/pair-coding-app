@@ -3,8 +3,9 @@ import './Message.sass';
 
 const Message = ({ item }) => (
     <div className="message-cloud" key={item.userId + item.message}>
-        <h3>{`User : ${item.username}`}</h3>
-        <p>{`Message : ${item.message}`}</p>
+        <img className="inbox-avatar" src={item.avatar} alt="user avatar" />
+        <p>{item.username}</p>
+        <p>{item.message}</p>
     </div>
 );
 
