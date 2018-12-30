@@ -4,6 +4,7 @@ import { getConversations } from '../actions';
 import requireAuth from './requireAuth';
 import Conversation from '../components/Conversation';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Pagination from '../components/Pagination';
 
 class Conversations extends Component {
     componentDidMount() {
@@ -24,10 +25,13 @@ class Conversations extends Component {
             <main>
                 <div className="row">
                     <div className="col col--main">
-                        <select>
-                            <option value="all">All Messages</option>
-                            <option value="unread">Unread</option>
-                        </select>
+                        <div className="inbox-top-bar">
+                            <select>
+                                <option value="all">All Messages</option>
+                                <option value="unread">Unread</option>
+                            </select>
+                            <Pagination />
+                        </div>
                         <div className="conversations-container">
 
                             {/* If conversations have loaded create conversation
@@ -43,6 +47,9 @@ class Conversations extends Component {
                                 ) : <LoadingSpinner />
                             }
 
+                        </div>
+                        <div className="inbox-bottom-bar">
+                            <Pagination />
                         </div>
                     </div>
                     <div className="col col--side">
