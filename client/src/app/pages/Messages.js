@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMessages } from '../actions';
 import requireAuth from './requireAuth';
+import ChatWindow from '../components/ChatWindow';
 
 class Messages extends Component {
     state = {
@@ -11,7 +12,6 @@ class Messages extends Component {
     componentDidMount() {
         const { fetchMessages, match } = this.props;
         const { roomId } = match.params;
-
         fetchMessages((roomId), this.updateLoaded());
     }
 
@@ -24,18 +24,24 @@ class Messages extends Component {
 
         return (
             <main>
-                <div className="chat-window">
-                    {isLoaded && messages[0] ? (
-                        messages[0].message.map(item => (
+                <div className="chat-row">
 
-                            <Fragment key={item.userId + item.message}>
-                                <h3>{`User : ${item.username}`}</h3>
-                                <p>{`Message : ${item.message}`}</p>
-                            </Fragment>
-                        ))
-                    ) : 'Loading'}
+                    <div className="col col--main">
+                        <ChatWindow messages={messages} isLoaded={isLoaded} />
+                    </div>
+                    <div className="col col--side">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                            enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                            sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Donec elementum ligula eu sapien
+                        </p>
+                    </div>
                 </div>
-                <div className="chat-input-field" />
             </main>
         );
     }

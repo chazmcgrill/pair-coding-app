@@ -4,12 +4,12 @@
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 14px 0
+    padding: 8px 0
 
 .inbox-bottom-bar
     justify-content: flex-end
 
-.conversations-container 
+.conversations-container
     border: 1px solid $border-color
     border-radius: 2px
     background-color: $bg-white
@@ -19,8 +19,8 @@
     padding: 0 22px
     transition: background-color ease-in-out 250ms
 
-.inbox-article:hover
-    background-color: darken($bg-white, 3)
+    &:hover
+        background-color: darken($bg-white, 3)
 
 .inner-article
     border-bottom: 1px solid $border-color
