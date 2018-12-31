@@ -19,7 +19,7 @@ class Messages extends Component {
 
 
     render() {
-        const { messages } = this.props;
+        const { messages, user } = this.props;
         const { isLoaded } = this.state;
 
         return (
@@ -27,7 +27,7 @@ class Messages extends Component {
                 <div className="chat-row">
 
                     <div className="col col--main">
-                        <ChatWindow messages={messages} isLoaded={isLoaded} />
+                        <ChatWindow messages={messages} user={user} isLoaded={isLoaded} />
                     </div>
                     <div className="col col--side">
                         <p>

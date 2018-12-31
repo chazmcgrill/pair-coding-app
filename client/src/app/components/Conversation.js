@@ -16,7 +16,7 @@ const Conversation = ({ conversations, user, openMessage }) => (
                                 <p className="inbox-text">29/03/2018</p>
                             </div>
                             <div className="last-message">
-                                <p className="inbox-text">{convo.lastMessage}</p>
+                                <p className="inbox-text">{`${convo.lastMessage.substring(0, 140)} ...`}</p>
                             </div>
                             <div className="user-status">
                                 <p className="inbox-text">Online</p>
