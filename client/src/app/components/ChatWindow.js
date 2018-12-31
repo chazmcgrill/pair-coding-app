@@ -21,7 +21,7 @@ class ChatWindow extends Component {
 
         return (
             <div className="chat-window">
-                <div ref={`chatWindow`} id="chat-window-messages" className="chat-window-messages">
+                <div ref="chatWindow" id="chat-window-messages" className="chat-window-messages">
                     {(isLoaded && messages)
                         ? (messages.message.map(item => (
                             <Message key={item.userId + item.message} loggedInUser={user} item={item} />

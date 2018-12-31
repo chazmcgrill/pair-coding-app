@@ -1,5 +1,6 @@
 import React from 'react';
 import './Conversation.sass';
+import Moment from 'react-moment';
 
 const Conversation = ({ conversations, user, openMessage }) => (
     conversations.map(convo => (
@@ -13,7 +14,11 @@ const Conversation = ({ conversations, user, openMessage }) => (
                         <div className="inbox-details">
                             <div className="inbox-date-user">
                                 <p className="inbox-text">{author.username}</p>
-                                <p className="inbox-text">29/03/2018</p>
+                                <p className="inbox-text">
+                                    <Moment format="DD/MM/YYYY">
+                                        {convo.updatedAt}
+                                    </Moment>
+                                </p>
                             </div>
                             <div className="last-message">
                                 <p className="inbox-text">{`${convo.lastMessage.substring(0, 140)} ...`}</p>
