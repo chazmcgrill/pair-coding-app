@@ -5,16 +5,16 @@ import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
-import App from './app/App';
-import Grid from './app/pages/Grid';
-import Main from './app/pages/Main';
-import Curriculum from './app/pages/Curriculum';
-import Inbox from './app/pages/Inbox';
-import Messages from './app/pages/Messages';
+import App from './App';
+import Grid from './pages/Grid';
+import Main from './pages/Main';
+import Curriculum from './pages/Curriculum';
+import Inbox from './pages/Inbox';
+import Messages from './pages/Messages';
 
 import './index.sass';
 import registerServiceWorker from './registerServiceWorker';
-import reducers from './app/reducers';
+import reducers from './reducers';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
