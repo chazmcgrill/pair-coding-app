@@ -2,7 +2,6 @@ import React from 'react';
 import './CertChallenge.sass';
 
 const CertChallenge = ({ section }) => {
-
     const dummyUsers = [
         {
             name: 'Charlie',
@@ -18,13 +17,13 @@ const CertChallenge = ({ section }) => {
         },
     ];
 
-    const btn = user => (
-        <button type="button" key={user.id}>
-            Message
-            {' '}
-            {user.name}
-        </button>
-    );
+    // const btn = user => (
+    //     <button type="button" key={user.id}>
+    //         Message
+    //         {' '}
+    //         {user.name}
+    //     </button>
+    // );
 
     return (
         section.open ? (

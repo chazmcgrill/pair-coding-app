@@ -1,33 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getMessages } from '../actions';
+import CertAccordion from '../components/curriculum/CertAccordion';
+import LoadingSpinner from '../components/LoadingSpinner';
+import { getCurriculum, openCert, openSection } from '../actions';
 import requireAuth from './requireAuth';
-import ChatWindow from '../components/ChatWindow';
 
-class Messages extends Component {
-    state = {
-        isLoaded: false,
-    }
-
+class Curriculum extends Component {
     componentDidMount() {
-        const { fetchMessages, match } = this.props;
-        const { roomId } = match.params;
-        fetchMessages((roomId), this.updateLoaded());
+        const { fetchTheCurriculum } = this.props;
+        fetchTheCurriculum();
     }
-
-    updateLoaded = () => this.setState({ isLoaded: true })
-
 
     render() {
-        const { messages, user } = this.props;
-        const { isLoaded } = this.state;
+        const { curriculum, handleCertClick, handleSectionClick } = this.props;
+        const { certificates } = curriculum;
 
         return (
             <main>
-                <div className="chat-row">
-
+                <div className="row">
                     <div className="col col--main">
-                        <ChatWindow messages={messages} user={user} isLoaded={isLoaded} />
+                        {certificates ? <CertAccordion certificates={certificates} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} /> : <LoadingSpinner />}
                     </div>
                     <div className="col col--side">
                         <p>
@@ -49,17 +41,23 @@ class Messages extends Component {
 
 function mapStateToProps(state) {
     return {
-        messages: state.messages.messages[0],
+        curriculum: state.certificates,
         errorMessage: state.errorMessage,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchMessages: (roomId) => {
-            dispatch(getMessages(roomId));
+        fetchTheCurriculum: () => {
+            dispatch(getCurriculum());
+        },
+        handleCertClick: (id) => {
+            dispatch(openCert(id));
+        },
+        handleSectionClick: (id) => {
+            dispatch(openSection(id));
         },
     };
 }
 
-export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Messages));
+export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Curriculum));

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getConversations } from '../actions';
 import requireAuth from './requireAuth';
-import Conversation from '../components/Conversation';
+import Conversation from '../components/messages/Conversation';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Pagination from '../components/Pagination';
 

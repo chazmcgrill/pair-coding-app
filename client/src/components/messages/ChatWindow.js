@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ChatWindow.sass';
 import Message from './Message';
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from '../LoadingSpinner';
 
 
 class ChatWindow extends Component {
