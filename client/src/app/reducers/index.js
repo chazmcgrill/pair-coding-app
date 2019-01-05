@@ -8,5 +8,5 @@ export default combineReducers({
     certificates,
     userProfile,
     conversations,
-    messages
-})
+    messages,
+});

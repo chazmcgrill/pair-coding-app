@@ -3,7 +3,7 @@ import { GET_CONVERSATIONS, GET_CONVERSATIONS_ERROR } from '../actions/types';
 const INITIAL_STATE = {
     conversations: [],
     errorMessage: '',
-}
+};
 
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
