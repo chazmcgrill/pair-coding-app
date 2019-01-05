@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMessages } from '../actions';
 import requireAuth from './requireAuth';
-import ChatWindow from '../components/ChatWindow';
+import ChatWindow from '../components/messages/ChatWindow';
 
 class Messages extends Component {
     state = {

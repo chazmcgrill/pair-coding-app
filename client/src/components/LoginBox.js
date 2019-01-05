@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginBox.sass';
-import GitHubLogo from '../assets/images/github.svg';
+import GitHubLogo from '../graphics/github.svg';
 
 const LoginBox = ({ closeModal, auth, disabled }) => (
     <div className="row row--centered">
