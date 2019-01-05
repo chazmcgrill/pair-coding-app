@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_CERTS, GET_CERTS_ERROR, OPEN_CERT, OPEN_SECTION, ADD_USER, TOGGLE_LOGIN_MODAL, GET_CONVERSATIONS, GET_CONVERSATIONS_ERROR } from './types';
+import { GET_CERTS, GET_CERTS_ERROR, OPEN_CERT, OPEN_SECTION, ADD_USER, TOGGLE_LOGIN_MODAL, GET_CONVERSATIONS, GET_CONVERSATIONS_ERROR, GET_MESSAGES, GET_MESSAGES_ERROR } from './types';
 
 // Curriculum Actions
 export const getCurriculum = () => async dispatch => {
@@ -11,13 +11,36 @@ export const getCurriculum = () => async dispatch => {
     }
 };
 
-// Messages Actions
-export const getConversations = () => async dispatch => {
+// Inbox Actions
+export const getConversations = (user) => async dispatch => {
     try {
-        const response = await axios.get('http://localhost:5000/api/conversations');
+        const userId = user.githubId;
+        const response = await axios({
+            method: 'get',
+            url: 'http://localhost:5000/api/conversations',
+            params: {
+                ID: userId
+            }
+        })
         dispatch({ type: GET_CONVERSATIONS, payload: response.data });
     } catch (e) {
         dispatch({ type: GET_CONVERSATIONS_ERROR, payload: 'Error Fetching Data' })
+    }
+};
+
+// Messages Actions
+export const getMessages = (roomId) => async dispatch => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: 'http://localhost:5000/api/messages',
+            params: {
+                ID: roomId
+            }
+        })
+        dispatch({ type: GET_MESSAGES, payload: response.data });
+    } catch (e) {
+        dispatch({ type: GET_MESSAGES_ERROR, payload: 'Error Fetching Data' })
     }
 };
 

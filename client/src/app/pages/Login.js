@@ -1,12 +1,11 @@
 import React from 'react';
 import LoginBox from '../components/LoginBox';
 
-const Login = () => {
-    return (
-        <main>
-            <LoginBox auth={this.props.auth}/>
-        </main>
-    );
-}
+const Login = ({ auth }) => (
+    <main>
+        <LoginBox auth={auth} />
+    </main>
+);
+
 
 export default Login;

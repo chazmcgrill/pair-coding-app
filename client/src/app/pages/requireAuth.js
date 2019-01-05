@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export default ChildComponent => {
+export default (ChildComponent) => {
     class ComposedComponent extends Component {
         // Our component just got rendered
         componentDidMount() {
@@ -14,8 +14,9 @@ export default ChildComponent => {
         }
 
         shouldNavigateAway() {
-            if (!this.props.user.photo) {
-                this.props.history.push('/');
+            const { user, history } = this.props;
+            if (!user.photo) {
+                history.push('/');
             }
         }
 

@@ -9,6 +9,7 @@ import App from './app/App';
 import Grid from './app/pages/Grid';
 import Main from './app/pages/Main';
 import Curriculum from './app/pages/Curriculum';
+import Inbox from './app/pages/Inbox';
 import Messages from './app/pages/Messages';
 
 import './index.sass';
@@ -17,23 +18,24 @@ import reducers from './app/reducers';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-	reducers,
-	{},
-	composeEnhancer(applyMiddleware(reduxThunk)),
+    reducers,
+    {},
+    composeEnhancer(applyMiddleware(reduxThunk)),
 );
 
 ReactDOM.render(
-	<Provider store={store}>
-		<BrowserRouter>
-			<App>
-				<Route path="/" exact component={Main} />
-				<Route path="/grid" exact component={Grid} />
-				<Route path="/curriculum" exact component={Curriculum} />
-				<Route path="/messages" exact component={Messages} />
-			</App>
-		</BrowserRouter>
-	</Provider>, 
-	document.getElementById('root')
+    <Provider store={store}>
+        <BrowserRouter>
+            <App>
+                <Route path="/" exact component={Main} />
+                <Route path="/grid" exact component={Grid} />
+                <Route path="/curriculum" exact component={Curriculum} />
+                <Route path="/inbox" exact component={Inbox} />
+                <Route path="/inbox/messages/:roomId" component={Messages} />
+            </App>
+        </BrowserRouter>
+    </Provider>,
+    document.getElementById('root'),
 );
 
 registerServiceWorker();

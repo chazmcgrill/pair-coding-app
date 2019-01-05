@@ -1,48 +1,65 @@
-import React, {Component, Fragment} from "react";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getConversations } from '../actions';
+import { getMessages } from '../actions';
 import requireAuth from './requireAuth';
+import ChatWindow from '../components/ChatWindow';
 
-class Conversations extends Component {
-  componentDidMount() {
-    this.props.fetchConversations();
-  }
+class Messages extends Component {
+    state = {
+        isLoaded: false,
+    }
 
-  render() {
-    const { conversations } = this.props.conversations;
+    componentDidMount() {
+        const { fetchMessages, match } = this.props;
+        const { roomId } = match.params;
+        fetchMessages((roomId), this.updateLoaded());
+    }
 
-    return (
-      <main>
-        
-        <h1>Messages</h1>
+    updateLoaded = () => this.setState({ isLoaded: true })
 
-         {conversations.map(convo => (
-             <Fragment>
-            <h3
-                key={convo._id}>
-                Room ID : {convo.roomId}
-            </h3>
-            <p>Users: {convo.users.join(', ')}</p>
-            </Fragment>
-        ))}
-      </main>
-    )
-  }
+
+    render() {
+        const { messages, user } = this.props;
+        const { isLoaded } = this.state;
+
+        return (
+            <main>
+                <div className="chat-row">
+
+                    <div className="col col--main">
+                        <ChatWindow messages={messages} user={user} isLoaded={isLoaded} />
+                    </div>
+                    <div className="col col--side">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                            enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                            sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Donec elementum ligula eu sapien
+                        </p>
+                    </div>
+                </div>
+            </main>
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  return {
-    conversations: state.conversations,
-    errorMessage: state.errorMessage
-  }
+    return {
+        messages: state.messages.messages[0],
+        errorMessage: state.errorMessage,
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    fetchConversations: () => {
-      dispatch(getConversations())
-    }
-  }
+    return {
+        fetchMessages: (roomId) => {
+            dispatch(getMessages(roomId));
+        },
+    };
 }
 
-export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Conversations));
+export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Messages));

@@ -7,14 +7,9 @@ const MessagesSchema = new Schema({
         required: true
     },
     message: [{
-        user: {
-            type: String
-        },
-        message: {
-            type: String
-        },
-        createdAt: 'created_at'
-    }],
+        user: Number,
+        message: String
+    }]
 },
 { timestamps: true });
 

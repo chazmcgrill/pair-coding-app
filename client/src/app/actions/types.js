@@ -8,6 +8,10 @@ export const OPEN_SECTION = 'open_section';
 export const ADD_USER = 'add_user';
 export const TOGGLE_LOGIN_MODAL = 'toggle_login_modal';
 
-// Messages
+// Inbox
 export const GET_CONVERSATIONS = 'get_conversations';
 export const GET_CONVERSATIONS_ERROR = 'get_conversations_error';
+
+// Messages
+export const GET_MESSAGES = 'get_messages';
+export const GET_MESSAGES_ERROR = 'get_messages_error';

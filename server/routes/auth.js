@@ -20,7 +20,8 @@ router.get('/callback', githubAuth, (req, res) => {
   const io = req.app.get('socketio');
   const user = {
     name: req.user.username,
-    photo: req.user.photos[0].value
+    photo: req.user.photos[0].value,
+    githubId: req.user.id
   }
   io.to(`${req.session.socketId}`).emit('github', user);
   res.end()
