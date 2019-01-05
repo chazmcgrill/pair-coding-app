@@ -6,11 +6,11 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
 import App from './App';
-import Grid from './pages/Grid';
-import Main from './pages/Main';
-import Curriculum from './pages/Curriculum';
-import Inbox from './pages/Inbox';
-import Messages from './pages/Messages';
+import Grid from './routes/Grid';
+import Main from './routes/Main';
+import Curriculum from './routes/Curriculum';
+import Inbox from './routes/Inbox';
+import Messages from './routes/Messages';
 
 import './index.sass';
 import registerServiceWorker from './registerServiceWorker';

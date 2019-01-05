@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CertAccordion from '../components/CertAccordion';
+import CertAccordion from '../components/curriculum/CertAccordion';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { getCurriculum, openCert, openSection } from '../actions';
 import requireAuth from './requireAuth';
