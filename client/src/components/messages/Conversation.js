@@ -7,7 +7,7 @@ const Conversation = ({ conversations, user, openMessage }) => (
         <article role="presentation" key={convo._id} className="inbox-article" onClick={() => openMessage(convo.roomId)}>
             {/* Filter out logged in user and map over the other. */}
             {convo.users
-                .filter(author => author.username !== user.name)
+                .filter(author => author.userId !== user.githubId)
                 .map(author => (
                     <div key={author.userId} className="inner-article">
                         <img className="inbox-avatar" src={author.avatar} alt="user avatar" />
