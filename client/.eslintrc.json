@@ -40,6 +40,7 @@
         "jsx-a11y/anchor-is-valid": "off",
         "jsx-a11y/click-events-have-key-events": "off",
         "class-methods-use-this": "off",
+        "no-return-assign": "off",
         "no-underscore-dangle": "off",
         "linebreak-style": "off",
         "no-mixed-operators": [
