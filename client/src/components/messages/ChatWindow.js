@@ -19,12 +19,11 @@ class ChatWindow extends Component {
         return (
             <div className="chat-window">
                 <div ref={el => this.chatRef = el} id="chat-window-messages" className="chat-window-messages">
-                    {(isLoaded && messages)
-                        ? (messages.message.map(item => (
+                    {(isLoaded && messages) ? (
+                        messages.message.map(item => (
                             <Message key={item.userId + item.message} loggedInUser={user} item={item} />
                         ))
-                        ) : <LoadingSpinner />
-                    }
+                    ) : <LoadingSpinner />}
                 </div>
                 <div className="chat-input">
                     <textarea className="chat-input-field" type="text" />
