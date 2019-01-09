@@ -36,6 +36,75 @@ let server = http.createServer(app);
 const io = socketio(server)
 app.set('socketio', io);
 
+
+io.on('connection', (socket) => {
+    console.log('socketID: ', socket.id);
+
+    socket.on('subscribe', function(room) { 
+        console.log('joining room', room);
+        socket.join(room); 
+    });
+
+    // socket.on('unsubscribe', function(room) {  
+    //     console.log('leaving room', room);
+    //     socket.leave(room); 
+    // })
+
+    // socket.on('send', data => {
+    //     const socketId = socket.id;
+    //     const resData = {...data, socketId}
+    //     io.sockets
+    //         .in(data.room)
+    //         .emit('RECEIVE_MESSAGE', resData);
+    // });
+
+
+    // socket.on('CREATE_ROOM', data => {
+    //     socket.join(data.room);
+    // })
+
+    socket.on('SEND_MESSAGE', (data) => {
+	   
+		console.log(data);
+        io.emit('RECEIVE_MESSAGE', data);
+    });
+
+    socket.on('ONLINE', (data) => {
+		console.log('usernamed id', socket.id);
+		console.log(data);
+		socket.join(data.room);
+	});
+        
+    //     User.findOne({username: user.username})
+    //         .then( (res) => {
+    //             if(res) {
+    //                 console.log('username taken')
+    //                 io.emit('USER_TAKEN', res);
+    //             }
+    //             else {
+    //             new User(user)
+    //                 .save()
+    //                 .then(() => io.emit('USER_ONLINE', user))
+    //                 .catch(err => console.log(err));
+    //             }
+    //         });
+    // });
+
+    // socket.on('disconnect', () => {
+
+    //     User.findOneAndRemove({ socketId: socket.id }, (err) => {
+    //         if (err)
+    //             console.log(err);
+    //         else
+    //             console.log('User Deleted!');
+    //     });
+
+      
+    // });
+});
+
+
+
 // routes setup
 app.use('/api/subjects', subjects);
 app.use('/api/auth', authRoutes);
@@ -47,5 +116,3 @@ const port = process.env.PORT || 5000;
 server.listen(port, () => {
 	console.log(`Server started on port ${port}`);
 });
-
-

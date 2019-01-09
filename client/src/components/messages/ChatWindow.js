@@ -1,12 +1,44 @@
 import React, { Component } from 'react';
 import './ChatWindow.sass';
+import io from 'socket.io-client';
 import Message from './Message';
 import LoadingSpinner from '../LoadingSpinner';
 
+const socket = io('localhost:5000');
 
 class ChatWindow extends Component {
+    componentDidMount() {
+        this.online();
+        this.receive();
+    }
+
+
     componentDidUpdate() {
         this.scrollToBottom();
+    }
+
+
+    online = () => {
+        const { user, room } = this.props;
+        socket.emit('ONLINE', {
+            user: user.githubId,
+            room,
+        });
+    };
+
+    receive = () => {
+        socket.on('RECEIVE_MESSAGE', (data) => {
+            console.log(data);
+        });
+    }
+
+    post = (e) => {
+        e.preventDefault();
+        const { room } = this.props;
+        socket.on(room).emit('SEND_MESSAGE', {
+            message: 'some data here pal.',
+            room,
+        });
     }
 
     scrollToBottom() {
@@ -27,7 +59,7 @@ class ChatWindow extends Component {
                 </div>
                 <div className="chat-input">
                     <textarea className="chat-input-field" type="text" />
-                    <button type="submit" className="chat-send">Send</button>
+                    <button type="submit" onClick={this.post} className="chat-send">Send</button>
                 </div>
             </div>
         );
