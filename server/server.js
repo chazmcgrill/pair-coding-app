@@ -64,8 +64,7 @@ io.on('connection', (socket) => {
     // })
 
     socket.on('SEND_MESSAGE', (data) => {
-	   
-		console.log(data);
+		console.log('Reached the server', data);
         io.emit('RECEIVE_MESSAGE', data);
     });
 

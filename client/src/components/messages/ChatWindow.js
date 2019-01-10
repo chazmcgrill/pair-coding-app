@@ -8,16 +8,18 @@ import LoadingSpinner from '../LoadingSpinner';
 const socket = io('localhost:5000');
 
 class ChatWindow extends Component {
-    componentDidMount() {
-        this.online();
-        this.receive();
+    state = {
+        messages: [],
     }
 
+    componentDidMount() {
+        this.online();
+    }
 
     componentDidUpdate() {
         this.scrollToBottom();
+        this.receiveMessage();
     }
-
 
     online = () => {
         const { user, room } = this.props;
@@ -27,20 +29,13 @@ class ChatWindow extends Component {
         });
     };
 
-    receive = () => {
+    receiveMessage = () => {
+        const { messages } = this.state;
         socket.on('RECEIVE_MESSAGE', (data) => {
-            console.log(data);
+            this.setState({ messages: [...messages, data.message] });
         });
     }
 
-    post = (e) => {
-        e.preventDefault();
-        const { room } = this.props;
-        socket.on(room).emit('SEND_MESSAGE', {
-            message: 'some data here pal.',
-            room,
-        });
-    }
 
     scrollToBottom() {
         this.chatRef.scrollTop = this.chatRef.scrollHeight - this.chatRef.clientHeight;
