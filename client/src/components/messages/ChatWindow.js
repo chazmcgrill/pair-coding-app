@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './ChatWindow.sass';
 import io from 'socket.io-client';
 import Message from './Message';
+import ChatInput from './ChatInput';
 import LoadingSpinner from '../LoadingSpinner';
 
 const socket = io('localhost:5000');
@@ -57,10 +58,7 @@ class ChatWindow extends Component {
                         ))
                     ) : <LoadingSpinner />}
                 </div>
-                <div className="chat-input">
-                    <textarea className="chat-input-field" type="text" />
-                    <button type="submit" onClick={this.post} className="chat-send">Send</button>
-                </div>
+                <ChatInput />
             </div>
         );
     }
