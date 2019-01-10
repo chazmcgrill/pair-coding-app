@@ -9,7 +9,14 @@ const socket = io('localhost:5000');
 
 class ChatWindow extends Component {
     state = {
-        messages: [],
+        liveMessages: [
+            {
+                message: 'hello',
+                user: {
+                    name: 'someuser',
+                },
+            },
+        ],
     }
 
     componentDidMount() {
@@ -30,9 +37,15 @@ class ChatWindow extends Component {
     };
 
     receiveMessage = () => {
-        const { messages } = this.state;
+        const { liveMessages } = this.state;
         socket.on('RECEIVE_MESSAGE', (data) => {
-            this.setState({ messages: [...messages, data.message] });
+            const message = {
+                message: data.message,
+                user: data.user,
+            };
+            const newState = { ...this.state };
+            newState.liveMessages = [...liveMessages, message];
+            this.setState(newState);
         });
     }
 
@@ -44,16 +57,29 @@ class ChatWindow extends Component {
     render() {
         const { isLoaded, messages, user } = this.props;
 
+        const { liveMessages } = this.state;
         return (
             <div className="chat-window">
                 <div ref={el => this.chatRef = el} id="chat-window-messages" className="chat-window-messages">
                     {(isLoaded && messages) ? (
                         messages.message.map(item => (
-                            <Message key={item.userId + item.message} loggedInUser={user} item={item} />
+                            <Message
+                                key={item.userId + item.message}
+                                loggedInUser={user}
+                                item={item}
+                            />
                         ))
                     ) : <LoadingSpinner />}
+                    {liveMessages && (
+                        liveMessages.map(liveMessage => (
+                            <div>
+                                <p>{liveMessage.message}</p>
+                                <p>{liveMessage.user.name}</p>
+                            </div>
+                        ))
+                    )}
                 </div>
-                <ChatInput />
+                <ChatInput user={user} />
             </div>
         );
     }
