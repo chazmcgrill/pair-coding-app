@@ -7,7 +7,9 @@ const MessagesSchema = new Schema({
         required: true
     },
     message: [{
-        user: Number,
+        userId: String,
+        username: String,
+        avatar: String,
         message: String
     }]
 },

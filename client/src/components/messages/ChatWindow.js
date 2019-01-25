@@ -46,7 +46,7 @@ class ChatWindow extends Component {
     }
 
     render() {
-        const { isLoaded, messages, user } = this.props;
+        const { isLoaded, messages, user, room } = this.props;
 
         const { liveMessages, addedMessage } = this.state;
         return (
@@ -71,7 +71,7 @@ class ChatWindow extends Component {
                         ))
                     ) : ''}
                 </div>
-                <ChatInput user={user} />
+                <ChatInput room={room} user={user} />
             </div>
         );
     }

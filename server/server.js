@@ -9,6 +9,9 @@ const app = express();
 require('dotenv').config();
 const morgan = require('morgan');
 
+// Models
+const Message = require('./models/messages');
+
 // Routes
 const subjects = require('./routes/subjects');
 const authRoutes = require('./routes/auth');
@@ -66,6 +69,18 @@ io.on('connection', (socket) => {
     socket.on('SEND_MESSAGE', (data) => {
 		console.log('Reached the server', data);
         io.emit('RECEIVE_MESSAGE', data);
+        
+        Message.findOneAndUpdate(
+            { roomId: data.room }, 
+            { $push: { message: data  } },
+            (error, success) => {
+                 if (error) {
+                     console.log(error);
+                 } else {
+                     console.log(success);
+                 }
+             });
+
     });
 
     socket.on('ONLINE', (data) => {
