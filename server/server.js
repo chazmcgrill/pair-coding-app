@@ -11,6 +11,7 @@ const morgan = require('morgan');
 
 // Models
 const Message = require('./models/messages');
+const Conversation = require('./models/conversations');
 
 // Routes
 const subjects = require('./routes/subjects');
@@ -70,17 +71,19 @@ io.on('connection', (socket) => {
 		console.log('Reached the server', data);
         io.emit('RECEIVE_MESSAGE', data);
         
+        // Update messages database
         Message.findOneAndUpdate(
             { roomId: data.room }, 
-            { $push: { message: data  } },
-            (error, success) => {
-                 if (error) {
-                     console.log(error);
-                 } else {
-                     console.log(success);
-                 }
-             });
+            { $push: { message: data  } })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
 
+        // Update last message in conversations database
+        Conversation.findOneAndUpdate(
+            { roomId: data.room },
+            { lastMessage: data.message  })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));;
     });
 
     socket.on('ONLINE', (data) => {

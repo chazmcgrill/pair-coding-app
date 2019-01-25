@@ -10,6 +10,9 @@ const ConversationsSchema = new Schema({
         type: Array,
         required: true
     },
+    lastMessage: {
+        type: String
+    }
 },
 { timestamps: true });
 

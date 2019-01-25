@@ -46,7 +46,12 @@ class ChatWindow extends Component {
     }
 
     render() {
-        const { isLoaded, messages, user, room } = this.props;
+        const {
+            isLoaded,
+            messages,
+            user,
+            room,
+        } = this.props;
 
         const { liveMessages, addedMessage } = this.state;
         return (
