@@ -7,22 +7,39 @@ const socket = io('localhost:5000');
 class ChatInput extends Component {
     state = {
         message: '',
+        username: '',
+        userId: '',
+        avatar: '',
+    };
+
+    componentDidMount = () => {
+        const { user } = this.props;
+        const NS = { ...this.state };
+        NS.username = user.name;
+        NS.userId = user.githubId;
+        NS.avatar = user.photo;
+        this.setState(NS);
     }
 
     handleChange = (e) => {
-        // Spread state into new variable
-        const NS = { ...this.state };
-        NS[e.name] = e.value;
-        // Set state with new version of state
-        this.setState(NS);
+        const { name, value } = e;
+        this.setState({ [name]: value });
     };
 
     sendMessage = (e) => {
         e.preventDefault();
-        const { room, user } = this.props;
-        const { message } = this.state;
+        const { room } = this.props;
+        const {
+            message,
+            username,
+            userId,
+            avatar,
+        } = this.state;
+
         socket.on(room).emit('SEND_MESSAGE', {
-            user,
+            username,
+            userId,
+            avatar,
             message,
             room,
         });

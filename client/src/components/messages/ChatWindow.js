@@ -9,14 +9,8 @@ const socket = io('localhost:5000');
 
 class ChatWindow extends Component {
     state = {
-        liveMessages: [
-            {
-                message: 'hello',
-                user: {
-                    name: 'someuser',
-                },
-            },
-        ],
+        liveMessages: [],
+        addedMessage: false,
     }
 
     componentDidMount() {
@@ -38,13 +32,10 @@ class ChatWindow extends Component {
 
     receiveMessage = () => {
         const { liveMessages } = this.state;
-        socket.on('RECEIVE_MESSAGE', (data) => {
-            const message = {
-                message: data.message,
-                user: data.user,
-            };
+        socket.on('RECEIVE_MESSAGE', (incomingMessage) => {
             const newState = { ...this.state };
-            newState.liveMessages = [...liveMessages, message];
+            newState.liveMessages = [...liveMessages, incomingMessage];
+            newState.addedMessage = true;
             this.setState(newState);
         });
     }
@@ -57,7 +48,7 @@ class ChatWindow extends Component {
     render() {
         const { isLoaded, messages, user } = this.props;
 
-        const { liveMessages } = this.state;
+        const { liveMessages, addedMessage } = this.state;
         return (
             <div className="chat-window">
                 <div ref={el => this.chatRef = el} id="chat-window-messages" className="chat-window-messages">
@@ -70,14 +61,15 @@ class ChatWindow extends Component {
                             />
                         ))
                     ) : <LoadingSpinner />}
-                    {liveMessages && (
+                    {(addedMessage && liveMessages) ? (
                         liveMessages.map(liveMessage => (
-                            <div>
-                                <p>{liveMessage.message}</p>
-                                <p>{liveMessage.user.name}</p>
-                            </div>
+                            <Message
+                                key={liveMessage.userId + liveMessage.message}
+                                loggedInUser={user}
+                                item={liveMessage}
+                            />
                         ))
-                    )}
+                    ) : ''}
                 </div>
                 <ChatInput user={user} />
             </div>
