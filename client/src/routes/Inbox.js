@@ -15,6 +15,8 @@ class Conversations extends Component {
     roomClick = (roomId) => {
         const { history } = this.props;
         history.push(`/inbox/messages/${roomId}`);
+        // TODO
+        // change unread to false if user isnt the one who created the last message
     }
 
 
