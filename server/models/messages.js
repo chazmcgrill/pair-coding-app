@@ -10,7 +10,11 @@ const MessagesSchema = new Schema({
         userId: String,
         username: String,
         avatar: String,
-        message: String
+        message: String,
+        createdAt: {
+            type: Date,
+            default: Date.now,
+        },
     }]
 },
 { timestamps: true });

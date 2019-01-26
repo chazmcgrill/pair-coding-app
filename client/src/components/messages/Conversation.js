@@ -19,6 +19,11 @@ const Conversation = ({ conversations, user, openMessage }) => (
                                         {convo.updatedAt}
                                     </Moment>
                                 </p>
+                                <p className="inbox-text">
+                                    <Moment format="HH:mm">
+                                        {convo.updatedAt}
+                                    </Moment>
+                                </p>
                             </div>
                             <div className="last-message">
                                 <p className="inbox-text">{`${convo.lastMessage.substring(0, 140)} ...`}</p>
