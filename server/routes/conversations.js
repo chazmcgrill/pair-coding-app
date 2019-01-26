@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
         })
         .then(convo => {
             Conversation.find({ "roomId": convo })
-                .sort({ createdAt: 1 })
+                .sort({ updatedAt: -1 })
                 .then(conversation => res.json(conversation))
                 .catch(console.log('error fetching conversations'))
         })
