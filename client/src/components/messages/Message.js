@@ -2,10 +2,18 @@ import React from 'react';
 import './Message.sass';
 import Moment from 'react-moment';
 
+
+const calendarStrings = {
+    lastDay: '[Yesterday at] LT',
+    sameDay: '[Today at] LT',
+    lastWeek: 'dddd [at] LT',
+    sameElse: 'L',
+};
+
 const Message = ({ item, loggedInUser }) => (
     <React.Fragment>
         <p className="message-time">
-            <Moment format="D MMM HH:mm">
+            <Moment calendar={calendarStrings}>
                 {item.createdAt}
             </Moment>
         </p>
