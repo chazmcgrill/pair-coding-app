@@ -1,10 +1,23 @@
 import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import io from 'socket.io-client';
 import { toggleLoginModal } from '../actions';
 import './Header.sass';
 
+const socket = io('localhost:5000');
+
 class NavBar extends Component {
+    componentDidMount = () => {
+        this.newMessage();
+    }
+
+    newMessage = () => {
+        socket.on('NEW_MESSAGE', () => {
+            console.log('ding');
+        });
+    }
+
     openModal = () => {
         const { loginClick } = this.props;
         loginClick();

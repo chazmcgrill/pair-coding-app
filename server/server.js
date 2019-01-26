@@ -67,22 +67,28 @@ io.on('connection', (socket) => {
     //     socket.join(data.room);
     // })
 
+
+    // socket.on('SEND_NOTIFICATION', (socket) => {
+    //     socket.broadcast.emit('NEW_MESSAGE');
+    // })
+
     socket.on('SEND_MESSAGE', (data) => {
 		console.log('Reached the server', data);
         io.emit('RECEIVE_MESSAGE', data);
+
         
         // Update messages database
         Message.findOneAndUpdate(
             { roomId: data.room }, 
             { $push: { message: data  } })
-            .then(res => console.log(res))
+            .then(console.log(data))
             .catch(err => console.log(err));
 
         // Update last message in conversations database
         Conversation.findOneAndUpdate(
             { roomId: data.room },
             { lastMessage: data.message  })
-            .then(res => console.log(res))
+            .then(console.log('last message: ', data.message))
             .catch(err => console.log(err));;
     });
 
