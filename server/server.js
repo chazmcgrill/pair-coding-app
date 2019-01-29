@@ -87,7 +87,10 @@ io.on('connection', (socket) => {
         // Update last message in conversations database
         Conversation.findOneAndUpdate(
             { roomId: data.room },
-            { lastMessage: data.message  })
+            {
+                lastMessage: data.message,
+                unread: true
+            })
             .then(console.log('last message: ', data.message))
             .catch(err => console.log(err));;
     });
@@ -96,6 +99,16 @@ io.on('connection', (socket) => {
 		console.log('usernamed id: ', socket.id);
 		console.log(data);
 		socket.join(data.room);
+    });
+    
+
+    // Mark post as read
+    socket.on('MARK_READ', (data) => {
+		Conversation.findOneAndUpdate(
+            { roomId: data.roomId },
+            { unread: false  })
+            .then(console.log('message read'))
+            .catch(err => console.log(err));;
 	});
         
     //     User.findOne({username: user.username})

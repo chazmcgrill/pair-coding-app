@@ -12,6 +12,10 @@ const ConversationsSchema = new Schema({
     },
     lastMessage: {
         type: String
+    },
+    unread: {
+        type: Boolean,
+        default: true
     }
 },
 { timestamps: true });
