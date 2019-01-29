@@ -93,7 +93,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('ONLINE', (data) => {
-		console.log('usernamed id', socket.id);
+		console.log('usernamed id: ', socket.id);
 		console.log(data);
 		socket.join(data.room);
 	});
