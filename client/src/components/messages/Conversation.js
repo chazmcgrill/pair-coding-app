@@ -24,11 +24,6 @@ const Conversation = ({ conversations, user, openMessage }) => (
                             <div className="inbox-date-user">
                                 <p className="inbox-text">{author.username}</p>
                                 <p className="inbox-text">
-                                    <Moment format="DD/MM/YYYY">
-                                        {convo.updatedAt}
-                                    </Moment>
-                                </p>
-                                <p className="inbox-text">
                                     <Moment calendar={calendarStrings}>
                                         {convo.updatedAt}
                                     </Moment>
