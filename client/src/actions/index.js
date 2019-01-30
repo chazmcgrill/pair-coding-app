@@ -65,12 +65,15 @@ export const getMessages = roomId => async (dispatch) => {
 
 export const sendNewMessage = userData => async (dispatch) => {
     try {
-        const room = userData.recievingUser + userData.sendingUser;
+        const { recievingUser, sendingUser } = userData;
+        const roomId = recievingUser.userId + sendingUser.githubId;
 
-        socket.on(room).emit('MAKE_CONVERSATION', {
-            room,
+        socket.on(roomId).emit('MAKE_CONVERSATION', {
+            roomId,
+            recievingUser,
+            sendingUser,
         });
-        // dispatch({ type: SEND_NEW_MESSAGE, payload: response.data });
+        dispatch({ type: SEND_NEW_MESSAGE, payload: 'Message Saved' });
     } catch (e) {
         dispatch({ type: SEND_NEW_MESSAGE_ERROR, payload: 'Error Sending Message' });
     }

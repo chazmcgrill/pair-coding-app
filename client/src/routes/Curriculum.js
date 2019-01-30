@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CertAccordion from '../components/curriculum/CertAccordion';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { getCurriculum, openCert, openSection, sendNewMessage } from '../actions';
+import {
+    getCurriculum,
+    openCert,
+    openSection,
+    sendNewMessage,
+} from '../actions';
 import requireAuth from './requireAuth';
 
 class Curriculum extends Component {
@@ -12,7 +17,13 @@ class Curriculum extends Component {
     }
 
     render() {
-        const { curriculum, handleCertClick, handleSectionClick, handleNewMessageClick, user } = this.props;
+        const {
+            curriculum,
+            handleCertClick,
+            handleSectionClick,
+            handleNewMessageClick,
+            user,
+        } = this.props;
         const { certificates } = curriculum;
 
         return (

@@ -49,55 +49,54 @@ io.on('connection', (socket) => {
         socket.join(room); 
     });
 
-    // socket.on('unsubscribe', function(room) {  
-    //     console.log('leaving room', room);
-    //     socket.leave(room); 
-    // })
-
-    // socket.on('send', data => {
-    //     const socketId = socket.id;
-    //     const resData = {...data, socketId}
-    //     io.sockets
-    //         .in(data.room)
-    //         .emit('RECEIVE_MESSAGE', resData);
-    // });
-
-
-    // socket.on('CREATE_ROOM', data => {
-    //     socket.join(data.room);
-    // })
-
-
-    // socket.on('SEND_NOTIFICATION', (socket) => {
-    //     socket.broadcast.emit('NEW_MESSAGE');
-    // })
-
      // Create Conversation
      socket.on('MAKE_CONVERSATION', (data) => {
-         console.log(data);
-        
+         const { roomId, recievingUser, sendingUser} = data;
+         const { githubId, name, photo } = sendingUser;
+         const message = 'Someone wants to connect with you.';
+
+
+                        console.log('===============');
+                        console.log(recievingUser)
+                        console.log('===============');
+
          // Check if theres already a conversation between users
          // TODO, CHECK IF MESSAGES EXIST CREATE ONE IF NOT, OR ADD TO IT, IF IT DOES
-         Conversation.find( { roomId: data.room} )
+         Conversation.find( { roomId } )
             .count()
             .then((count) => {
-                
-                const newMessage = new Message({
-                    roomId: data.room,
-                    message: {
-                        user: 'come on user',
-                        message: 'message about something.'
-                    }
-                });
-                newMessage.save()
-                    .then(message => console.log(message))
-                    .catch(err => console.log(err))
                     
                 // if conversation doesnt exist make it
                 if(!count) {
+                    const newMessage = new Message({
+                        roomId,
+                        message: [{
+                            userId: githubId,
+                            username: name,
+                            avatar: photo,
+                            message,
+                        }]
+                    });
+                    newMessage.save()
+                        .then(message => console.log(message))
+                        .catch(err => console.log(err))
+
+                    
                     const newConversation = new Conversation({
-                            roomId: data.room,
-                            users: [12312421,123124124]
+                            roomId,
+                            users: [
+                                {
+                                    userId: sendingUser.githubId,
+                                    username: sendingUser.name,
+                                    avatar: sendingUser.photo
+                                },
+                                {
+                                    userId: recievingUser.userId,
+                                    username: recievingUser.username,
+                                    avatar: recievingUser.avatar
+                                }
+                            ],
+                            lastMessage: message,
                         })
                         newConversation.save()
                             .then(convo => console.log(convo))

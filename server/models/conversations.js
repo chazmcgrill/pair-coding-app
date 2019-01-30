@@ -7,8 +7,7 @@ const ConversationsSchema = new Schema({
         required: true
     },
     users: {
-        type: Array,
-        required: true
+        type: Array 
     },
     lastMessage: {
         type: String

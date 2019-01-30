@@ -15,7 +15,7 @@ const CertChallenge = ({ section, handleNewMessageClick, currentUser }) => (
             {
                 section.users
                     ? section.users.map(user => (
-                        <button type="button" key={user.userId} onClick={() => handleNewMessageClick({ recievingUser: user.userId, sendingUser: currentUser.githubId })} className="btn">{`Message ${user.username}`}</button>
+                        <button type="button" key={user.userId} onClick={() => handleNewMessageClick({ recievingUser: user, sendingUser: currentUser })} className="btn">{`Message ${user.username}`}</button>
                     ))
                     : null
             }
