@@ -12,6 +12,7 @@ const morgan = require('morgan');
 // Models
 const Message = require('./models/messages');
 const Conversation = require('./models/conversations');
+const User = require('./models/user');
 
 // Routes
 const subjects = require('./routes/subjects');
@@ -56,10 +57,10 @@ io.on('connection', (socket) => {
          const message = 'Someone wants to connect with you.';
 
 
-                        console.log('===============');
-                        console.log(recievingUser)
-                        console.log('===============');
+         console.log('==========');
+        console.log(roomId);
 
+        console.log('============');
          // Check if theres already a conversation between users
          // TODO, CHECK IF MESSAGES EXIST CREATE ONE IF NOT, OR ADD TO IT, IF IT DOES
          Conversation.find( { roomId } )
@@ -101,26 +102,39 @@ io.on('connection', (socket) => {
                         newConversation.save()
                             .then(convo => console.log(convo))
                             .catch(console.log('error posting conversation'))
+
+                       User.findOneAndUpdate({
+                           githubId: sendingUser.githubId
+                       },
+                       { $push: { conversations: roomId } })
+
+                       User.findOneAndUpdate({
+                           githubId: recievingUser.userId
+                        },
+                        { $push: { conversations: roomId } })
             
                 } 
+
+                // if conversation exists then update it instead.
                 else {
+                    Message.findOneAndUpdate(
+                            { roomId }, 
+                            { $push: { message  } })
+                            .then(console.log(data))
+                            .catch(err => console.log(err));
+
+                    Conversation.findOneAndUpdate(
+                        { roomId, },
+                        {
+                            unread: false,
+                            lastMessage: message
+                        })
+                        .then(console.log('message sent'))
+                        .catch(err => console.log(err));
+                    
                     console.log('conversation exists')
                 }
             })
-
-         
-
-        // Message.findOneAndUpdate(
-        //     { roomId: data.room }, 
-        //     { $push: { message: data  } })
-        //     .then(console.log(data))
-        //     .catch(err => console.log(err));
-
-		// Conversation.findOneAndUpdate(
-        //     { roomId: data.roomId },
-        //     { unread: false  })
-        //     .then(console.log('message read'))
-        //     .catch(err => console.log(err));;
 	});
 
     // Send message
