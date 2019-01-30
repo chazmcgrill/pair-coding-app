@@ -56,11 +56,6 @@ io.on('connection', (socket) => {
          const { githubId, name, photo } = sendingUser;
          const message = 'Someone wants to connect with you.';
 
-
-         console.log('==========');
-        console.log(roomId);
-
-        console.log('============');
          // Check if theres already a conversation between users
          // TODO, CHECK IF MESSAGES EXIST CREATE ONE IF NOT, OR ADD TO IT, IF IT DOES
          Conversation.find( { roomId } )
@@ -103,15 +98,22 @@ io.on('connection', (socket) => {
                             .then(convo => console.log(convo))
                             .catch(console.log('error posting conversation'))
 
+                            console.log('==============');
+                            console.log(sendingUser.githubId);
+                            console.log('==============');
                        User.findOneAndUpdate({
-                           githubId: sendingUser.githubId
+                           githubId: sendingUser.githubId.toString()
                        },
                        { $push: { conversations: roomId } })
+                            .then(res => console.log(res))
+                            .catch(err => console.log(err));
 
                        User.findOneAndUpdate({
-                           githubId: recievingUser.userId
+                           githubId: recievingUser.userId.toString()
                         },
                         { $push: { conversations: roomId } })
+                             .then(res => console.log(res))
+                             .catch(err => console.log(err));
             
                 } 
 
