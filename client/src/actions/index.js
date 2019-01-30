@@ -1,4 +1,6 @@
 import axios from 'axios';
+import io from 'socket.io-client';
+
 import {
     GET_CERTS,
     GET_CERTS_ERROR,
@@ -10,7 +12,12 @@ import {
     GET_CONVERSATIONS_ERROR,
     GET_MESSAGES,
     GET_MESSAGES_ERROR,
+    SEND_NEW_MESSAGE,
+    SEND_NEW_MESSAGE_ERROR,
 } from './types';
+
+
+const socket = io('localhost:5000');
 
 // Curriculum Actions
 export const getCurriculum = () => async (dispatch) => {
@@ -52,6 +59,20 @@ export const getMessages = roomId => async (dispatch) => {
         dispatch({ type: GET_MESSAGES, payload: response.data });
     } catch (e) {
         dispatch({ type: GET_MESSAGES_ERROR, payload: 'Error Fetching Data' });
+    }
+};
+
+
+export const sendNewMessage = userData => async (dispatch) => {
+    try {
+        const room = userData.recievingUser + userData.sendingUser;
+
+        socket.on(room).emit('MAKE_CONVERSATION', {
+            room,
+        });
+        // dispatch({ type: SEND_NEW_MESSAGE, payload: response.data });
+    } catch (e) {
+        dispatch({ type: SEND_NEW_MESSAGE_ERROR, payload: 'Error Sending Message' });
     }
 };
 

@@ -19,8 +19,6 @@ router.get('/', (req, res) => {
                 .catch(console.log('error fetching conversations'))
         })
         .catch(console.log('error fetching user'))
-
-
 });
 
 
@@ -29,28 +27,28 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 
     // create message in message collection
-    const newMessage = new Message({
-        roomId: req.body.roomId,
-        message: {
-            user: req.body.message[0].user,
-            message: req.body.message[0].message
-        }
-    });
-    newMessage.save()
-        .then(message => res.json(message))
-        // create conversation collection 
-        .then(() => {
-            const users = [req.body.message[0].user];
-            const roomId = req.body.roomId;
+    // const newMessage = new Message({
+    //     roomId: req.body.roomId,
+    //     message: {
+    //         user: req.body.message[0].user,
+    //         message: req.body.message[0].message
+    //     }
+    // });
+    // newMessage.save()
+    //     .then(message => res.json(message))
+    //     // create conversation collection 
+    //     .then(() => {
+    //         const users = [req.body.message[0].user];
+    //         const roomId = req.body.roomId;
             
-            const newConversation = new Conversation({
-            roomId: roomId,
-            users: users
-        })
-        newConversation.save()
-            .then(conversation => res.json(conversation))
-            .catch(console.log('error posting conversation'))
-    })
+    //         const newConversation = new Conversation({
+    //         roomId: roomId,
+    //         users: users
+    //     })
+    //     newConversation.save()
+    //         .then(conversation => res.json(conversation))
+    //         .catch(console.log('error posting conversation'))
+    // })
     
 });
 

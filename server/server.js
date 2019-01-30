@@ -72,6 +72,59 @@ io.on('connection', (socket) => {
     //     socket.broadcast.emit('NEW_MESSAGE');
     // })
 
+     // Create Conversation
+     socket.on('MAKE_CONVERSATION', (data) => {
+         console.log(data);
+        
+         // Check if theres already a conversation between users
+         // TODO, CHECK IF MESSAGES EXIST CREATE ONE IF NOT, OR ADD TO IT, IF IT DOES
+         Conversation.find( { roomId: data.room} )
+            .count()
+            .then((count) => {
+                
+                const newMessage = new Message({
+                    roomId: data.room,
+                    message: {
+                        user: 'come on user',
+                        message: 'message about something.'
+                    }
+                });
+                newMessage.save()
+                    .then(message => console.log(message))
+                    .catch(err => console.log(err))
+                    
+                // if conversation doesnt exist make it
+                if(!count) {
+                    const newConversation = new Conversation({
+                            roomId: data.room,
+                            users: [12312421,123124124]
+                        })
+                        newConversation.save()
+                            .then(convo => console.log(convo))
+                            .catch(console.log('error posting conversation'))
+            
+                } 
+                else {
+                    console.log('conversation exists')
+                }
+            })
+
+         
+
+        // Message.findOneAndUpdate(
+        //     { roomId: data.room }, 
+        //     { $push: { message: data  } })
+        //     .then(console.log(data))
+        //     .catch(err => console.log(err));
+
+		// Conversation.findOneAndUpdate(
+        //     { roomId: data.roomId },
+        //     { unread: false  })
+        //     .then(console.log('message read'))
+        //     .catch(err => console.log(err));;
+	});
+
+    // Send message
     socket.on('SEND_MESSAGE', (data) => {
 		console.log('Reached the server', data);
         io.emit('RECEIVE_MESSAGE', data);
