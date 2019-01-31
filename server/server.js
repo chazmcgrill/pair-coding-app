@@ -54,6 +54,7 @@ io.on('connection', (socket) => {
      socket.on('MAKE_CONVERSATION', (data) => {
          const { roomId, recievingUser, sendingUser} = data;
          const { githubId, name, photo } = sendingUser;
+         const { userId, username, avatar } = recievingUser;
          const message = 'Someone wants to connect with you.';
 
          // Check if theres already a conversation between users
@@ -82,14 +83,14 @@ io.on('connection', (socket) => {
                             roomId,
                             users: [
                                 {
-                                    userId: sendingUser.githubId,
-                                    username: sendingUser.name,
-                                    avatar: sendingUser.photo
+                                    userId: githubId,
+                                    username: name,
+                                    avatar: photo
                                 },
                                 {
-                                    userId: recievingUser.userId,
-                                    username: recievingUser.username,
-                                    avatar: recievingUser.avatar
+                                    userId,
+                                    username,
+                                    avatar,
                                 }
                             ],
                             lastMessage: message,
@@ -97,23 +98,21 @@ io.on('connection', (socket) => {
                         newConversation.save()
                             .then(convo => console.log(convo))
                             .catch(console.log('error posting conversation'))
-
-                            console.log('==============');
-                            console.log(sendingUser.githubId);
-                            console.log('==============');
-                       User.findOneAndUpdate({
-                           githubId: sendingUser.githubId.toString()
-                       },
-                       { $push: { conversations: roomId } })
-                            .then(res => console.log(res))
-                            .catch(err => console.log(err));
-
-                       User.findOneAndUpdate({
-                           githubId: recievingUser.userId.toString()
+                       
+                        // Update the Users conversations
+                        User.findOneAndUpdate({
+                           githubId: githubId.toString()
                         },
                         { $push: { conversations: roomId } })
-                             .then(res => console.log(res))
-                             .catch(err => console.log(err));
+                                .then(res => console.log(res))
+                                .catch(err => console.log(err));
+
+                        User.findOneAndUpdate({
+                            githubId: userId.toString()
+                            },
+                            { $push: { conversations: roomId } })
+                                .then(res => console.log(res))
+                                .catch(err => console.log(err));
             
                 } 
 
@@ -121,14 +120,21 @@ io.on('connection', (socket) => {
                 else {
                     Message.findOneAndUpdate(
                             { roomId }, 
-                            { $push: { message  } })
+                            { $push: {
+                                message: {
+                                    userId: githubId,
+                                    username: name,
+                                    avatar: photo,
+                                    message,
+                                }
+                            }})
                             .then(console.log(data))
                             .catch(err => console.log(err));
 
                     Conversation.findOneAndUpdate(
                         { roomId, },
                         {
-                            unread: false,
+                            unread: true,
                             lastMessage: message
                         })
                         .then(console.log('message sent'))
