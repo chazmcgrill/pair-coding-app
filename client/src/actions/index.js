@@ -6,6 +6,7 @@ import {
     GET_CERTS_ERROR,
     OPEN_CERT,
     OPEN_SECTION,
+    SEND_NEW_USER_ERROR,
     ADD_USER,
     TOGGLE_LOGIN_MODAL,
     GET_CONVERSATIONS,
@@ -26,6 +27,14 @@ export const getCurriculum = () => async (dispatch) => {
         dispatch({ type: GET_CERTS, payload: response.data });
     } catch (e) {
         dispatch({ type: GET_CERTS_ERROR, payload: 'Error Fetching Data' });
+    }
+};
+
+export const addNewUser = user => async (dispatch) => {
+    try {
+        console.log(user);
+    } catch (e) {
+        dispatch({ type: SEND_NEW_USER_ERROR, payload: 'Error adding new user to curriculum section.' });
     }
 };
 
@@ -61,7 +70,6 @@ export const getMessages = roomId => async (dispatch) => {
         dispatch({ type: GET_MESSAGES_ERROR, payload: 'Error Fetching Data' });
     }
 };
-
 
 export const sendNewMessage = userData => async (dispatch) => {
     try {

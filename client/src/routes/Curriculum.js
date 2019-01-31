@@ -7,6 +7,7 @@ import {
     openCert,
     openSection,
     sendNewMessage,
+    addNewUser,
 } from '../actions';
 import requireAuth from './requireAuth';
 
@@ -22,6 +23,7 @@ class Curriculum extends Component {
             handleCertClick,
             handleSectionClick,
             handleNewMessageClick,
+            handleAddUserClick,
             user,
         } = this.props;
         const { certificates } = curriculum;
@@ -30,7 +32,7 @@ class Curriculum extends Component {
             <main>
                 <div className="row">
                     <div className="col col--main">
-                        {certificates ? <CertAccordion currentUser={user} certificates={certificates} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} handleNewMessageClick={handleNewMessageClick} /> : <LoadingSpinner />}
+                        {certificates ? <CertAccordion currentUser={user} certificates={certificates} handleAddUserClick={handleAddUserClick} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} handleNewMessageClick={handleNewMessageClick} /> : <LoadingSpinner />}
                     </div>
                     <div className="col col--side">
                         <p>
@@ -70,6 +72,9 @@ function mapDispatchToProps(dispatch) {
         },
         handleNewMessageClick: (id) => {
             dispatch(sendNewMessage(id));
+        },
+        handleAddUserClick: (user) => {
+            dispatch(addNewUser(user));
         },
     };
 }
