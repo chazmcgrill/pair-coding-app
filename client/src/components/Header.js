@@ -8,6 +8,10 @@ import './Header.sass';
 const socket = io('localhost:5000');
 
 class NavBar extends Component {
+    state = {
+        userMenuOpen: false,
+    }
+
     componentDidUpdate() {
         this.newMessage();
     }
@@ -23,7 +27,13 @@ class NavBar extends Component {
         loginClick();
     }
 
+    openUserMenu = () => {
+        const { userMenuOpen } = this.state;
+        this.setState({ userMenuOpen: !userMenuOpen });
+    }
+
     render() {
+        const { userMenuOpen } = this.state;
         const { user } = this.props;
         return (
             <header className="header" style={{ backgroundColor: 'none' }}>
@@ -49,7 +59,17 @@ class NavBar extends Component {
                                 <NavLink activeClassName="active" to="/curriculum">Curriculum</NavLink>
                                 <NavLink activeClassName="active" to="/inbox">Inbox</NavLink>
                                 <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
-                                <img className="nav-user-image" src={user.photo} alt="user avatar" />
+                                <img
+                                    onClick={this.openUserMenu}
+                                    className="nav-user-image"
+                                    src={user.photo}
+                                    alt="user avatar"
+                                />
+                                {userMenuOpen && (
+                                    <div className="nav-user-menu">
+                                        <span className="nav-user-menu--button">Logout</span>
+                                    </div>
+                                )}
                             </Fragment>
                         )}
                     </nav>
