@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import { connect } from 'react-redux';
 import Modal from '../components/Modal';
 import Header from '../components/landingpage/Hero';
-import { toggleLoginModal, addUser } from '../actions';
+import { toggleLoginModal, addUser, findUser } from '../actions';
 import Features from '../components/landingpage/Features';
 import Reviews from '../components/landingpage/Reviews';
 
@@ -17,12 +17,18 @@ class Landing extends Component {
     }
 
     componentDidMount() {
-        const { addsUser } = this.props;
-        socket.on('github', (user) => {
-            // eslint-disable-next-line
-            this.state.popup.close();
-            addsUser(user);
-        });
+        const token = localStorage.getItem('token');
+        if (token) {
+            const { handleFindUser } = this.props;
+            handleFindUser(token);
+        } else {
+            const { addsUser } = this.props;
+            socket.on('github', (user) => {
+                // eslint-disable-next-line
+                this.state.popup.close();
+                addsUser(user);
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -100,6 +106,9 @@ function mapDispatchToProps(dispatch) {
         },
         addsUser: (user) => {
             dispatch(addUser(user));
+        },
+        handleFindUser: (token) => {
+            dispatch(findUser(token));
         },
     };
 }

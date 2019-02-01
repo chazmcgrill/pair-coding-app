@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const User = require('../models/user');
 require('../services/passport');
 
 // Setting up the passport middleware for each of the OAuth providers
@@ -32,6 +33,16 @@ router.get('/logout', socketIdMiddleware, (req, res) => {
   req.logout();
   io.to(`${req.session.socketId}`).emit('githubLogout', user);
   res.end()
+})
+
+router.get('/find-user', (req, res) => {
+  const token = req.query.token;
+  User.findOne({ githubId: token })
+    .then(user => res.json({
+      name: user.displayName,
+      photo: user.avatar,
+      githubId: user.githubId,
+    }));
 })
 
 module.exports = router;
