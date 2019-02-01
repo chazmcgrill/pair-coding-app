@@ -8,13 +8,13 @@ import './Header.sass';
 const socket = io('localhost:5000');
 
 class NavBar extends Component {
-    componentDidMount = () => {
+    componentDidUpdate() {
         this.newMessage();
     }
 
     newMessage = () => {
-        socket.on('NEW_MESSAGE', () => {
-            console.log('ding');
+        socket.on('RECEIVE_NOTIFICATION', (incomingMessage) => {
+            console.log('somethings coming in');
         });
     }
 

@@ -40,18 +40,31 @@ app.use(session({
 let server = http.createServer(app);
 const io = socketio(server)
 app.set('socketio', io);
-
+var people = [];
 
 io.on('connection', (socket) => {
     console.log('socketID: ', socket.id);
 
-    socket.on('subscribe', function(room) { 
-        console.log('joining room', room);
-        socket.join(room); 
-    });
+    // Potential user online stuff.
+    // socket.on("join", (name) => {
+    //     const user = {
+    //         userId: 'name',
+    //         socket: socket.id,
+    //     }
+    //     people.push(user);
+    //     console.log(people)
+    // });
+    
+    // socket.on('disconnect', (socket) => {
+    //    people = people.filter(function( obj ) {
+    //     return obj.userId !== socket.id;
+    //   });
+    //   console.log(people)
+    // });
 
      // Create Conversation
      socket.on('MAKE_CONVERSATION', (data) => {
+         console.log('Making message: ', socket.id);
          const { roomId, recievingUser, sendingUser} = data;
          const { githubId, name, photo } = sendingUser;
          const { userId, username, avatar } = recievingUser;
@@ -147,7 +160,7 @@ io.on('connection', (socket) => {
 
     // Send message
     socket.on('SEND_MESSAGE', (data) => {
-		console.log('Reached the server', data);
+		console.log('send message: ', socket.id);
         io.emit('RECEIVE_MESSAGE', data);
 
         
@@ -169,15 +182,16 @@ io.on('connection', (socket) => {
             .catch(err => console.log(err));;
     });
 
-    socket.on('ONLINE', (data) => {
-		console.log('usernamed id: ', socket.id);
-		console.log(data);
-		socket.join(data.room);
+    socket.on('SEND_NOTIFICATION', (data) => {
+        console.log('NOTIFICATION: ', data);
+        io.emit('RECEIVE_NOTIFICATION', data);
     });
     
 
     // Mark post as read
     socket.on('MARK_READ', (data) => {
+
+		console.log('markread id: ', socket.id);
 		Conversation.findOneAndUpdate(
             { roomId: data.roomId },
             { unread: false  })
@@ -198,18 +212,6 @@ io.on('connection', (socket) => {
     //                 .catch(err => console.log(err));
     //             }
     //         });
-    // });
-
-    // socket.on('disconnect', () => {
-
-    //     User.findOneAndRemove({ socketId: socket.id }, (err) => {
-    //         if (err)
-    //             console.log(err);
-    //         else
-    //             console.log('User Deleted!');
-    //     });
-
-      
     // });
 });
 

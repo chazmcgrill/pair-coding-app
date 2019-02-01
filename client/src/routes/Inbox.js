@@ -13,6 +13,7 @@ class Conversations extends Component {
     componentDidMount() {
         const { fetchConversations, user } = this.props;
         fetchConversations(user);
+        socket.emit('join', 'eeee');
     }
 
     roomClick = (roomId) => {
@@ -22,7 +23,6 @@ class Conversations extends Component {
         // change unread to false if user isnt the one who created the last message
         socket.on(roomId).emit('MARK_READ', { roomId });
     }
-
 
     render() {
         const { conversations, user } = this.props;

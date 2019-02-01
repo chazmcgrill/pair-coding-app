@@ -44,7 +44,7 @@ class ChatInput extends Component {
             room,
         });
 
-        socket.emit('SEND_NOTIFICATION');
+        socket.on(room).emit('SEND_NOTIFICATION', 'notification');
 
         this.setState({ message: '' });
     }
