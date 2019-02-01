@@ -1,49 +1,5 @@
-const express = require('express');
-const http = require('http');
-const passport = require('passport');
-const session = require('express-session');
-const cors = require('cors');
-const socketio = require('socket.io');
-const mongoose = require('mongoose');
-const app = express();
-require('dotenv').config();
-const morgan = require('morgan');
-
-// Models
-const Message = require('./models/messages');
-const Conversation = require('./models/conversations');
-const User = require('./models/user');
-
-// Routes
-const subjects = require('./routes/subjects');
-const authRoutes = require('./routes/auth');
-const conversations = require('./routes/conversations');
-const messages = require('./routes/messages');
-
-// database setup
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
-	.then(() => console.log('MongoDB Connected'))
-	.catch(err => console.log(err));
-
-// app setup
-app.use(morgan('tiny'));
-app.use(express.json({type: '*/*'}));
-app.use(passport.initialize());
-app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
-app.use(session({
-	secret: process.env.SESSION_SECRET,
-	resave: true,
-	saveUninitialized: true
-}));
-
-// sockets setup
-let server = http.createServer(app);
-const io = socketio(server)
-app.set('socketio', io);
-// var people = [];
 
 
-// Want to move out to own file
 function connection(socket) {
     console.log('socketID: ', socket.id);
 
@@ -218,20 +174,4 @@ function connection(socket) {
 
 }
 
-
-io.on('connection', connection);
-
-
-
-
-// routes setup
-app.use('/api/subjects', subjects);
-app.use('/api/auth', authRoutes);
-app.use('/api/conversations', conversations);
-app.use('/api/messages', messages);
-
-// server setup
-const port = process.env.PORT || 5000;
-server.listen(port, () => {
-	console.log(`Server started on port ${port}`);
-});
+module.exports = connection;
