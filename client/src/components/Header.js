@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
-import { toggleLoginModal } from '../actions';
+import { toggleLoginModal, removeUser } from '../actions';
 import './Header.sass';
 
 const socket = io('localhost:5000');
@@ -30,6 +30,12 @@ class NavBar extends Component {
     openUserMenu = () => {
         const { userMenuOpen } = this.state;
         this.setState({ userMenuOpen: !userMenuOpen });
+    }
+
+    handleLogoutClick = () => {
+        const { handleRemoveUser } = this.props;
+        localStorage.removeItem('token');
+        handleRemoveUser();
     }
 
     render() {
@@ -67,7 +73,7 @@ class NavBar extends Component {
                                 />
                                 {userMenuOpen && (
                                     <div className="nav-user-menu">
-                                        <span className="nav-user-menu--button">Logout</span>
+                                        <span onClick={this.handleLogoutClick} className="nav-user-menu--button">Logout</span>
                                     </div>
                                 )}
                             </Fragment>
@@ -90,6 +96,9 @@ function mapDispatchToProps(dispatch) {
     return {
         loginClick: () => {
             dispatch(toggleLoginModal(true));
+        },
+        handleRemoveUser: () => {
+            dispatch(removeUser());
         },
     };
 }

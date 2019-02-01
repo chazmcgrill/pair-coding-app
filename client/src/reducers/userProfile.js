@@ -1,4 +1,10 @@
-import { ADD_USER, FIND_USER, FIND_USER_ERROR, TOGGLE_LOGIN_MODAL } from '../actions/types';
+import {
+    ADD_USER,
+    FIND_USER,
+    REMOVE_USER,
+    FIND_USER_ERROR,
+    TOGGLE_LOGIN_MODAL,
+} from '../actions/types';
 
 const INITIAL_STATE = {
     user: {},
@@ -14,6 +20,8 @@ export default function (state = INITIAL_STATE, action) {
             return { ...state, user: action.payload };
         case FIND_USER_ERROR:
             return { ...state, errorMessage: action.payload };
+        case REMOVE_USER:
+            return { ...state, user: {} };
         case TOGGLE_LOGIN_MODAL:
             return { ...state, isModalOpen: action.payload };
         default:
