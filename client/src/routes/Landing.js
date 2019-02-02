@@ -94,24 +94,14 @@ class Landing extends Component {
     }
 }
 
-function matchStateToProps(state) {
-    return {
-        isModalOpen: state.userProfile.isModalOpen,
-    };
-}
+const matchStateToProps = state => ({
+    isModalOpen: state.userProfile.isModalOpen,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        clickModalClose: () => {
-            dispatch(toggleLoginModal(false));
-        },
-        addsUser: (user) => {
-            dispatch(addUser(user));
-        },
-        handleFindUser: (token) => {
-            dispatch(findUser(token));
-        },
-    };
-}
+const mapDispatchToProps = dispatch => ({
+    clickModalClose: () => dispatch(toggleLoginModal(false)),
+    addsUser: user => dispatch(addUser(user)),
+    handleFindUser: token => dispatch(findUser(token)),
+});
 
 export default connect(matchStateToProps, mapDispatchToProps)(Landing);
