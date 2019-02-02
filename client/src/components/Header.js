@@ -17,7 +17,7 @@ class NavBar extends Component {
     }
 
     newMessage = () => {
-        socket.on('RECEIVE_NOTIFICATION', (incomingMessage) => {
+        socket.on('RECEIVE_NOTIFICATION', () => {
             console.log('somethings coming in');
         });
     }
@@ -36,6 +36,7 @@ class NavBar extends Component {
         const { handleRemoveUser } = this.props;
         localStorage.removeItem('token');
         handleRemoveUser();
+        this.setState({ userMenuOpen: false });
     }
 
     render() {

@@ -26,6 +26,7 @@ class Landing extends Component {
             socket.on('github', (user) => {
                 // eslint-disable-next-line
                 this.state.popup.close();
+                localStorage.setItem('token', user.githubId);
                 addsUser(user);
             });
         }
