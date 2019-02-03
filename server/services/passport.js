@@ -16,7 +16,7 @@ const githubLogin = new GithubStrategy({
     
     User.findOne({ githubId: profile.id }, (err, user) => {
         if (err) return done(err);
-        if (user) return done(null, profile);
+        if (user) return done(null, { accessToken, profile });
         const newUser = new User({
             githubId: profile.id,
             displayName: profile.username,
@@ -24,7 +24,7 @@ const githubLogin = new GithubStrategy({
         });
         newUser.save(err => {
             if (err) return done(err);
-            return done(null, profile);
+            return done(null, { accessToken, profile });
         })
     });
 });
