@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
 import Modal from '../components/Modal';
+import LoginBox from '../components/LoginBox';
 import Header from '../components/landingpage/Hero';
 import { toggleLoginModal, addUser, findUser } from '../actions';
 import Features from '../components/landingpage/Features';
@@ -70,10 +71,9 @@ class Landing extends Component {
                 <Reviews />
 
                 {isModalOpen && (
-                    <Modal
-                        auth={this.startAuth}
-                        closeModal={this.handleModalClick}
-                    />
+                    <Modal closeModal={this.handleModalClick}>
+                        <LoginBox handleAuthButtonPress={this.startAuth} />
+                    </Modal>
                 )}
             </Fragment>
         );
