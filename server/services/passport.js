@@ -12,6 +12,7 @@ const githubLogin = new GithubStrategy({
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
         callbackUrl: 'http://127.0.0.1:5000/api/auth/callback',
+        scope: ['read:user'],
 }, (accessToken, refreshToken, profile, done) => {
     
     User.findOne({ githubId: profile.id }, (err, user) => {
