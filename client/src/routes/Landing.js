@@ -23,11 +23,11 @@ class Landing extends Component {
             handleFindUser(token);
         } else {
             const { addsUser } = this.props;
-            socket.on('github', (user) => {
+            socket.on('github', (data) => {
                 // eslint-disable-next-line
                 this.state.popup.close();
-                localStorage.setItem('token', user.githubId);
-                addsUser(user);
+                localStorage.setItem('token', data.accessToken);
+                addsUser(data.user);
             });
         }
     }
