@@ -11,11 +11,6 @@ const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
 
 class Landing extends Component {
-    state = {
-        disabled: false,
-        popup: null,
-    }
-
     componentDidMount() {
         const token = localStorage.getItem('token');
         if (token) {
@@ -24,8 +19,7 @@ class Landing extends Component {
         } else {
             const { addsUser } = this.props;
             socket.on('github', (data) => {
-                // eslint-disable-next-line
-                this.state.popup.close();
+                this.popup.close();
                 localStorage.setItem('token', data.accessToken);
                 addsUser(data.user);
             });
@@ -33,33 +27,27 @@ class Landing extends Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.check);
-    }
-
-    checkPopup = () => {
-        this.check = setInterval(() => {
-            const { popup } = this.state;
-            if (!popup || popup.closed || popup.closed === undefined) {
-                clearInterval(this.check);
-                this.setState({ disabled: false });
-            }
-        }, 1000);
-    }
-
-    startAuth = () => {
-        const { disabled } = this.state;
-        if (!disabled) {
-            this.checkPopup();
-            this.setState({
-                disabled: true,
-                popup: this.openPopup(),
-            });
-        }
+        if (this.popup) this.popup.close();
+        clearInterval(this.pollingInterval);
     }
 
     handleModalClick = () => {
         const { clickModalClose } = this.props;
         clickModalClose();
+    }
+
+    checkPopup = () => {
+        this.pollingInterval = setInterval(() => {
+            const { popup } = this;
+            if (!popup || popup.closed || popup.closed === undefined) {
+                clearInterval(this.pollingInterval);
+            }
+        }, 1000);
+    }
+
+    startAuth = () => {
+        this.popup = this.openPopup();
+        this.checkPopup();
     }
 
     openPopup() {
@@ -74,7 +62,6 @@ class Landing extends Component {
     }
 
     render() {
-        const { disabled } = this.state;
         const { isModalOpen } = this.props;
         return (
             <Fragment>
@@ -85,7 +72,6 @@ class Landing extends Component {
                 {isModalOpen && (
                     <Modal
                         auth={this.startAuth}
-                        disabled={disabled}
                         closeModal={this.handleModalClick}
                     />
                 )}
