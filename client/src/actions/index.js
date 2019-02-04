@@ -6,7 +6,7 @@ import {
     GET_CERTS_ERROR,
     OPEN_CERT,
     OPEN_SECTION,
-    SEND_NEW_USER_ERROR,
+    ADD_NEW_USER_TO_CERT,
     ADD_USER,
     REMOVE_USER,
     FIND_USER,
@@ -33,12 +33,9 @@ export const getCurriculum = () => async (dispatch) => {
     }
 };
 
-export const addNewUser = user => async (dispatch) => {
-    try {
-        console.log(user);
-    } catch (e) {
-        dispatch({ type: SEND_NEW_USER_ERROR, payload: 'Error adding new user to curriculum section.' });
-    }
+export const addNewUser = user => (dispatch) => {
+    console.log('in the action', user)
+    dispatch({ type: ADD_NEW_USER_TO_CERT, payload: user });
 };
 
 // Inbox Actions

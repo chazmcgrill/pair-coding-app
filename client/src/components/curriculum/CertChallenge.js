@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addNewUser } from '../../actions';
+import requireAuth from '../../routes/requireAuth';
 import './CertChallenge.sass';
 
-const CertChallenge = ({ section, handleNewMessageClick, currentUser, handleAddUserClick }) => (
+const CertChallenge = ({
+            section,
+            handleNewMessageClick,
+            currentUser,
+            handleAddUserClick,
+}) => (
     section.open ? (
         <div className="cert-challenge">
             <p>This section includes the challenges: </p>
@@ -19,8 +27,30 @@ const CertChallenge = ({ section, handleNewMessageClick, currentUser, handleAddU
                     ))
                     : null
             }
+            {/* New added Users from button click */}
+            {/* {addedUsers > 0
+                ? addedUsers.map(user => (
+                    <button type="button" key={user.userId} onClick={() => handleNewMessageClick({ recievingUser: user, sendingUser: currentUser })} className="btn">{`Message ${user.username}`}</button>
+                ))
+                : null
+            } */}
         </div>
     ) : null
 );
 
-export default CertChallenge;
+
+function mapStateToProps(state) {
+    return {
+        addedUsers: state.addedUsers,
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        handleAddUserClick: (user) => {
+            dispatch(addNewUser(user));
+        },
+    };
+}
+
+export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(CertChallenge));

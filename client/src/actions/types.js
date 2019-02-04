@@ -3,7 +3,7 @@ export const GET_CERTS = 'get_certs';
 export const GET_CERTS_ERROR = 'get_certs_error';
 export const OPEN_CERT = 'open_cert';
 export const OPEN_SECTION = 'open_section';
-export const SEND_NEW_USER_ERROR = 'send_new_user_error';
+export const ADD_NEW_USER_TO_CERT = 'add_new_user_to_cert';
 
 // Login
 export const ADD_USER = 'add_user';
