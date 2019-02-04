@@ -8,6 +8,9 @@ import {
     OPEN_SECTION,
     SEND_NEW_USER_ERROR,
     ADD_USER,
+    REMOVE_USER,
+    FIND_USER,
+    FIND_USER_ERROR,
     TOGGLE_LOGIN_MODAL,
     GET_CONVERSATIONS,
     GET_CONVERSATIONS_ERROR,
@@ -99,6 +102,26 @@ export const openSection = id => (dispatch) => {
 export const addUser = user => (dispatch) => {
     dispatch({ type: ADD_USER, payload: user });
 };
+
+export const findUser = token => async (dispatch) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: 'http://localhost:5000/api/auth/find-user',
+            params: { token },
+        });
+        dispatch({ type: FIND_USER, payload: response.data });
+    } catch (e) {
+        dispatch({
+            type: FIND_USER_ERROR,
+            payload: 'Error Fetching Data',
+        });
+    }
+};
+
+export const removeUser = () => (dispatch) => {
+    dispatch({ type: REMOVE_USER });
+}
 
 export const toggleLoginModal = isOpen => (dispatch) => {
     dispatch({ type: TOGGLE_LOGIN_MODAL, payload: isOpen });

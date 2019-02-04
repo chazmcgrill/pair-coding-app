@@ -2,8 +2,9 @@ import React, { Component, Fragment } from 'react';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
 import Modal from '../components/Modal';
+import LoginBox from '../components/LoginBox';
 import Header from '../components/landingpage/Hero';
-import { toggleLoginModal, addUser } from '../actions';
+import { toggleLoginModal, addUser, findUser } from '../actions';
 import Features from '../components/landingpage/Features';
 import Reviews from '../components/landingpage/Reviews';
 
@@ -11,48 +12,43 @@ const API_URL = 'http://127.0.0.1:5000';
 const socket = io(API_URL);
 
 class Landing extends Component {
-    state = {
-        disabled: false,
-        popup: null,
-    }
-
     componentDidMount() {
-        const { addsUser } = this.props;
-        socket.on('github', (user) => {
-            // eslint-disable-next-line
-            this.state.popup.close();
-            addsUser(user);
-        });
+        const token = localStorage.getItem('token');
+        if (token) {
+            const { handleFindUser } = this.props;
+            handleFindUser(token);
+        } else {
+            const { addsUser } = this.props;
+            socket.on('github', (data) => {
+                this.popup.close();
+                localStorage.setItem('token', data.accessToken);
+                addsUser(data.user);
+            });
+        }
     }
 
     componentWillUnmount() {
-        clearInterval(this.check);
-    }
-
-    checkPopup = () => {
-        this.check = setInterval(() => {
-            const { popup } = this.state;
-            if (!popup || popup.closed || popup.closed === undefined) {
-                clearInterval(this.check);
-                this.setState({ disabled: false });
-            }
-        }, 1000);
-    }
-
-    startAuth = () => {
-        const { disabled } = this.state;
-        if (!disabled) {
-            this.checkPopup();
-            this.setState({
-                disabled: true,
-                popup: this.openPopup(),
-            });
-        }
+        if (this.popup) this.popup.close();
+        clearInterval(this.pollingInterval);
     }
 
     handleModalClick = () => {
         const { clickModalClose } = this.props;
         clickModalClose();
+    }
+
+    checkPopup = () => {
+        this.pollingInterval = setInterval(() => {
+            const { popup } = this;
+            if (!popup || popup.closed || popup.closed === undefined) {
+                clearInterval(this.pollingInterval);
+            }
+        }, 1000);
+    }
+
+    startAuth = () => {
+        this.popup = this.openPopup();
+        this.checkPopup();
     }
 
     openPopup() {
@@ -67,7 +63,6 @@ class Landing extends Component {
     }
 
     render() {
-        const { disabled } = this.state;
         const { isModalOpen } = this.props;
         return (
             <Fragment>
@@ -76,32 +71,23 @@ class Landing extends Component {
                 <Reviews />
 
                 {isModalOpen && (
-                    <Modal
-                        auth={this.startAuth}
-                        disabled={disabled}
-                        closeModal={this.handleModalClick}
-                    />
+                    <Modal closeModal={this.handleModalClick}>
+                        <LoginBox handleAuthButtonPress={this.startAuth} />
+                    </Modal>
                 )}
             </Fragment>
         );
     }
 }
 
-function matchStateToProps(state) {
-    return {
-        isModalOpen: state.userProfile.isModalOpen,
-    };
-}
+const matchStateToProps = state => ({
+    isModalOpen: state.userProfile.isModalOpen,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        clickModalClose: () => {
-            dispatch(toggleLoginModal(false));
-        },
-        addsUser: (user) => {
-            dispatch(addUser(user));
-        },
-    };
-}
+const mapDispatchToProps = dispatch => ({
+    clickModalClose: () => dispatch(toggleLoginModal(false)),
+    addsUser: user => dispatch(addUser(user)),
+    handleFindUser: token => dispatch(findUser(token)),
+});
 
 export default connect(matchStateToProps, mapDispatchToProps)(Landing);

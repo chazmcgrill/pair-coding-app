@@ -4,10 +4,7 @@ import Landing from './Landing';
 
 const Home = ({ user }) => (
     <main>
-        {user.photo
-            ? <h1>Home</h1>
-            : <Landing />
-        }
+        {user.photo ? <h1>Home</h1> : <Landing />}
     </main>
 );
 

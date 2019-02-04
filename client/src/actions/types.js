@@ -7,6 +7,9 @@ export const SEND_NEW_USER_ERROR = 'send_new_user_error';
 
 // Login
 export const ADD_USER = 'add_user';
+export const REMOVE_USER = 'remove_user';
+export const FIND_USER = 'find_user';
+export const FIND_USER_ERROR = 'find_user_error';
 export const TOGGLE_LOGIN_MODAL = 'toggle_login_modal';
 
 // Inbox

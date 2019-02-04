@@ -26,6 +26,7 @@
     align-items: center
 
 .nav
+    position: relative
     display: flex
 
     a
@@ -64,3 +65,18 @@
     padding: 0 1.25rem
     height: 26px
     border-radius: 100%
+    cursor: pointer
+
+.nav-user-menu
+    background: #fff
+    position: absolute
+    top: 50px
+    right: 0
+    width: 150px
+    padding: 1rem
+
+    &--button
+        cursor: pointer
+
+        &:hover
+            color: green
