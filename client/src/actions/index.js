@@ -72,13 +72,13 @@ export const getMessages = roomId => async (dispatch) => {
 
 export const sendNewMessage = userData => async (dispatch) => {
     try {
-        const { recievingUser, sendingUser } = userData;
+        const { receivingUser, sendingUser } = userData;
         // Make room Id from two users, sort the id's then flatten.
-        const roomId = [recievingUser.userId, sendingUser.githubId].sort().join('');
+        const roomId = [receivingUser.userId, sendingUser.githubId].sort().join('');
 
         socket.on(roomId).emit('MAKE_CONVERSATION', {
             roomId,
-            recievingUser,
+            receivingUser,
             sendingUser,
         });
         dispatch({ type: SEND_NEW_MESSAGE, payload: 'Message Saved' });

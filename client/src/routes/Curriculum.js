@@ -50,28 +50,16 @@ class Curriculum extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        curriculum: state.certificates,
-        errorMessage: state.errorMessage,
-    };
-}
+const mapStateToProps = state => ({
+    curriculum: state.certificates,
+    errorMessage: state.errorMessage,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        fetchTheCurriculum: () => {
-            dispatch(getCurriculum());
-        },
-        handleCertClick: (id) => {
-            dispatch(openCert(id));
-        },
-        handleSectionClick: (id) => {
-            dispatch(openSection(id));
-        },
-        handleNewMessageClick: (id) => {
-            dispatch(sendNewMessage(id));
-        },
-    };
-}
+const mapDispatchToProps = dispatch => ({
+    fetchTheCurriculum: () => dispatch(getCurriculum()),
+    handleCertClick: id => dispatch(openCert(id)),
+    handleSectionClick: id => dispatch(openSection(id)),
+    handleNewMessageClick: id => dispatch(sendNewMessage(id)),
+});
 
 export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Curriculum));

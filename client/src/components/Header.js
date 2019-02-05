@@ -86,22 +86,14 @@ class NavBar extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        user: state.userProfile.user,
-        modal: state.userProfile.isModalOpen,
-    };
-}
+const mapStateToProps = state => ({
+    user: state.userProfile.user,
+    modal: state.userProfile.isModalOpen,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        loginClick: () => {
-            dispatch(toggleLoginModal(true));
-        },
-        handleRemoveUser: () => {
-            dispatch(removeUser());
-        },
-    };
-}
+const mapDispatchToProps = dispatch => ({
+    loginClick: () => dispatch(toggleLoginModal(true)),
+    handleRemoveUser: () => dispatch(removeUser()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

@@ -42,19 +42,13 @@ class Footer extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        user: state.userProfile.user,
-        modal: state.userProfile.isModalOpen,
-    };
-}
+const mapStateToProps = state => ({
+    user: state.userProfile.user,
+    modal: state.userProfile.isModalOpen,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        loginClick: () => {
-            dispatch(toggleLoginModal(true));
-        },
-    };
-}
+const mapDispatchToProps = dispatch => ({
+    loginClick: () => dispatch(toggleLoginModal(true)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

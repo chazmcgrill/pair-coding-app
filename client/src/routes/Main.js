@@ -8,10 +8,8 @@ const Home = ({ user }) => (
     </main>
 );
 
-function mapStateToProps(state) {
-    return {
-        user: state.userProfile.user,
-    };
-}
+const mapStateToProps = state => ({
+    user: state.userProfile.user,
+});
 
 export default connect(mapStateToProps)(Home);
