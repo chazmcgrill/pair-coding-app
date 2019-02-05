@@ -11,7 +11,7 @@ const CertChallenge = ({
     handleAddUserClick,
     addedUsers,
 }) => (
-    section.open ? (
+    section.open && (
         <div className="cert-challenge">
             <p>This section includes the challenges: </p>
             <ul className="cert-challenge__list">
@@ -25,22 +25,16 @@ const CertChallenge = ({
                 <button type="button" key={user.githubId} onClick={() => handleNewMessageClick({ recievingUser: user, sendingUser: currentUser })} className="btn">{`Message ${user.name}`}</button>
             ))}
         </div>
-    ) : null
+    )
 );
 
 
-function mapStateToProps(state) {
-    return {
-        addedUsers: state.addUsers.addedUsers,
-    };
-}
+const mapStateToProps = state => ({
+    addedUsers: state.addUsers.addedUsers,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        handleAddUserClick: (user) => {
-            dispatch(addNewUser(user));
-        },
-    };
-}
+const mapDispatchToProps = dispatch => ({
+    handleAddUserClick: user => dispatch(addNewUser(user)),
+});
 
 export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(CertChallenge));
