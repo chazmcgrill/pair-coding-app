@@ -7,7 +7,7 @@ import {
 
 const INITIAL_STATE = {
     certificates: [],
-    errorMessage: ''
+    errorMessage: '',
 };
 
 export default function (state = INITIAL_STATE, action) {

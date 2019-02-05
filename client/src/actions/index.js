@@ -34,7 +34,6 @@ export const getCurriculum = () => async (dispatch) => {
 };
 
 export const addNewUser = user => (dispatch) => {
-    console.log('in the action', user)
     dispatch({ type: ADD_NEW_USER_TO_CERT, payload: user });
 };
 
@@ -118,7 +117,7 @@ export const findUser = token => async (dispatch) => {
 
 export const removeUser = () => (dispatch) => {
     dispatch({ type: REMOVE_USER });
-}
+};
 
 export const toggleLoginModal = isOpen => (dispatch) => {
     dispatch({ type: TOGGLE_LOGIN_MODAL, payload: isOpen });
