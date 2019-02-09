@@ -15,11 +15,18 @@ class ChatWindow extends Component {
 
     componentDidMount() {
         this.online();
+
+        const { liveMessages } = this.state;
+        socket.on('RECEIVE_MESSAGE', (incomingMessage) => {
+            const newState = { ...this.state };
+            newState.liveMessages = [...liveMessages, incomingMessage];
+            newState.addedMessage = true;
+            this.setState(newState);
+        });
     }
 
     componentDidUpdate() {
         this.scrollToBottom();
-        this.receiveMessage();
     }
 
     online = () => {
@@ -30,15 +37,15 @@ class ChatWindow extends Component {
         });
     };
 
-    receiveMessage = () => {
-        const { liveMessages } = this.state;
-        socket.on('RECEIVE_MESSAGE', (incomingMessage) => {
-            const newState = { ...this.state };
-            newState.liveMessages = [...liveMessages, incomingMessage];
-            newState.addedMessage = true;
-            this.setState(newState);
-        });
-    }
+    // receiveMessage = () => {
+    //     const { liveMessages } = this.state;
+    //     socket.on('RECEIVE_MESSAGE', (incomingMessage) => {
+    //         const newState = { ...this.state };
+    //         newState.liveMessages = [...liveMessages, incomingMessage];
+    //         newState.addedMessage = true;
+    //         this.setState(newState);
+    //     });
+    // }
 
 
     scrollToBottom() {
