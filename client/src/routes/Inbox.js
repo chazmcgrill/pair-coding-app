@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import io from 'socket.io-client';
 import { getConversations } from '../actions';
 import requireAuth from './requireAuth';
 import Conversation from '../components/messages/Conversation';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Pagination from '../components/Pagination';
 
+const socket = io('localhost:5000');
+
 class Conversations extends Component {
     componentDidMount() {
         const { fetchConversations, user } = this.props;
         fetchConversations(user);
+        socket.emit('join', 'eeee');
     }
 
     roomClick = (roomId) => {
         const { history } = this.props;
         history.push(`/inbox/messages/${roomId}`);
+        // TODO
+        // change unread to false if user isnt the one who created the last message
+        socket.on(roomId).emit('MARK_READ', { roomId });
     }
-
 
     render() {
         const { conversations, user } = this.props;

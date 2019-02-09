@@ -1,16 +1,27 @@
 import axios from 'axios';
+import io from 'socket.io-client';
+
 import {
     GET_CERTS,
     GET_CERTS_ERROR,
     OPEN_CERT,
     OPEN_SECTION,
+    SEND_NEW_USER_ERROR,
     ADD_USER,
+    REMOVE_USER,
+    FIND_USER,
+    FIND_USER_ERROR,
     TOGGLE_LOGIN_MODAL,
     GET_CONVERSATIONS,
     GET_CONVERSATIONS_ERROR,
     GET_MESSAGES,
     GET_MESSAGES_ERROR,
+    SEND_NEW_MESSAGE,
+    SEND_NEW_MESSAGE_ERROR,
 } from './types';
+
+
+const socket = io('localhost:5000');
 
 // Curriculum Actions
 export const getCurriculum = () => async (dispatch) => {
@@ -19,6 +30,14 @@ export const getCurriculum = () => async (dispatch) => {
         dispatch({ type: GET_CERTS, payload: response.data });
     } catch (e) {
         dispatch({ type: GET_CERTS_ERROR, payload: 'Error Fetching Data' });
+    }
+};
+
+export const addNewUser = user => async (dispatch) => {
+    try {
+        console.log(user);
+    } catch (e) {
+        dispatch({ type: SEND_NEW_USER_ERROR, payload: 'Error adding new user to curriculum section.' });
     }
 };
 
@@ -55,6 +74,23 @@ export const getMessages = roomId => async (dispatch) => {
     }
 };
 
+export const sendNewMessage = userData => async (dispatch) => {
+    try {
+        const { recievingUser, sendingUser } = userData;
+        // Make room Id from two users, sort the id's then flatten.
+        const roomId = [recievingUser.userId, sendingUser.githubId].sort().join('');
+
+        socket.on(roomId).emit('MAKE_CONVERSATION', {
+            roomId,
+            recievingUser,
+            sendingUser,
+        });
+        dispatch({ type: SEND_NEW_MESSAGE, payload: 'Message Saved' });
+    } catch (e) {
+        dispatch({ type: SEND_NEW_MESSAGE_ERROR, payload: 'Error Sending Message' });
+    }
+};
+
 export const openCert = id => (dispatch) => {
     dispatch({ type: OPEN_CERT, payload: id });
 };
@@ -66,6 +102,26 @@ export const openSection = id => (dispatch) => {
 export const addUser = user => (dispatch) => {
     dispatch({ type: ADD_USER, payload: user });
 };
+
+export const findUser = token => async (dispatch) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: 'http://localhost:5000/api/auth/find-user',
+            params: { token },
+        });
+        dispatch({ type: FIND_USER, payload: response.data });
+    } catch (e) {
+        dispatch({
+            type: FIND_USER_ERROR,
+            payload: 'Error Fetching Data',
+        });
+    }
+};
+
+export const removeUser = () => (dispatch) => {
+    dispatch({ type: REMOVE_USER });
+}
 
 export const toggleLoginModal = isOpen => (dispatch) => {
     dispatch({ type: TOGGLE_LOGIN_MODAL, payload: isOpen });

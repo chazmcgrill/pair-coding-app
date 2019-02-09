@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CertAccordion from '../components/curriculum/CertAccordion';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { getCurriculum, openCert, openSection } from '../actions';
+import {
+    getCurriculum,
+    openCert,
+    openSection,
+    sendNewMessage,
+    addNewUser,
+} from '../actions';
 import requireAuth from './requireAuth';
 
 class Curriculum extends Component {
@@ -12,14 +18,21 @@ class Curriculum extends Component {
     }
 
     render() {
-        const { curriculum, handleCertClick, handleSectionClick } = this.props;
+        const {
+            curriculum,
+            handleCertClick,
+            handleSectionClick,
+            handleNewMessageClick,
+            handleAddUserClick,
+            user,
+        } = this.props;
         const { certificates } = curriculum;
 
         return (
             <main>
                 <div className="row">
                     <div className="col col--main">
-                        {certificates ? <CertAccordion certificates={certificates} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} /> : <LoadingSpinner />}
+                        {certificates ? <CertAccordion currentUser={user} certificates={certificates} handleAddUserClick={handleAddUserClick} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} handleNewMessageClick={handleNewMessageClick} /> : <LoadingSpinner />}
                     </div>
                     <div className="col col--side">
                         <p>
@@ -56,6 +69,12 @@ function mapDispatchToProps(dispatch) {
         },
         handleSectionClick: (id) => {
             dispatch(openSection(id));
+        },
+        handleNewMessageClick: (id) => {
+            dispatch(sendNewMessage(id));
+        },
+        handleAddUserClick: (user) => {
+            dispatch(addNewUser(user));
         },
     };
 }

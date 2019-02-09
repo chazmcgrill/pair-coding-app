@@ -7,8 +7,14 @@ const MessagesSchema = new Schema({
         required: true
     },
     message: [{
-        user: Number,
-        message: String
+        userId: String,
+        username: String,
+        avatar: String,
+        message: String,
+        createdAt: {
+            type: Date,
+            default: Date.now,
+        },
     }]
 },
 { timestamps: true });

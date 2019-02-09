@@ -7,9 +7,15 @@ const ConversationsSchema = new Schema({
         required: true
     },
     users: {
-        type: Array,
-        required: true
+        type: Array 
     },
+    lastMessage: {
+        type: String
+    },
+    unread: {
+        type: Boolean,
+        default: true
+    }
 },
 { timestamps: true });
 
