@@ -65,7 +65,8 @@ class NavBar extends Component {
                                 <NavLink exact activeClassName="active" to="/">Home</NavLink>
                                 <NavLink activeClassName="active" to="/curriculum">Curriculum</NavLink>
                                 <NavLink activeClassName="active" to="/inbox">Inbox</NavLink>
-                                <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
+                                <NavLink activeClassName="active" to="/guide">Guide</NavLink>
+                                <NavLink activeClassName="active" to="/languages">Languages</NavLink>
                                 <img
                                     onClick={this.openUserMenu}
                                     className="nav-user-image"
