@@ -31,6 +31,9 @@ const CertChallenge = ({
                     {`Message ${user.name}`}
                 </button>
             ))}
+            {section.users && section.users.map(user => (
+                <button type="button" key={user.userId} onClick={() => handleNewMessageClick({ receivingUser: user, sendingUser: currentUser })} className="btn">{`Message ${user.username}`}</button>
+            ))}
         </div>
     )
 );
