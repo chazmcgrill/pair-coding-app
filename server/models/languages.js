@@ -10,6 +10,6 @@ const LanguageSchema = new Schema({
         type: String,
         required: true,
     },
-}, { timestamps: true });
+});
 
 module.exports = Language = mongoose.model('language', LanguageSchema);

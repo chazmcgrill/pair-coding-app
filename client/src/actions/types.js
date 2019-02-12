@@ -21,3 +21,7 @@ export const GET_MESSAGES = 'get_messages';
 export const GET_MESSAGES_ERROR = 'get_messages_error';
 export const SEND_NEW_MESSAGE = 'send_new_message';
 export const SEND_NEW_MESSAGE_ERROR = 'send_new_message_error';
+
+// Languages
+export const GET_LANGUAGES = 'get_languages';
+export const GET_LANGUAGES_ERROR = 'get_languages_error';

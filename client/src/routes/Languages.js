@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import requireAuth from './requireAuth';
+import { getLanguages } from '../actions';
+import LanguagesWrapper from '../components/languages/LanguagesWrapper';
 
-const Languages = () => (
-    <main>
-        <h1>Languages</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic ipsum non dicta quas! Pariatur libero voluptatem laudantium eum praesentium numquam! Deleniti ullam eligendi incidunt voluptatibus, quas ex perspiciatis eum dolor!</p>
-    </main>
-);
+class Languages extends Component {
+    componentDidMount() {
+        const { fetchLanguages } = this.props;
+        fetchLanguages();
+    }
 
-export default requireAuth(Languages);
+    render() {
+        const { languages } = this.props;
+        return (
+            <main>
+                <LanguagesWrapper languages={languages} />
+            </main>
+        );
+    }
+}
+
+const mapStateToProps = state => ({
+    languages: state.languages,
+    errorMessage: state.errorMessage,
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchLanguages: () => dispatch(getLanguages()),
+});
+
+export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Languages));
