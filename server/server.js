@@ -19,6 +19,7 @@ const subjects = require('./routes/subjects');
 const authRoutes = require('./routes/auth');
 const conversations = require('./routes/conversations');
 const messages = require('./routes/messages');
+const languages = require('./routes/languages');
 
 // database setup
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
@@ -229,6 +230,7 @@ app.use('/api/subjects', subjects);
 app.use('/api/auth', authRoutes);
 app.use('/api/conversations', conversations);
 app.use('/api/messages', messages);
+app.use('/api/languages', languages);
 
 // server setup
 const port = process.env.PORT || 5000;
