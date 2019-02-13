@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import requireAuth from './requireAuth';
 import { getLanguages } from '../actions';
-import LanguagesWrapper from '../components/languages/LanguagesWrapper';
+import LanguagesDetail from '../components/languages/Languages';
 
 class Languages extends Component {
     componentDidMount() {
@@ -14,7 +14,7 @@ class Languages extends Component {
         const { languages } = this.props;
         return (
             <main>
-                <LanguagesWrapper languages={languages} />
+                <LanguagesDetail languages={languages} />
             </main>
         );
     }
