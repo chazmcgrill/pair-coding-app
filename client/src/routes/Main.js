@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Landing from './Landing';
+import Home from './Home';
 
-const Home = ({ user }) => (
+const Main = ({ user }) => (
     <main>
-        {user.photo ? <h1>Home</h1> : <Landing />}
+        {user.photo ? <Home /> : <Landing />}
     </main>
 );
 
@@ -14,4 +15,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Main);

@@ -4,6 +4,7 @@
   "private": true,
   "description": "Backend Api for Pair Coding App",
   "dependencies": {
+    "@mdi/font": "^3.4.93",
     "axios": "^0.18.0",
     "moment": "^2.23.0",
     "node-sass": "^4.10.0",

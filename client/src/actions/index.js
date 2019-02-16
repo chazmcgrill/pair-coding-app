@@ -18,6 +18,8 @@ import {
     GET_MESSAGES_ERROR,
     SEND_NEW_MESSAGE,
     SEND_NEW_MESSAGE_ERROR,
+    GET_LANGUAGES,
+    GET_LANGUAGES_ERROR,
 } from './types';
 
 
@@ -121,8 +123,23 @@ export const findUser = token => async (dispatch) => {
 
 export const removeUser = () => (dispatch) => {
     dispatch({ type: REMOVE_USER });
-}
+};
 
 export const toggleLoginModal = isOpen => (dispatch) => {
     dispatch({ type: TOGGLE_LOGIN_MODAL, payload: isOpen });
+};
+
+export const getLanguages = () => async (dispatch) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: 'http://localhost:5000/api/languages',
+        });
+        dispatch({ type: GET_LANGUAGES, payload: response.data });
+    } catch (e) {
+        dispatch({
+            type: GET_LANGUAGES_ERROR,
+            payload: 'Error Fetching Data',
+        });
+    }
 };
