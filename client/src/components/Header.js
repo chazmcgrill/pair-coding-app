@@ -65,8 +65,7 @@ class NavBar extends Component {
                                 <NavLink exact activeClassName="active" to="/">Home</NavLink>
                                 <NavLink activeClassName="active" to="/curriculum">Curriculum</NavLink>
                                 <NavLink activeClassName="active" to="/inbox">Inbox</NavLink>
-                                <NavLink activeClassName="active" to="/guide">Guide</NavLink>
-                                <NavLink activeClassName="active" to="/languages">Languages</NavLink>
+                                <NavLink activeClassName="active" to="/Grid">Grid</NavLink>
                                 <img
                                     onClick={this.openUserMenu}
                                     className="nav-user-image"
@@ -87,22 +86,14 @@ class NavBar extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        user: state.userProfile.user,
-        modal: state.userProfile.isModalOpen,
-    };
-}
+const mapStateToProps = state => ({
+    user: state.userProfile.user,
+    modal: state.userProfile.isModalOpen,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        loginClick: () => {
-            dispatch(toggleLoginModal(true));
-        },
-        handleRemoveUser: () => {
-            dispatch(removeUser());
-        },
-    };
-}
+const mapDispatchToProps = dispatch => ({
+    loginClick: () => dispatch(toggleLoginModal(true)),
+    handleRemoveUser: () => dispatch(removeUser()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

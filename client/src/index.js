@@ -6,8 +6,7 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
 import App from './App';
-import Guide from './routes/Guide';
-import Languages from './routes/Languages';
+import Grid from './routes/Grid';
 import Main from './routes/Main';
 import Curriculum from './routes/Curriculum';
 import Inbox from './routes/Inbox';
@@ -29,8 +28,7 @@ ReactDOM.render(
         <BrowserRouter>
             <App>
                 <Route path="/" exact component={Main} />
-                <Route path="/guide" exact component={Guide} />
-                <Route path="/languages" exact component={Languages} />
+                <Route path="/grid" exact component={Grid} />
                 <Route path="/curriculum" exact component={Curriculum} />
                 <Route path="/inbox" exact component={Inbox} />
                 <Route path="/inbox/messages/:roomId" component={Messages} />

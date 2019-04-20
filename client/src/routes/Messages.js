@@ -48,19 +48,13 @@ class Messages extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        messages: state.messages.messages[0],
-        errorMessage: state.errorMessage,
-    };
-}
+const mapStateToProps = state => ({
+    messages: state.messages.messages[0],
+    errorMessage: state.errorMessage,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        fetchMessages: (roomId) => {
-            dispatch(getMessages(roomId));
-        },
-    };
-}
+const mapDispatchToProps = dispatch => ({
+    fetchMessages: roomId => dispatch(getMessages(roomId)),
+});
 
 export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Messages));
