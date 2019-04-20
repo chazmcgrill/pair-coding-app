@@ -22,13 +22,16 @@ import {
     GET_LANGUAGES_ERROR,
 } from './types';
 
+// const localUrl = 'http://localhost:5000';
+const remoteUrl = 'https://secret-forest-67475.herokuapp.com';
 
-const socket = io('localhost:5000');
+
+const socket = io('secret-forest-67475.herokuapp.com');
 
 // Curriculum Actions
 export const getCurriculum = () => async (dispatch) => {
     try {
-        const response = await axios.get('http://localhost:5000/api/subjects');
+        const response = await axios.get(`${remoteUrl}/api/subjects`);
         dispatch({ type: GET_CERTS, payload: response.data });
     } catch (e) {
         dispatch({ type: GET_CERTS_ERROR, payload: 'Error Fetching Data' });
@@ -49,7 +52,7 @@ export const getConversations = user => async (dispatch) => {
         const userId = user.githubId;
         const response = await axios({
             method: 'get',
-            url: 'http://localhost:5000/api/conversations',
+            url: `${remoteUrl}/api/conversations`,
             params: {
                 ID: userId,
             },
@@ -65,7 +68,7 @@ export const getMessages = roomId => async (dispatch) => {
     try {
         const response = await axios({
             method: 'get',
-            url: 'http://localhost:5000/api/messages',
+            url: `${remoteUrl}/api/messages`,
             params: {
                 ID: roomId,
             },
@@ -109,7 +112,7 @@ export const findUser = token => async (dispatch) => {
     try {
         const response = await axios({
             method: 'get',
-            url: 'http://localhost:5000/api/auth/find-user',
+            url: `${remoteUrl}/api/auth/find-user`,
             params: { token },
         });
         dispatch({ type: FIND_USER, payload: response.data });
@@ -133,7 +136,7 @@ export const getLanguages = () => async (dispatch) => {
     try {
         const response = await axios({
             method: 'get',
-            url: 'http://localhost:5000/api/languages',
+            url: `${remoteUrl}/api/languages`,
         });
         dispatch({ type: GET_LANGUAGES, payload: response.data });
     } catch (e) {
