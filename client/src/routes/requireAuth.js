@@ -25,9 +25,9 @@ export default (ChildComponent) => {
         }
     }
 
-    function mapStateToProps(state) {
-        return { user: state.userProfile.user };
-    }
+    const mapStateToProps = state => ({
+        user: state.userProfile.user,
+    });
 
     return connect(mapStateToProps)(ComposedComponent);
 };

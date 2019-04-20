@@ -1,18 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Landing from './Landing';
-import Home from './Home';
 
-const Main = ({ user }) => (
+const Home = ({ user }) => (
     <main>
-        {user.photo ? <Home /> : <Landing />}
+        {user.photo ? <h1>Home</h1> : <Landing />}
     </main>
 );
 
-function mapStateToProps(state) {
-    return {
-        user: state.userProfile.user,
-    };
-}
+const mapStateToProps = state => ({
+    user: state.userProfile.user,
+});
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps)(Home);

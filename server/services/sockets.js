@@ -23,9 +23,9 @@ function connection(socket) {
      // Create Conversation
      socket.on('MAKE_CONVERSATION', (data) => {
          console.log('Making message: ', socket.id);
-         const { roomId, recievingUser, sendingUser} = data;
+         const { roomId, receivingUser, sendingUser} = data;
          const { githubId, name, photo } = sendingUser;
-         const { userId, username, avatar } = recievingUser;
+         const { userId, username, avatar } = receivingUser;
          const message = 'Someone wants to connect with you.';
 
          // Check if theres already a conversation between users

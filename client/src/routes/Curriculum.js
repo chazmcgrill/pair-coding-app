@@ -7,7 +7,6 @@ import {
     openCert,
     openSection,
     sendNewMessage,
-    addNewUser,
 } from '../actions';
 import requireAuth from './requireAuth';
 
@@ -23,7 +22,6 @@ class Curriculum extends Component {
             handleCertClick,
             handleSectionClick,
             handleNewMessageClick,
-            handleAddUserClick,
             user,
         } = this.props;
         const { certificates } = curriculum;
@@ -32,7 +30,7 @@ class Curriculum extends Component {
             <main>
                 <div className="row">
                     <div className="col col--main">
-                        {certificates ? <CertAccordion currentUser={user} certificates={certificates} handleAddUserClick={handleAddUserClick} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} handleNewMessageClick={handleNewMessageClick} /> : <LoadingSpinner />}
+                        {certificates ? <CertAccordion currentUser={user} certificates={certificates} handleCertClick={handleCertClick} handleSectionClick={handleSectionClick} handleNewMessageClick={handleNewMessageClick} /> : <LoadingSpinner />}
                     </div>
                     <div className="col col--side">
                         <p>
@@ -52,31 +50,16 @@ class Curriculum extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        curriculum: state.certificates,
-        errorMessage: state.errorMessage,
-    };
-}
+const mapStateToProps = state => ({
+    curriculum: state.certificates,
+    errorMessage: state.errorMessage,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        fetchTheCurriculum: () => {
-            dispatch(getCurriculum());
-        },
-        handleCertClick: (id) => {
-            dispatch(openCert(id));
-        },
-        handleSectionClick: (id) => {
-            dispatch(openSection(id));
-        },
-        handleNewMessageClick: (id) => {
-            dispatch(sendNewMessage(id));
-        },
-        handleAddUserClick: (user) => {
-            dispatch(addNewUser(user));
-        },
-    };
-}
+const mapDispatchToProps = dispatch => ({
+    fetchTheCurriculum: () => dispatch(getCurriculum()),
+    handleCertClick: id => dispatch(openCert(id)),
+    handleSectionClick: id => dispatch(openSection(id)),
+    handleNewMessageClick: id => dispatch(sendNewMessage(id)),
+});
 
 export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Curriculum));

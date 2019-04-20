@@ -76,19 +76,13 @@ class Conversations extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        conversations: state.conversations.conversations,
-        errorMessage: state.errorMessage,
-    };
-}
+const mapStateToProps = state => ({
+    conversations: state.conversations.conversations,
+    errorMessage: state.errorMessage,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        fetchConversations: (user) => {
-            dispatch(getConversations(user));
-        },
-    };
-}
+const mapDispatchToProps = dispatch => ({
+    fetchConversations: user => dispatch(getConversations(user)),
+});
 
 export default requireAuth(connect(mapStateToProps, mapDispatchToProps)(Conversations));
