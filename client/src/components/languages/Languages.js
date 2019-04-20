@@ -2,8 +2,6 @@ import React from 'react';
 import '@mdi/font/css/materialdesignicons.css';
 import './Languages.sass';
 
-// test
-
 const Languages = ({ languages }) => (
     <div className="row">
         <div className="languages-wrapper">
