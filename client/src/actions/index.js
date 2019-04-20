@@ -6,8 +6,7 @@ import {
     GET_CERTS_ERROR,
     OPEN_CERT,
     OPEN_SECTION,
-    ADD_NEW_USER_TO_CERT,
-    ADD_NEW_USER_TO_CERT_ERROR,
+    SEND_NEW_USER_ERROR,
     ADD_USER,
     REMOVE_USER,
     FIND_USER,
@@ -19,6 +18,8 @@ import {
     GET_MESSAGES_ERROR,
     SEND_NEW_MESSAGE,
     SEND_NEW_MESSAGE_ERROR,
+    GET_LANGUAGES,
+    GET_LANGUAGES_ERROR,
 } from './types';
 
 
@@ -36,10 +37,9 @@ export const getCurriculum = () => async (dispatch) => {
 
 export const addNewUser = user => async (dispatch) => {
     try {
-        console.log('in the action');
-        dispatch({ type: ADD_NEW_USER_TO_CERT, payload: user });
+        console.log(user);
     } catch (e) {
-        dispatch({ type: ADD_NEW_USER_TO_CERT_ERROR, payload: 'Error adding new user to cert' });
+        dispatch({ type: SEND_NEW_USER_ERROR, payload: 'Error adding new user to curriculum section.' });
     }
 };
 
@@ -78,13 +78,13 @@ export const getMessages = roomId => async (dispatch) => {
 
 export const sendNewMessage = userData => async (dispatch) => {
     try {
-        const { receivingUser, sendingUser } = userData;
+        const { recievingUser, sendingUser } = userData;
         // Make room Id from two users, sort the id's then flatten.
-        const roomId = [receivingUser.userId, sendingUser.githubId].sort().join('');
+        const roomId = [recievingUser.userId, sendingUser.githubId].sort().join('');
 
         socket.on(roomId).emit('MAKE_CONVERSATION', {
             roomId,
-            receivingUser,
+            recievingUser,
             sendingUser,
         });
         dispatch({ type: SEND_NEW_MESSAGE, payload: 'Message Saved' });
@@ -127,4 +127,19 @@ export const removeUser = () => (dispatch) => {
 
 export const toggleLoginModal = isOpen => (dispatch) => {
     dispatch({ type: TOGGLE_LOGIN_MODAL, payload: isOpen });
+};
+
+export const getLanguages = () => async (dispatch) => {
+    try {
+        const response = await axios({
+            method: 'get',
+            url: 'http://localhost:5000/api/languages',
+        });
+        dispatch({ type: GET_LANGUAGES, payload: response.data });
+    } catch (e) {
+        dispatch({
+            type: GET_LANGUAGES_ERROR,
+            payload: 'Error Fetching Data',
+        });
+    }
 };

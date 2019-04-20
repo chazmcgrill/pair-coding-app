@@ -3,12 +3,12 @@ import certificates from './certificates';
 import userProfile from './userProfile';
 import conversations from './conversations';
 import messages from './messages';
-import addUsers from './addUsers';
+import languages from './languages';
 
 export default combineReducers({
     certificates,
     userProfile,
     conversations,
     messages,
-    addUsers,
+    languages,
 });
